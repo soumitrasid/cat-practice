@@ -1,19 +1,503 @@
 [
 {
-"question":"If the average of 8 numbers is 21 and one number is removed, the average becomes 20. Find the removed number.",
-"options":["24","26","28","29"],
-"answer":2
+  "question": "P can run 2 m in the same time that Q runs 2.5 m. In a 2-km race, Q beats P by:",
+  "options": [
+    "200 m",
+    "300 m",
+    "250 m",
+    "400 m"
+  ],
+  "answer": 3
 },
 
 {
-"question":"2x + 3 = 11. Find x.",
-"options":["2","3","4","5"],
-"answer":2
+  "question": "In a 100 m race, Ajay can give Bhuvi a 20 m start and Chaya a 30 m start. How many metres start can Bhuvi give to Chaya in a 500 m race?",
+  "options": [
+    "100 m",
+    "67.5 m",
+    "62.5 m",
+    "None of these"
+  ],
+  "answer": 2
+}
+
+{
+  "question": "At his usual rowing rate, a man can travel 60 km downstream in a certain river in 2 hours less than it takes him to travel the same distance upstream. But if he doubles his usual travelling speed for his 120 km round trip, the downstream 60 km then take only 200/7 minutes less than the upstream 60 km. What is the speed of the current (in kmph)?",
+  "options": [
+    "4",
+    "6",
+    "8",
+    "None of these"
+  ],
+  "answer": 0
+}
+
+{
+  "question": "A boat goes 6 km in one hour in still water, but takes thrice as much time in going the same distance against the current. The speed of the current (in kmph) is:",
+  "options": [
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "answer": 2
+}
+
+{
+    "question": "Two trains start simultaneously in the opposite direction from two points X and Y and arrive at their destinations 16 and 9 hours, respectively, after they meet each other. What is the speed of the train from Y if the speed of the train from X is 90 kmph?",
+    "options": [
+      "80 kmph",
+      "100 kmph",
+      "120 kmph",
+      "None of these"
+    ],
+    "answer": 2
 },
 
 {
-"question":"A train travels 120 km in 2 hours. Its speed is:",
-"options":["40 km/h","50 km/h","60 km/h","70 km/h"],
-"answer":2
+    "question": "There are two parallel tracks on which trains are moving in the same direction at speeds of 80 kmph and 40 kmph, respectively. The faster train crosses a passenger in the slower train in 72 seconds. Find the length of the faster train.",
+    "options": [
+      "720 m",
+      "800 m",
+      "400 m",
+      "880 m"
+    ],
+    "answer": 2
+},
+
+{
+    "question": "A metro train starts from Rajauri station at 7 a.m. at 60 kmph towards Rajiv Chowk. At 1 p.m. another train starts from Rajiv Chowk towards Rajauri at 80 kmph. When do the two trains meet, if the distance between Rajauri and Rajiv Chowk is 1200 km?",
+    "options": [
+      "7:15 p.m.",
+      "8:20 p.m.",
+      "7:20 p.m.",
+      "7 p.m."
+    ],
+    "answer": 3
+},
+
+{
+    "question": "A train approaches a tunnel X-Y. Inside the tunnel a cow is located at a point 2/7 of the distance X-Y measured from entrance X. When the train whistles the cow runs. If the cow moves to exit Y, the train catches the cow exactly at exit Y and if the cow moves to entrance X, the train catches the cow exactly at entrance X. Find the ratio of the speeds of the train and the cow.",
+    "options": [
+      "7 : 3",
+      "14 : 3",
+      "13 : 7",
+      "None of these"
+    ],
+    "answer": 0
+}
+{
+    "question": "Two trains running in opposite direction cross a man standing on the platform in 26 seconds and 21 seconds, respectively, and they cross each other in 24 seconds. The ratio of their speeds is:",
+    "options": [
+      "1 : 3",
+      "3 : 2",
+      "3 : 4",
+      "4 : 1"
+    ],
+    "answer": 1
+},
+{
+    "question": "A jogger running at 18 kmph alongside a railway track is 200 m ahead of the engine of a 160 m long train running at 54 kmph in the same direction. In how much time (in seconds) will the train pass the jogger?",
+    "options": [
+      "25",
+      "3.6",
+      "40",
+      "36"
+    ],
+    "answer": 3
+}
+  
+{
+  "question": "Two tourists left simultaneously from point A for point B. The first tourist covers each kilometre two minutes faster than the second. After travelling 30 per cent of the way, the first tourist returned to A, stopped there for 102 minutes and again started for B. The two tourists arrived at B simultaneously. What is the distance between A and B if the second tourist covered it in 2.5 hours?",
+  "options": [
+    "60 km",
+    "70 km",
+    "45 km",
+    "None of these"
+  ],
+  "answer": 0
+},
+
+{
+  "question": "Two bodies moving along a circle in the same direction meet every 49 minutes. Had they moved at the same speeds in opposite directions, they would meet every seven minutes. If moving in opposite directions, the bodies are at a distance of 40 metres from each other along the arc at time t = 0, then at t = 24 seconds, their distance is 26 metres (the bodies do not meet during these 24 seconds). Find the speed of the faster body in metres per minute.",
+  "options": [
+    "15",
+    "20",
+    "25",
+    "None of these"
+  ],
+  "answer": 1
+},
+
+{
+  "question": "The distance between Varanasi and Lucknow is 220 km. Two buses start from these towns towards each other. They can meet halfway if the first bus leaves two hours earlier than the second. If they start simultaneously, they will meet in four hours. Find the speeds of the buses.",
+  "options": [
+    "17.5(3 + √5) km/h, 17.5(1 + √5) km/h",
+    "27.5(3 + √5) km/h, 27.5(1 + √5) km/h",
+    "27.5(3 - √5) km/h, 27.5(1 - √5) km/h",
+    "None of these"
+  ],
+  "answer": 2
+},
+
+{
+  "question": "A road passes through the towns Sangamner and Yeotmal. A cyclist started from Sangamner in the direction of Yeotmal. At the same time, two pedestrians started from Yeotmal travelling at the same speed, the first of them towards Sangamner and the other in the opposite direction. The cyclist covered the distance between the towns in half an hour and continued ahead in the same direction. He overtook the second pedestrian 1.2 hours after he met the first pedestrian. Determine the time taken by the first pedestrian to reach Sangamner.",
+  "options": [
+    "1.5 hours",
+    "2 hours",
+    "2.5 hours",
+    "3 hours"
+  ],
+  "answer": 2
+}
+
+{
+  "question": "Two ducks move along the circumference of a circular pond in the same direction and come alongside each other every 54 minutes. If they moved with the same speeds in opposite directions, they would meet every nine minutes. It is known that when the ducks moved along the opposite directions, the distance between them decreased from 54 feet to 14 feet every 48 seconds. What is the speed of the slower duck?",
+  "options": [
+    "20 feet/min",
+    "15 feet/min",
+    "30 feet/min",
+    "20.83 feet/min"
+  ],
+  "answer": 2
+},
+
+{
+  "question": "Dev and Nishit started simultaneously from opposite points X and Y on a straight road, at constant speeds. When Dev had covered 40% of the distance from X to Y, Nishit was 4 km away from Dev after having crossed Dev. When Nishit had covered half the way, Dev was 10 km short of the midpoint. Find a possible ratio of the time taken by Dev to cover the distance from X to Y to the time taken by Nishit to cover the same distance.",
+  "options": [
+    "(1+√3)/2",
+    "(3√2+4)/(2√2+2)",
+    "Either (a) or (b)",
+    "None of these"
+  ],
+  "answer": 1
+},
+
+{
+  "question": "Three points A, B and C are located at the vertices of an equilateral triangle with sides equal to 168 metres. A donkey called Dinky starts from A to B at 60 metres/hour and at the same time a cow called Moo starts from B to C at 30 metres/hour. In what time after their departure will the distance between the donkey and the cow be the least?",
+  "options": [
+    "2 hours",
+    "3 hours",
+    "0.5 hours",
+    "8 hours"
+  ],
+  "answer": 0
+},
+
+{
+  "question": "A train has to travel the distance between Aurangabad and Daulatabad, equal to 20 km, at a constant speed. It travelled half the way with the specified speed and stopped for three minutes. To arrive at Daulatabad on time, it had to increase its speed by 10 km/h for the remaining half. Next time, the train stopped halfway for five minutes. By what speed must it increase its speed for the remaining half of the distance to arrive as per the schedule?",
+  "options": [
+    "10 km/h",
+    "20 km/h",
+    "15 km/h",
+    "16 km/h"
+  ],
+  "answer": 1
+},
+
+{
+  "question": "Nishit travels from Patna to Kolkata, a distance of 200 km at the speed of 40 km/h. At the same time, Ravi starts from Kolkata at a speed of 20 km/h along a road which is perpendicular to the road on which Nishit is travelling. When will Nishit and Ravi be closest to each other?",
+  "options": [
+    "1.5 hours",
+    "4 hours",
+    "3.33 hours",
+    "5 hours"
+  ],
+  "answer": 1
+},
+
+{
+  "question": "Two towns are at a distance of 240 km from each other. A motorist takes 8 hours to cover the distance if he travels at a speed of V0 km/h from town A to an intermediate town C, and then on his way with an acceleration of x km/h². He needs the same time to cover the whole distance if he travels from A to C at V0 km/h and from C to B at V1 km/h, or from A to C at V1 km/h and from C to B at V0 km/h. Find V0 if the acceleration x is double V0 in magnitude and V0 ≠ V1.",
+  "options": [
+    "15 km/h",
+    "10 km/h",
+    "20 km/h",
+    "8 km/h"
+  ],
+  "answer": 2
+},
+
+{
+  "question": "An object begins moving at time t = 0 and 4 s after the beginning of the motion attains the acceleration of 3 m/s². Find the speed of the object 6 s after the beginning of motion if the speed varies according to the law v(t) = (t² + 2bt + 4) m/s and the object moves along a straight line.",
+  "options": [
+    "22 m/s",
+    "10 m/s",
+    "30 m/s",
+    "15 m/s"
+  ],
+  "answer": 1
+}
+{
+    "question": "Two people started simultaneously towards each other from Siliguri and Darjeeling, which are 60 km apart. They met five hours later. After the meeting, the first person, who travelled from Siliguri to Darjeeling, decreased his speed by 1.5 km/h and the other person, who travelled from Darjeeling to Siliguri, increased his speed by 1.5 km/h. The first person is known to arrive at Darjeeling 2.5 hours earlier than the second person arrived at Siliguri. Find the initial speed of the first person.",
+    "options": [
+      "4.5 km/h",
+      "6 km/h",
+      "7.5 km/h",
+      "9 km/h"
+    ],
+    "answer": 2
+},
+{
+    "question": "Shaurya and Arjit take a straight route to the same terminal point and travel with constant speeds. At the initial moment, the positions of the two and the terminal point form an equilateral triangle. When Arjit covered a distance of 80 km, the triangle becomes right-angled. When Arjit was at a distance of 120 km from the terminal point, then Shaurya arrived at the point. Find the distance between them at the initial moment assuming that there are integral distances throughout the movements described.",
+    "options": [
+      "300 km",
+      "240 km",
+      "200 km",
+      "225 km"
+    ],
+    "answer": 2
+},
+{
+    "question": "Three cars started simultaneously from Ajmer to Benaras along the same highway. The second car travelled with a speed that was 10 km/h higher than the first car's speed and arrived at Benaras one hour earlier than the first car. The third car arrived at Benaras 33.33 minutes earlier than the first car, travelling half the time at the speed of the first car and the other half at the speed of the second car. Find the total distance covered by these three cars during their journey between Ajmer and Benaras.",
+    "options": [
+      "360 km",
+      "600 km",
+      "540 km",
+      "840 km"
+    ],
+    "answer": 2
+},
+{
+    "question": "Two trains start from the same point simultaneously and in the same direction. The first train travels at 40 km/h, and the speed of the second train is 25 percent more than the speed of the first train. Thirty minutes later, a third train starts from the same point and in the same direction. It overtakes the second train 90 minutes later than it overtook the first train. What is the speed of the third train?",
+    "options": [
+      "20 km/h",
+      "40 km/h",
+      "60 km/h",
+      "80 km/h"
+    ],
+    "answer": 2
+}
+
+{
+    "question": "Three brothers, Ram, Shyam and Mohan, left the college simultaneously at 12 noon. Ram travelled by bus for 2 hours at 10 mph, then by bike for 1.5 hours at 40 mph, and finally on foot for 3 hours at 3.33 mph. Shyam travelled by bike for 1 hour at 30 mph, then on foot for 3 hours at 3.33 mph, and finally by bus for 4 hours at 10 mph. At what time did Ram overtake Shyam?",
+    "options": [
+      "3:15 p.m.",
+      "2:22 p.m.",
+      "2:30 p.m.",
+      "2:20 p.m."
+    ],
+    "answer": 3
+},
+
+{
+    "question": "Ravi, who lives in the countryside, caught a train for home earlier than usual yesterday. His wife normally drives to the station to meet him. But yesterday he set out on foot from the station to meet his wife on the way. He would have reached home 12 minutes earlier than if he had waited at the station for his wife. The car travels at a uniform speed, which is 5 times Ravi's speed on foot. Ravi reached home at exactly 6 o'clock. At what time would he have reached home if his wife, forewarned of his plan, had met him at the station?",
+    "options": [
+      "5:48",
+      "5:24",
+      "5:00",
+      "5:36"
+    ],
+    "answer": 1
+},
+
+{
+    "question": "Hemant and Ajay start a two-length swimming race at the same moment but from opposite ends of the pool. They swim in lane and at uniform speeds, but Hemant is faster than Ajay. They first pass at a point 18.5 m from the deep end and, after completing one length, each is allowed to rest on the edge for exactly 45 seconds. After setting off on the return length, the swimmers pass for the second time just 10.5 m from the shallow end. How long is the pool?",
+    "options": [
+      "55.5 m",
+      "45 m",
+      "66 m",
+      "49 m"
+    ],
+    "answer": 0
+}
+
+{
+  "question": "An ant moved for several seconds and covered 3 mm in the first second and 4 mm more in each successive second than in its predecessor. If the ant had covered 1 mm in the first second and 8 mm more in each successive second, then the difference between the path it would cover during the same time and the actual path would be more than 6 mm but less than 30 mm. Find the time for which the ant moved (in seconds).",
+  "options": [
+    "5 s",
+    "4 s",
+    "6 s",
+    "2 s"
+  ],
+  "answer": 0
+},
+{
+  "question": "A motorcyclist left point A for point B. Two hours later, another motorcyclist left A for B and arrived at B at the same time as the first motorcyclist. Had both the motorcyclists started simultaneously from A and B travelling towards each other, they would have met in 80 minutes. How much time did it take the faster motorcyclist to travel from A to B?",
+  "options": [
+    "6 hours",
+    "3 hours",
+    "2 hours",
+    "4 hours"
+  ],
+  "answer": 0
+}
+
+{
+  "question": "An urgent message had to be delivered from Pune to Bangalore. A horse rider travels from Pune to Bangalore at a constant speed. If the horse increased its speed by 6 km/h, it would take the rider 4 hours less to cover that distance. Travelling with a speed 6 km/h lower than the initial speed would take him 10 hours more than the time taken had he travelled at a speed 6 km/h higher than the initial speed. Find the distance between Pune and Bangalore.",
+  "options": [
+    "120 km",
+    "600 km",
+    "720 km",
+    "750 km"
+  ],
+  "answer": 2
+},
+{
+  "question": "A bus left point X for point Y. Two hours later a car left point X for Y and arrived at Y at the same time as the bus. If the car and the bus left simultaneously from opposite ends X and Y towards each other, they would meet 1.33 hours after the start. How much time did it take the bus to travel from X to Y?",
+  "options": [
+    "2 h",
+    "4 h",
+    "6 h",
+    "8 h"
+  ],
+  "answer": 3
+}
+
+{
+  "question": "Two trains A and B start from station X to Y and Y to X respectively. After passing each other, they take 12 hours and 3 hours to reach Y and X respectively. If train A is moving at 48 km/h, find the speed of train B.",
+  "options": [
+    "24 km/h",
+    "96 km/h",
+    "21 km/h",
+    "20 km/h"
+  ],
+  "answer": 1
+},
+{
+  "question": "A starts from a point on the circumference of a circle, moves 600 m in the North direction and then 800 m East and reaches a point diametrically opposite the starting point. Find the diameter of the circle.",
+  "options": [
+    "1000 m",
+    "500 m",
+    "800 m",
+    "900 m"
+  ],
+  "answer": 0
+}
+
+{
+  "question": "A man leaves office daily at 7 PM. A driver with a car comes from his home to pick him up and bring him back home. One day he gets free at 5:30 PM and instead of waiting for the driver he starts walking towards home. On the way, he meets the car and returns home in the car. He reaches home 20 minutes earlier than usual. In how much time does the man usually reach home?",
+  "options": [
+    "1 h 20 min",
+    "1 h",
+    "2 h 10 min",
+    "Cannot be determined"
+  ],
+  "answer": 1
+},
+{
+  "question": "Vinay fires two bullets from the same place at an interval of 12 minutes but Raju sitting in a train approaching the place hears the second report 11 minutes 30 seconds after the first. What is the approximate speed of the train if sound travels at 330 m/s?",
+  "options": [
+    "660/23 m/s",
+    "220/7 m/s",
+    "330/23 m/s",
+    "110/23 m/s"
+  ],
+  "answer": 2
+}
+ 
+{
+    "question": "Vinay runs 100 m in 20 seconds and Ajay runs the same distance in 25 seconds. By what distance will Vinay beat Ajay in a 100 m race?",
+    "options": [
+      "10 m",
+      "20 m",
+      "25 m",
+      "12 m"
+    ],
+    "answer": 1
+},
+
+{
+    "question": "At a game of billiards, A can give B 15 points in 60 and A can give C 20 points in 60. How many points can B give C in a game of 90?",
+    "options": [
+      "5 points",
+      "10 points",
+      "15 points",
+      "20 points"
+    ],
+    "answer": 1
+ },
+
+{
+    "question": "Ram and Shyam run a race of 2000 m. First, Ram gives Shyam a start of 200 m and beats him by 30 seconds. Next, Ram gives Shyam a start of 3 minutes and is beaten by 1000 m. Find the time taken by Ram and Shyam separately to run the race.",
+    "options": [
+      "8 min, 10 min",
+      "4 min, 5 min",
+      "5 min, 9 min",
+      "6 min, 9 min"
+    ],
+    "answer": 1
+ },
+
+{
+    "question": "In a 300 m race, Anuj beats Bimal by 15 m or 5 seconds. Time taken by Bimal to complete the race is:",
+    "options": [
+      "100 s",
+      "125 s",
+      "115 s",
+      "None of these"
+    ],
+    "answer": 1
+}
+{
+  "question": "Two places A and B are 120 metres apart. Ramesh starts travelling from A to B and at the same time Sachin starts travelling from B to A. Ramesh travels one-third of the total journey at 8 m/min, half of the remaining distance at 10 m/min and the rest at 12 m/min. Sachin completes the whole journey by travelling at 8 m/min, 10 m/min and 12 m/min respectively for equal intervals of time. After how much time (in seconds) from the start of the journey will they cross each other?",
+  "options": [
+    "428 seconds",
+    "414 seconds",
+    "435 seconds",
+    "432 seconds"
+  ],
+  "answer": 3
+}
+{
+  "question": "Shyam's house, his office and his gym are all equidistant from each other. The distance between any two of them is 4 km. Shyam starts walking from his gym in a direction parallel to the road connecting his office and his house and stops when he reaches a point directly east of his office. He then reverses direction and walks till he reaches a point directly south of his office. The total distance walked by Shyam is:",
+  "options": [
+    "6 km",
+    "9 km",
+    "16 km",
+    "12 km"
+  ],
+  "answer": 2
+},
+{
+  "question": "Alok walks to a viewpoint and returns to the starting point by car and thus takes a total time of 6 hours 45 minutes. He would have gained 2 hours by driving both ways. How long would it have taken him to walk both ways?",
+  "options": [
+    "8 h 45 min",
+    "7 h 45 min",
+    "5 h 30 min",
+    "6 h 45 min"
+  ],
+  "answer": 0
+}
+
+{
+    "question": "Three friends A, B and C start from P to Q that are 100 km apart. A is on a moped while B is riding pillion and C walks. A takes B to a point R and returns to pick up C on the way and takes him to Q. B, on the other hand, walks to Q from point R (R is the midpoint between P and Q). If the ratio of speeds of the three people is 5 : 2 : 1, find where the last person reaches when the first person reaches Q.",
+    "options": [
+      "12.85 km from Q",
+      "12.75 km from Q",
+      "16.66 km from Q",
+      "83.33 km from P"
+    ],
+    "answer": 1
+},
+
+{
+    "question": "Two boats go downstream from point X to Y. The faster boat covers the distance from X to Y 1.5 times as fast as the slower boat. It is known that for every hour, the slower boat lags behind the faster boat by 8 km. However, if they go upstream, then the faster boat covers the distance from Y to X in half the time as the slower boat. Find the speed of the faster boat in still water.",
+    "options": [
+      "12 km/h",
+      "20 km/h",
+      "24 km/h",
+      "25 km/h"
+    ],
+    "answer": 2
+}
+{
+  "question": "A pedestrian left point A for a walk, going with speed V km/h. When the pedestrian was at a distance of 6 km from A, a cyclist followed him from A, cycling at 9 km/h higher speed than that of the pedestrian. When the cyclist overtook the pedestrian, they turned back and returned to A together at the speed of 4 km/h. At what value of V will the time spent by the pedestrian on his total journey from A to A be the least?",
+  "options": [
+    "5 km/h",
+    "6 km/h",
+    "6.1 km/h",
+    "5.5 km/h"
+  ],
+  "answer": 1
+}
+
+  "question": "A pedestrian and a cyclist left Nagpur for Buti Bori at the same time. Having reached Buti Bori, the cyclist turned back and met the pedestrian an hour after the start. After the meeting, the pedestrian continued his trip to Buti Bori and the cyclist turned back and also headed for Buti Bori. Having reached Buti Bori, the cyclist turned back again and met the pedestrian 30 minutes after their first meeting. Determine what time it takes the pedestrian to cover the distance between Nagpur and Buti Bori.",
+  "options": [
+    "1 hour",
+    "2 hours",
+    "2.5 hours",
+    "3 hours"
+  ],
+  "answer": 2
 }
 ]
