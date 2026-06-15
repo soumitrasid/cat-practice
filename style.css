@@ -1,296 +1,749 @@
-/* ==========================
-   General Page
-========================== */
+// ===============================
+// Global Variables
+// ===============================
 
-body {
+let questions = [];
 
-    font-family: Arial, sans-serif;
+let currentQuestion = 0;
 
-    font-size: 14pt;
+let userAnswers = [];
 
-    max-width: 1000px;
+let questionTimes = [];
 
-    margin: auto;
+let questionStartTime = Date.now();
 
-    padding: 20px;
+let masterTimeLeft = 0;
 
-    line-height: 1.6;
+let questionTimeLeft = 300; // 5 minutes
+
+let masterTimerInterval;
+let questionTimerInterval;
+
+// ===============================
+// Load Questions
+// ===============================
+
+fetch("questions.json")
+.then(response => response.json())
+.then(data => {
+
+    questions = data;
+
+    userAnswers = Array(questions.length).fill(null);
+
+    questionTimes = Array(questions.length).fill(0);
+
+    masterTimeLeft = questions.length * 300;
+
+    createPalette();
+
+    loadQuestion();
+
+    startMasterTimer();
+
+    startQuestionTimer();
+
+})
+.catch(error => {
+
+    document.getElementById("question").innerHTML =
+        "Error loading questions.json";
+
+    console.error(error);
+
+});
+
+
+// ===============================
+// Load Question
+// ===============================
+
+function loadQuestion() {
+
+    let q = questions[currentQuestion];
+
+    document.getElementById("questionNumber").innerHTML =
+        `Question ${currentQuestion + 1}`;
+
+    document.getElementById("question").innerHTML =
+        q.question;
+
+    let html = "";
+
+    for (let i = 0; i < q.options.length; i++) {
+
+        let checked = "";
+
+        if (userAnswers[currentQuestion] === i)
+            checked = "checked";
+
+        html +=
+        `
+        <p>
+        <label>
+        <input type="radio"
+               name="option"
+               value="${i}"
+               ${checked}>
+        ${q.options[i]}
+        </label>
+        </p>
+        `;
+    }
+
+    document.getElementById("options").innerHTML = html;
+
+    updateButtons();
+
+    updatePalette();
+}
+
+
+// ===============================
+// Create Question Palette
+// ===============================
+
+function createPalette() {
+
+    let paletteHTML = "";
+
+    for (let i = 0; i < questions.length; i++) {
+
+        paletteHTML +=
+
+        `<button class="paletteButton unansweredQuestion"
+                 onclick="jumpToQuestion(${i})"
+                 id="palette${i}">
+                 ${i+1}
+         </button>`;
+    }
+
+    document.getElementById("palette").innerHTML =
+        paletteHTML;
+}
+
+
+// ===============================
+// Jump To Question
+// ===============================
+
+function jumpToQuestion(index) {
+
+    saveTimeSpent();
+
+    currentQuestion = index;
+
+    questionStartTime = Date.now();
+
+    questionTimeLeft = 300;
+
+    loadQuestion();
+}
+
+
+// ===============================
+// Update Palette
+// ===============================
+
+function updatePalette() {
+
+    for (let i = 0; i < questions.length; i++) {
+
+        let box =
+            document.getElementById(`palette${i}`);
+
+        box.className = "paletteButton";
+
+        if (userAnswers[i] !== null)
+            box.classList.add("answeredQuestion");
+        else
+            box.classList.add("unansweredQuestion");
+
+        if (i === currentQuestion)
+            box.classList.add("currentQuestion");
+    }
+}
+
+// ===============================
+// Save Time Spent
+// ===============================
+
+function saveTimeSpent() {
+
+    let spent =
+        Math.floor((Date.now() - questionStartTime)/1000);
+
+    questionTimes[currentQuestion] += spent;
+}
+
+
+// ===============================
+// Format Time
+// ===============================
+
+function formatTime(seconds) {
+
+    let hrs =
+        String(Math.floor(seconds/3600)).padStart(2,'0');
+
+    let mins =
+        String(Math.floor((seconds%3600)/60)).padStart(2,'0');
+
+    let secs =
+        String(seconds%60).padStart(2,'0');
+
+    return `${hrs}:${mins}:${secs}`;
+}
+
+
+// ===============================
+// Master Timer
+// ===============================
+
+function startMasterTimer() {
+
+    masterTimerInterval = setInterval(() => {
+
+        masterTimeLeft--;
+
+        document.getElementById("masterTimer")
+        .innerHTML =
+        "Master Timer : " +
+        formatTime(masterTimeLeft);
+
+        if (masterTimeLeft <= 0) {
+
+            clearInterval(masterTimerInterval);
+
+            finishTest();
+
+        }
+
+    },1000);
 
 }
 
 
-/* ==========================
-   Headings
-========================== */
+// ===============================
+// Question Timer
+// ===============================
 
-h1 {
+function startQuestionTimer() {
 
-    color: navy;
+    questionTimerInterval = setInterval(() => {
 
-    text-align: center;
+        questionTimeLeft--;
 
-}
+        document.getElementById("questionTimer")
+        .innerHTML =
+        "Question Timer : " +
+        formatTime(questionTimeLeft);
 
-h2 {
-
-    color: black;
-
-}
-
-h3 {
-
-    color: #444;
+    },1000);
 
 }
+// ===============================
+// Submit Answer
+// ===============================
 
+function submitAnswer() {
 
-/* ==========================
-   Timers
-========================== */
+    let selected =
+        document.querySelector(
+            'input[name="option"]:checked'
+        );
 
-.timers {
+    if (!selected) {
 
-    display: flex;
+        alert("Please select an answer.");
 
-    justify-content: space-between;
+        return;
+    }
 
-}
+    saveTimeSpent();
 
-#masterTimer {
+    userAnswers[currentQuestion] =
+        parseInt(selected.value);
 
-    color: red;
+    questionStartTime = Date.now();
 
-}
+    questionTimeLeft = 300;
 
-#questionTimer {
+    updatePalette();
 
-    color: blue;
+    updateButtons();
 
-}
+    // Automatically move to next question
+    if (currentQuestion < questions.length - 1) {
 
+        currentQuestion++;
 
-/* ==========================
-   Question Area
-========================== */
+        loadQuestion();
 
-#question {
-
-    margin-top: 20px;
-
-    margin-bottom: 20px;
-
-}
-
-#options p {
-
-    margin-bottom: 15px;
-
+    }
 }
 
 
-/* ==========================
-   Radio Buttons
-========================== */
+// ===============================
+// Skip Question
+// ===============================
 
-input[type="radio"] {
+function skipQuestion() {
 
-    transform: scale(1.3);
+    saveTimeSpent();
 
-    margin-right: 10px;
+    questionStartTime = Date.now();
 
+    questionTimeLeft = 300;
+
+    if (currentQuestion < questions.length - 1) {
+
+        currentQuestion++;
+
+        loadQuestion();
+
+    }
 }
 
 
-/* ==========================
-   Buttons
-========================== */
+// ===============================
+// Previous Question
+// ===============================
 
-.buttons {
+function previousQuestion() {
 
-    margin-top: 20px;
+    saveTimeSpent();
 
-}
+    currentQuestion--;
 
-button {
+    questionStartTime = Date.now();
 
-    font-size: 14pt;
+    questionTimeLeft = 300;
 
-    padding: 12px 18px;
-
-    margin-right: 10px;
-
-    margin-top: 10px;
-
-    cursor: pointer;
-
-    border-radius: 8px;
-
-}
-
-button:disabled {
-
-    background-color: lightgray;
-
-    color: gray;
-
-    cursor: not-allowed;
-
+    loadQuestion();
 }
 
 
-/* ==========================
-   Question Palette
-========================== */
+// ===============================
+// Next Question
+// ===============================
 
-#palette {
+function nextQuestion() {
 
-    display: flex;
+    saveTimeSpent();
 
-    flex-wrap: wrap;
+    currentQuestion++;
 
-    gap: 10px;
+    questionStartTime = Date.now();
 
-    margin-top: 20px;
+    questionTimeLeft = 300;
 
-    margin-bottom: 20px;
+    loadQuestion();
+}
+
+
+// ===============================
+// Finish Test
+// ===============================
+
+function finishTest() {
+
+    saveTimeSpent();
+
+    clearInterval(masterTimerInterval);
+
+    clearInterval(questionTimerInterval);
+
+    generateReport();
 
 }
 
 
-/* Individual question boxes */
+// ===============================
+// Review Mode
+// ===============================
 
-.paletteButton {
+function reviewQuestion(index) {
 
-    width: 50px;
+    currentQuestion = index;
 
-    height: 50px;
-
-    font-size: 14pt;
-
-    border: 1px solid black;
-
-    border-radius: 5px;
-
-    cursor: pointer;
+    loadQuestion();
 
 }
 
 
-/* Current question */
+// ===============================
+// Enable Finish Button
+// ===============================
 
-.currentQuestion {
+function updateButtons() {
 
-    background-color: yellow;
+    document.getElementById("prevBtn").disabled =
+        currentQuestion === 0;
 
+    document.getElementById("nextBtn").disabled =
+        currentQuestion === questions.length - 1;
+
+    let answeredCount =
+        userAnswers.filter(x => x !== null).length;
+
+    document.getElementById("finishBtn").disabled =
+        answeredCount === 0;
 }
 
 
-/* Answered question */
+// ===============================
+// Auto-submit Question
+// when question timer expires
+// ===============================
 
-.answeredQuestion {
+setInterval(() => {
 
-    background-color: lightgreen;
+    if (questionTimeLeft <= 0) {
 
-}
+        saveTimeSpent();
+
+        questionTimeLeft = 300;
+
+        questionStartTime = Date.now();
+
+        if (currentQuestion < questions.length - 1) {
+
+            currentQuestion++;
+
+            loadQuestion();
+
+        }
+
+    }
+
+},1000);
+// ===============================
+// Generate Report
+// ===============================
+
+function generateReport() {
+
+    let totalMarks = 0;
+
+    let correctCount = 0;
+
+    let wrongCount = 0;
+
+    let skippedCount = 0;
+
+    let reportHTML = "";
+
+    reportHTML +=
+    `<div class="summary">`;
+
+    reportHTML +=
+    `<h2>Test Summary</h2>`;
+
+    reportHTML +=
+    `<table>
+    <tr>
+        <th>Total Questions</th>
+        <th>Correct</th>
+        <th>Wrong</th>
+        <th>Skipped</th>
+        <th>Total Marks</th>
+    </tr>`;
+
+    // ==========================
+    // Calculate Results
+    // ==========================
+
+    for (let i = 0; i < questions.length; i++) {
+
+        let q = questions[i];
+
+        if (userAnswers[i] === null) {
+
+            skippedCount++;
+
+        }
+
+        else if (userAnswers[i] === q.answer) {
+
+            correctCount++;
+
+            totalMarks += 3;
+
+        }
+
+        else {
+
+            wrongCount++;
+
+            totalMarks -= 1;
+
+        }
+
+    }
+
+    reportHTML +=
+
+    `<tr>
+        <td>${questions.length}</td>
+        <td>${correctCount}</td>
+        <td>${wrongCount}</td>
+        <td>${skippedCount}</td>
+        <td>${totalMarks}</td>
+    </tr>
+    </table>`;
+
+    let accuracy = 0;
+
+    if ((correctCount + wrongCount) > 0) {
+
+        accuracy =
+        (
+            correctCount /
+            (correctCount + wrongCount)
+        ) * 100;
+
+    }
+
+    reportHTML +=
+    `<br>
+    <b>Accuracy :</b>
+    ${accuracy.toFixed(2)} %
+    <br><br>`;
+
+    reportHTML +=
+    `</div>`;
 
 
-/* Unanswered question */
 
-.unansweredQuestion {
+    // ==========================
+    // Detailed Report
+    // ==========================
 
-    background-color: white;
-
-}
-
-
-/* ==========================
-   Summary Box
-========================== */
-
-.summary {
-
-    padding: 20px;
-
-    border: 2px solid black;
-
-    background-color: #f2f2f2;
-
-    margin-bottom: 30px;
-
-}
+    reportHTML +=
+    `<h2>Detailed Report</h2>`;
 
 
-/* ==========================
-   Table
-========================== */
 
-table {
+    for (let i = 0; i < questions.length; i++) {
 
-    width: 100%;
+        let q = questions[i];
 
-    border-collapse: collapse;
+        let status = "";
 
-}
+        let marks = 0;
 
-th, td {
-
-    border: 1px solid black;
-
-    padding: 10px;
-
-    text-align: center;
-
-}
+        let rowClass = "";
 
 
-/* Header row */
 
-th {
+        if (userAnswers[i] === null) {
 
-    background-color: #d9e6ff;
+            status = "Skipped";
 
-}
+            marks = 0;
 
+            rowClass = "skipped";
 
-/* ==========================
-   Result Row Colors
-========================== */
+        }
 
-/* Correct */
+        else if (userAnswers[i] === q.answer) {
 
-.correct {
+            status = "Correct";
 
-    background-color: #ccffcc;
+            marks = 3;
 
-}
+            rowClass = "correct";
 
+        }
 
-/* Wrong */
+        else {
 
-.wrong {
+            status = "Wrong";
 
-    background-color: #ffcccc;
+            marks = -1;
 
-}
+            rowClass = "wrong";
 
-
-/* Skipped */
-
-.skipped {
-
-    background-color: #ffffcc;
-
-}
+        }
 
 
-/* ==========================
-   Horizontal Line
-========================== */
 
-hr {
+        let candidateAnswer =
 
-    margin-top: 25px;
+            userAnswers[i] === null
 
-    margin-bottom: 25px;
+            ?
+
+            "Not Attempted"
+
+            :
+
+            q.options[userAnswers[i]];
+
+
+
+        let correctAnswer =
+
+            q.options[q.answer];
+
+
+
+        let spentSeconds =
+
+            questionTimes[i];
+
+
+
+        let spentMinutes =
+
+            (spentSeconds / 60).toFixed(2);
+
+
+
+        reportHTML +=
+
+        `<table class="${rowClass}">
+
+        <tr>
+
+            <th colspan="2">
+
+            Question ${i+1}
+
+            </th>
+
+        </tr>
+
+        <tr>
+
+            <td colspan="2">
+
+            ${q.question}
+
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td>
+
+            Candidate Answer
+
+            </td>
+
+            <td>
+
+            ${candidateAnswer}
+
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td>
+
+            Correct Answer
+
+            </td>
+
+            <td>
+
+            ${correctAnswer}
+
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td>
+
+            Result
+
+            </td>
+
+            <td>
+
+            ${status}
+
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td>
+
+            Marks
+
+            </td>
+
+            <td>
+
+            ${marks}
+
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td>
+
+            Time Spent
+
+            </td>
+
+            <td>
+
+            ${spentMinutes} minutes
+
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td>
+
+            Target Time
+
+            </td>
+
+            <td>
+
+            5 minutes
+
+            </td>
+
+        </tr>
+
+        </table>
+
+        <br>`;
+
+    }
+
+
+
+    document.getElementById("report").innerHTML =
+
+        reportHTML;
+
+
+
+    // Hide question area after test
+
+    document.getElementById("question").style.display =
+        "none";
+
+    document.getElementById("options").style.display =
+        "none";
+
+    document.getElementById("palette").style.display =
+        "none";
 
 }
