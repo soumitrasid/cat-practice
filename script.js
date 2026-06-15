@@ -1,4 +1,3 @@
-```javascript
 let current = 0;
 let questions = [];
 let answers = [];
@@ -12,13 +11,14 @@ let masterInterval;
 let questionInterval;
 
 fetch("questions.json")
-.then(response=>response.json())
-.then(data=>{
+.then(response => response.json())
+.then(data => {
 
     questions = data;
 
     answers = new Array(questions.length).fill(null);
 
+    // 10 minutes per question
     masterTime = questions.length * 600;
 
     startMasterTimer();
@@ -27,83 +27,83 @@ fetch("questions.json")
 
 });
 
-function formatTime(time){
+function formatTime(time) {
 
-    let min = Math.floor(time/60);
-    let sec = time%60;
+    let min = Math.floor(time / 60);
+    let sec = time % 60;
 
-    sec = sec.toString().padStart(2,'0');
+    sec = sec.toString().padStart(2, '0');
 
     return min + ":" + sec;
 
 }
 
-function startMasterTimer(){
+function startMasterTimer() {
 
-    masterInterval = setInterval(function(){
+    masterInterval = setInterval(function () {
 
         document.getElementById("masterTimer").innerHTML =
-        "Master Timer : " + formatTime(masterTime);
+            "Master Timer : " + formatTime(masterTime);
 
         masterTime--;
 
-        if(masterTime<0){
+        if (masterTime < 0) {
 
             finishTest();
 
         }
 
-    },1000);
+    }, 1000);
 
 }
 
-function startQuestionTimer(){
+function startQuestionTimer() {
 
     clearInterval(questionInterval);
 
     questionTime = 600;
 
-    questionInterval = setInterval(function(){
+    questionInterval = setInterval(function () {
 
         document.getElementById("questionTimer").innerHTML =
-        "Question Timer : " + formatTime(questionTime);
+            "Question Timer : " + formatTime(questionTime);
 
         questionTime--;
 
-        if(questionTime<0){
+        if (questionTime < 0) {
 
             autoNext();
 
         }
 
-    },1000);
+    }, 1000);
 
 }
 
-function loadQuestion(){
+function loadQuestion() {
 
     document.getElementById("questionNumber").innerHTML =
-    "Question " + (current+1) + " of " + questions.length;
+        "Question " + (current + 1) + " of " + questions.length;
 
     document.getElementById("question").innerHTML =
-    questions[current].question;
+        questions[current].question;
 
-    let html="";
+    let html = "";
 
-    questions[current].options.forEach((option,i)=>{
+    questions[current].options.forEach((option, i) => {
 
-        let checked="";
+        let checked = "";
 
-        if(answers[current]===i)
-            checked="checked";
+        if (answers[current] === i)
+            checked = "checked";
 
         html += `
         <p>
-        <input type="radio"
-        name="answer"
-        value="${i}"
-        ${checked}>
-        ${option}
+            <input type="radio"
+                   name="answer"
+                   value="${i}"
+                   ${checked}>
+            ${option}
         </p>
         `;
 
@@ -111,26 +111,18 @@ function loadQuestion(){
 
     document.getElementById("options").innerHTML = html;
 
-    if(!reviewMode)
+    if (!reviewMode)
         startQuestionTimer();
 
 }
 
-function submitAnswer(){
+function submitAnswer() {
 
     let selected =
-    document.querySelector('input[name="answer"]:checked');
+        document.querySelector('input[name="answer"]:checked');
 
-    if(selected)
-        answers[current]=parseInt(selected.value);
-
-    clearInterval(questionInterval);
-
-    autoNext();
-
-}
-
-function skipQuestion(){
+    if (selected)
+        answers[current] = parseInt(selected.value);
 
     clearInterval(questionInterval);
 
@@ -138,17 +130,24 @@ function skipQuestion(){
 
 }
 
-function autoNext(){
+function skipQuestion() {
 
-    if(current < questions.length-1){
+    clearInterval(questionInterval);
+
+    autoNext();
+
+}
+
+function autoNext() {
+
+    if (current < questions.length - 1) {
 
         current++;
 
         loadQuestion();
 
     }
-
-    else{
+    else {
 
         enterReviewMode();
 
@@ -156,27 +155,27 @@ function autoNext(){
 
 }
 
-function enterReviewMode(){
+function enterReviewMode() {
 
-    reviewMode=true;
+    reviewMode = true;
 
     clearInterval(questionInterval);
 
     document.getElementById("questionTimer").innerHTML =
-    "Review Mode";
+        "Review Mode";
 
-    current=0;
+    current = 0;
 
-    document.getElementById("prevBtn").disabled=false;
-    document.getElementById("nextBtn").disabled=false;
+    document.getElementById("prevBtn").disabled = false;
+    document.getElementById("nextBtn").disabled = false;
 
     loadQuestion();
 
 }
 
-function previousQuestion(){
+function previousQuestion() {
 
-    if(current>0){
+    if (current > 0) {
 
         current--;
 
@@ -186,35 +185,39 @@ function previousQuestion(){
 
 }
 
-function nextQuestion(){
+function nextQuestion() {
 
-    if(current<questions.length-1){
+    if (current < questions.length - 1) {
 
         current++;
 
         loadQuestion();
 
     }
+    else {
+
+        finishTest();
+
+    }
 
 }
 
-function finishTest(){
+function finishTest() {
 
     clearInterval(masterInterval);
     clearInterval(questionInterval);
 
-    let score=0;
+    let score = 0;
 
-    for(let i=0;i<questions.length;i++){
+    for (let i = 0; i < questions.length; i++) {
 
-        if(answers[i]===questions[i].answer)
+        if (answers[i] === questions[i].answer)
             score++;
 
     }
 
     document.body.innerHTML =
-    "<h1>Test Finished</h1>" +
-    "<h2>Score = "+score+" / "+questions.length+"</h2>";
+        "<h1>Test Finished</h1>" +
+        "<h2>Score = " + score + " / " + questions.length + "</h2>";
 
 }
-```
