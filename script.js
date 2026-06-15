@@ -12,7 +12,7 @@ let masterInterval;
 let questionInterval;
 
 
-// ------------------ Load Questions ------------------
+// -------------------- LOAD QUESTIONS --------------------
 
 fetch("questions.json")
 .then(response => response.json())
@@ -21,9 +21,10 @@ fetch("questions.json")
     questions = data;
 
     answers = new Array(questions.length).fill(null);
+
     timeSpent = new Array(questions.length).fill(0);
 
-    // Master time = number of questions × 5 minutes
+    // Master time = 5 min per question
     masterTime = questions.length * 5 * 60;
 
     startMasterTimer();
@@ -33,7 +34,7 @@ fetch("questions.json")
 });
 
 
-// ------------------ Format Time ------------------
+// -------------------- FORMAT TIME --------------------
 
 function formatTime(time) {
 
@@ -41,16 +42,16 @@ function formatTime(time) {
     let mins = Math.floor((time % 3600) / 60);
     let secs = time % 60;
 
-    hrs = hrs.toString().padStart(2,'0');
-    mins = mins.toString().padStart(2,'0');
-    secs = secs.toString().padStart(2,'0');
+    hrs = hrs.toString().padStart(2, '0');
+    mins = mins.toString().padStart(2, '0');
+    secs = secs.toString().padStart(2, '0');
 
     return hrs + ":" + mins + ":" + secs;
 
 }
 
 
-// ------------------ Master Timer ------------------
+// -------------------- MASTER TIMER --------------------
 
 function startMasterTimer() {
 
@@ -61,24 +62,24 @@ function startMasterTimer() {
 
         masterTime--;
 
-        if(masterTime < 0){
+        if (masterTime < 0) {
 
             finishTest();
 
         }
 
-    },1000);
+    }, 1000);
 
 }
 
 
-// ------------------ Question Timer ------------------
+// -------------------- QUESTION TIMER --------------------
 
 function startQuestionTimer() {
 
     clearInterval(questionInterval);
 
-    questionTime = 300; // 5 minutes
+    questionTime = 300;
 
     questionInterval = setInterval(function () {
 
@@ -89,34 +90,36 @@ function startQuestionTimer() {
 
         questionTime--;
 
-        if(questionTime < 0){
+        if (questionTime < 0) {
+
+            clearInterval(questionInterval);
 
             autoNext();
 
         }
 
-    },1000);
+    }, 1000);
 
 }
 
 
-// ------------------ Load Question ------------------
+// -------------------- LOAD QUESTION --------------------
 
 function loadQuestion() {
 
     document.getElementById("questionNumber").innerHTML =
-        "Question " + (current+1) + " of " + questions.length;
+        "Question " + (current + 1) + " of " + questions.length;
 
     document.getElementById("question").innerHTML =
         questions[current].question;
 
     let html = "";
 
-    questions[current].options.forEach((option,i)=>{
+    questions[current].options.forEach((option, i) => {
 
         let checked = "";
 
-        if(answers[current] === i)
+        if (answers[current] === i)
             checked = "checked";
 
         html += `
@@ -129,25 +132,24 @@ function loadQuestion() {
             ${option}
         </p>
         `;
-
     });
 
     document.getElementById("options").innerHTML = html;
 
-    if(!reviewMode)
+    if (!reviewMode)
         startQuestionTimer();
 
 }
 
 
-// ------------------ Submit Answer ------------------
+// -------------------- SUBMIT ANSWER --------------------
 
 function submitAnswer() {
 
     let selected =
         document.querySelector('input[name="answer"]:checked');
 
-    if(selected){
+    if (selected) {
 
         answers[current] =
             parseInt(selected.value);
@@ -161,7 +163,7 @@ function submitAnswer() {
 }
 
 
-// ------------------ Skip Question ------------------
+// -------------------- SKIP QUESTION --------------------
 
 function skipQuestion() {
 
@@ -172,18 +174,19 @@ function skipQuestion() {
 }
 
 
-// ------------------ Auto Next ------------------
+// -------------------- AUTO NEXT --------------------
 
 function autoNext() {
 
-    if(current < questions.length-1){
+    if (current < questions.length - 1) {
 
         current++;
 
         loadQuestion();
 
     }
-    else{
+
+    else {
 
         enterReviewMode();
 
@@ -192,7 +195,7 @@ function autoNext() {
 }
 
 
-// ------------------ Review Mode ------------------
+// -------------------- REVIEW MODE --------------------
 
 function enterReviewMode() {
 
@@ -206,18 +209,31 @@ function enterReviewMode() {
     current = 0;
 
     document.getElementById("prevBtn").disabled = false;
+
     document.getElementById("nextBtn").disabled = false;
+
+    document.getElementById("finishBtn").disabled = false;
 
     loadQuestion();
 
 }
 
 
-// ------------------ Previous ------------------
+// -------------------- PREVIOUS QUESTION --------------------
 
 function previousQuestion() {
 
-    if(current > 0){
+    let selected =
+        document.querySelector('input[name="answer"]:checked');
+
+    if (selected) {
+
+        answers[current] =
+            parseInt(selected.value);
+
+    }
+
+    if (current > 0) {
 
         current--;
 
@@ -228,65 +244,67 @@ function previousQuestion() {
 }
 
 
-// ------------------ Next ------------------
+// -------------------- NEXT QUESTION --------------------
 
 function nextQuestion() {
 
     let selected =
         document.querySelector('input[name="answer"]:checked');
 
-    if(selected){
+    if (selected) {
 
         answers[current] =
             parseInt(selected.value);
 
     }
 
-    if(current < questions.length-1){
+    if (current < questions.length - 1) {
 
         current++;
 
         loadQuestion();
 
     }
-    else{
-
-        finishTest();
-
-    }
 
 }
 
 
-// ------------------ Finish Test ------------------
+// -------------------- FINISH TEST --------------------
 
 function finishTest() {
 
     clearInterval(masterInterval);
-    clearInterval(questionInterval);
 
-    let totalScore = 0;
+    clearInterval(questionInterval);
 
     let attempted = 0;
     let correct = 0;
     let wrong = 0;
     let skipped = 0;
 
+    let totalScore = 0;
+
     let report = `
     <h1>CAT Test Report</h1>
-    <table border="1" cellpadding="10" cellspacing="0">
+
+    <table border="1"
+           cellpadding="10"
+           cellspacing="0">
+
     <tr>
-        <th>Q.No.</th>
-        <th>Your Answer</th>
-        <th>Correct Answer</th>
-        <th>Result</th>
-        <th>Marks</th>
-        <th>Time Spent</th>
-        <th>Target Time</th>
+
+    <th>Q.No.</th>
+    <th>Your Answer</th>
+    <th>Correct Answer</th>
+    <th>Result</th>
+    <th>Marks</th>
+    <th>Time Spent</th>
+    <th>Target</th>
+
     </tr>
     `;
 
-    for(let i=0;i<questions.length;i++){
+    for (let i = 0; i < questions.length; i++) {
 
         let correctIndex = questions[i].answer;
 
@@ -299,81 +317,92 @@ function finishTest() {
 
         let result = "-";
 
-        let rowColor = "#fff8cc";
+        let rowColor = "#ffffcc";
 
-        if(answers[i] != null){
+        if (answers[i] != null) {
 
             attempted++;
 
             candidateAnswer =
                 questions[i].options[answers[i]];
 
-            if(answers[i] === correctIndex){
+            if (answers[i] === correctIndex) {
 
                 correct++;
 
-                totalScore += 3;
-
                 marks = 3;
+
+                totalScore += 3;
 
                 result = "✅";
 
-                rowColor = "#d4ffd4";
+                rowColor = "#ccffcc";
 
             }
-            else{
+
+            else {
 
                 wrong++;
 
-                totalScore -= 1;
-
                 marks = -1;
+
+                totalScore -= 1;
 
                 result = "❌";
 
-                rowColor = "#ffd6d6";
+                rowColor = "#ffcccc";
 
             }
 
         }
-        else{
+
+        else {
 
             skipped++;
 
         }
 
         let mins =
-            Math.floor(timeSpent[i]/60);
+            Math.floor(timeSpent[i] / 60);
 
         let secs =
-            timeSpent[i]%60;
+            timeSpent[i] % 60;
 
         report += `
+
         <tr style="background:${rowColor}">
-            <td>${i+1}</td>
-            <td>${candidateAnswer}</td>
-            <td>${correctAnswer}</td>
-            <td>${result}</td>
-            <td>${marks}</td>
-            <td>${mins}m ${secs}s</td>
-            <td>5m</td>
+
+        <td>${i + 1}</td>
+
+        <td>${candidateAnswer}</td>
+
+        <td>${correctAnswer}</td>
+
+        <td>${result}</td>
+
+        <td>${marks}</td>
+
+        <td>${mins}m ${secs}s</td>
+
+        <td>5m</td>
+
         </tr>
         `;
-
     }
 
     report += "</table>";
 
     let accuracy = 0;
 
-    if(attempted > 0){
+    if (attempted > 0) {
 
         accuracy =
-            (correct/attempted*100).toFixed(2);
+            (correct / attempted * 100).toFixed(2);
 
     }
 
-    let summary = `
+    document.body.innerHTML = `
+
     <h1>CAT Test Summary</h1>
 
     <h2>Total Questions : ${questions.length}</h2>
@@ -391,9 +420,8 @@ function finishTest() {
     <h2>Accuracy : ${accuracy}%</h2>
 
     <hr>
+
+    ${report}
+
     `;
-
-    document.body.innerHTML =
-        summary + report;
-
 }
