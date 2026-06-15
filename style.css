@@ -1,4 +1,6 @@
-/* ---------- General Page ---------- */
+/* ==========================
+   General Page
+========================== */
 
 body {
 
@@ -17,7 +19,9 @@ body {
 }
 
 
-/* ---------- Heading ---------- */
+/* ==========================
+   Headings
+========================== */
 
 h1 {
 
@@ -27,13 +31,11 @@ h1 {
 
 }
 
-
 h2 {
 
     color: black;
 
 }
-
 
 h3 {
 
@@ -42,21 +44,9 @@ h3 {
 }
 
 
-/* ---------- Timers ---------- */
-
-#masterTimer {
-
-    color: red;
-
-}
-
-
-#questionTimer {
-
-    color: blue;
-
-}
-
+/* ==========================
+   Timers
+========================== */
 
 .timers {
 
@@ -66,24 +56,30 @@ h3 {
 
 }
 
+#masterTimer {
 
-/* ---------- Question Area ---------- */
+    color: red;
+
+}
+
+#questionTimer {
+
+    color: blue;
+
+}
+
+
+/* ==========================
+   Question Area
+========================== */
 
 #question {
 
-    margin-top: 25px;
+    margin-top: 20px;
 
     margin-bottom: 20px;
 
 }
-
-
-#options {
-
-    margin-top: 20px;
-
-}
-
 
 #options p {
 
@@ -92,7 +88,9 @@ h3 {
 }
 
 
-/* ---------- Radio Buttons ---------- */
+/* ==========================
+   Radio Buttons
+========================== */
 
 input[type="radio"] {
 
@@ -103,14 +101,15 @@ input[type="radio"] {
 }
 
 
-/* ---------- Buttons ---------- */
+/* ==========================
+   Buttons
+========================== */
 
 .buttons {
 
     margin-top: 20px;
 
 }
-
 
 button {
 
@@ -128,9 +127,6 @@ button {
 
 }
 
-
-/* ---------- Disabled Buttons ---------- */
-
 button:disabled {
 
     background-color: lightgray;
@@ -142,16 +138,91 @@ button:disabled {
 }
 
 
-/* ---------- Report Section ---------- */
+/* ==========================
+   Question Palette
+========================== */
 
-#report {
+#palette {
 
-    margin-top: 40px;
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+    margin-bottom: 20px;
 
 }
 
 
-/* ---------- Table ---------- */
+/* Individual question boxes */
+
+.paletteButton {
+
+    width: 50px;
+
+    height: 50px;
+
+    font-size: 14pt;
+
+    border: 1px solid black;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+}
+
+
+/* Current question */
+
+.currentQuestion {
+
+    background-color: yellow;
+
+}
+
+
+/* Answered question */
+
+.answeredQuestion {
+
+    background-color: lightgreen;
+
+}
+
+
+/* Unanswered question */
+
+.unansweredQuestion {
+
+    background-color: white;
+
+}
+
+
+/* ==========================
+   Summary Box
+========================== */
+
+.summary {
+
+    padding: 20px;
+
+    border: 2px solid black;
+
+    background-color: #f2f2f2;
+
+    margin-bottom: 30px;
+
+}
+
+
+/* ==========================
+   Table
+========================== */
 
 table {
 
@@ -159,12 +230,7 @@ table {
 
     border-collapse: collapse;
 
-    margin-top: 20px;
-
 }
-
-
-/* ---------- Table Cells ---------- */
 
 th, td {
 
@@ -177,7 +243,7 @@ th, td {
 }
 
 
-/* ---------- Header Row ---------- */
+/* Header row */
 
 th {
 
@@ -186,7 +252,11 @@ th {
 }
 
 
-/* ---------- Correct Answer Rows ---------- */
+/* ==========================
+   Result Row Colors
+========================== */
+
+/* Correct */
 
 .correct {
 
@@ -195,7 +265,7 @@ th {
 }
 
 
-/* ---------- Wrong Answer Rows ---------- */
+/* Wrong */
 
 .wrong {
 
@@ -204,7 +274,7 @@ th {
 }
 
 
-/* ---------- Skipped Rows ---------- */
+/* Skipped */
 
 .skipped {
 
@@ -213,22 +283,9 @@ th {
 }
 
 
-/* ---------- Summary ---------- */
-
-.summary {
-
-    margin-top: 30px;
-
-    padding: 20px;
-
-    border: 2px solid black;
-
-    background-color: #f2f2f2;
-
-}
-
-
-/* ---------- Horizontal Line ---------- */
+/* ==========================
+   Horizontal Line
+========================== */
 
 hr {
 
