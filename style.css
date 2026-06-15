@@ -1,6 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    max-width: 800px;
+    font-size: 14pt;
+    max-width: 900px;
     margin: auto;
     padding: 20px;
 }
@@ -20,6 +21,16 @@ h1 {
 button {
     padding: 12px 20px;
     margin-right: 10px;
-    font-size: 18px;
+    margin-top: 15px;
+    font-size: 14pt;
     cursor: pointer;
+}
+
+input[type="radio"] {
+    transform: scale(1.3);
+    margin-right: 10px;
+}
+
+p {
+    font-size: 14pt;
 }
