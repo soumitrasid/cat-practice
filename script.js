@@ -1,6 +1,8 @@
-// =====================================
-// GLOBAL VARIABLES
-// =====================================
+// ======================================
+// CAT Practice Script V3
+// ======================================
+
+// Global Variables
 
 let questions = [];
 
@@ -10,7 +12,7 @@ let userAnswers = [];
 
 let questionTimes = [];
 
-let currentQuestionStartTime = Date.now();
+let questionStartTime = Date.now();
 
 let masterTimeLeft = 0;
 
@@ -21,9 +23,9 @@ let masterTimerInterval;
 let questionTimerInterval;
 
 
-// =====================================
-// SHUFFLE FUNCTION
-// =====================================
+// ======================================
+// Shuffle Array
+// ======================================
 
 function shuffleArray(arr) {
 
@@ -38,200 +40,114 @@ function shuffleArray(arr) {
     }
 
     return a;
-
 }
 
 
-// =====================================
-// SAVE TIME OF CURRENT QUESTION
-// =====================================
+// ======================================
+// Save Time Spent
+// ======================================
 
-function saveCurrentQuestionTime() {
+function saveTimeSpent() {
 
     let now = Date.now();
 
-    let secondsSpent =
+    let spent =
 
         Math.floor(
 
-            (now - currentQuestionStartTime) / 1000
+            (now - questionStartTime)
+
+            / 1000
 
         );
 
     questionTimes[currentQuestion] +=
 
-        secondsSpent;
+        spent;
 
-    currentQuestionStartTime = now;
+    questionStartTime = now;
 
 }
 
 
-// =====================================
-// SMART QUESTION SELECTION
-// =====================================
+// ======================================
+// Load Questions
+// ======================================
 
-function selectQuestions(data) {
+fetch("questions.json")
 
-    let easyQuestions =
+.then(response => {
 
-        shuffleArray(
+    if (!response.ok) {
 
-            data.filter(
+        throw new Error(
 
-                q => q.difficulty === "Easy"
-
-            )
-
-        );
-
-
-
-    let mediumQuestions =
-
-        shuffleArray(
-
-            data.filter(
-
-                q => q.difficulty === "Medium"
-
-            )
-
-        );
-
-
-
-    let hardQuestions =
-
-        shuffleArray(
-
-            data.filter(
-
-                q => q.difficulty === "Hard"
-
-            )
-
-        );
-
-
-    let selected = [];
-
-
-    // Safe selection
-
-    selected.push(
-
-        ...easyQuestions.slice(
-
-            0,
-
-            Math.min(10, easyQuestions.length)
-
-        )
-
-    );
-
-
-    selected.push(
-
-        ...mediumQuestions.slice(
-
-            0,
-
-            Math.min(10, mediumQuestions.length)
-
-        )
-
-    );
-
-
-    selected.push(
-
-        ...hardQuestions.slice(
-
-            0,
-
-            Math.min(10, hardQuestions.length)
-
-        )
-
-    );
-
-
-    // Fill remaining slots
-
-    let remainingPool =
-
-        shuffleArray(
-
-            data.filter(
-
-                q => !selected.includes(q)
-
-            )
-
-        );
-
-
-    while (
-
-        selected.length < 30 &&
-
-        remainingPool.length > 0
-
-    ) {
-
-        selected.push(
-
-            remainingPool.shift()
+            "Cannot load questions.json"
 
         );
 
     }
 
+    return response.json();
 
-    return shuffleArray(selected);
+})
 
-}
+.then(data => {
+
+    questions =
+
+        shuffleArray(data);
 
 
-// =====================================
-// LOAD QUESTION BANK
-// =====================================
-if (!restoreProgress()) {
+    userAnswers =
 
-    fetch("questions_master.json")
+        Array(
 
-    .then(response => response.json())
+            questions.length
 
-    .then(data => {
+        ).fill(null);
 
-        questions = selectQuestions(data);
 
-        userAnswers =
-            Array(questions.length).fill(null);
+    questionTimes =
 
-        questionTimes =
-            Array(questions.length).fill(0);
+        Array(
 
-        masterTimeLeft =
-            questions.length * 300;
+            questions.length
 
-        createPalette();
+        ).fill(0);
 
-        loadQuestion();
 
-        startMasterTimer();
+    masterTimeLeft =
 
-        startQuestionTimer();
+        questions.length * 300;
 
-    });
 
-}
+    createPalette();
 
-// =====================================
-// LOAD QUESTION
-// =====================================
+    loadQuestion();
+
+    startMasterTimer();
+
+    startQuestionTimer();
+
+})
+
+.catch(error => {
+
+    console.error(error);
+
+    document.getElementById(
+
+        "question"
+
+    ).innerHTML =
+
+    "Error loading questions.json";
+
+});
+// ======================================
+// Load Question
+// ======================================
 
 function loadQuestion() {
 
@@ -240,47 +156,35 @@ function loadQuestion() {
     document.getElementById(
         "questionNumber"
     ).innerHTML =
-
-    `Question ${currentQuestion + 1}`;
+        `Question ${currentQuestion + 1}`;
 
     document.getElementById(
         "question"
     ).innerHTML =
-
-    q.question;
-
+        q.question;
 
     let html = "";
 
-
     for (
-
         let i = 0;
-
         i < q.options.length;
-
         i++
-
     ) {
 
         let checked = "";
 
-
         if (
-
-            userAnswers[currentQuestion] === i
-
+            userAnswers[currentQuestion]
+            === i
         ) {
 
             checked = "checked";
 
         }
 
-
         html +=
 
         `
-
         <p>
 
         <label>
@@ -302,19 +206,14 @@ function loadQuestion() {
         </label>
 
         </p>
-
         `;
 
     }
 
 
     document.getElementById(
-
         "options"
-
-    ).innerHTML =
-
-    html;
+    ).innerHTML = html;
 
 
     updatePalette();
@@ -324,14 +223,14 @@ function loadQuestion() {
 }
 
 
-// =====================================
-// CREATE PALETTE
-// =====================================
+
+// ======================================
+// Create Palette
+// ======================================
 
 function createPalette() {
 
     let html = "";
-
 
     for (
 
@@ -349,15 +248,15 @@ function createPalette() {
 
         <button
 
-            class="paletteButton unansweredQuestion"
+        class="paletteButton unansweredQuestion"
 
-            id="palette${i}"
+        id="palette${i}"
 
-            onclick="jumpToQuestion(${i})"
+        onclick="jumpToQuestion(${i})"
 
         >
 
-            ${i+1}
+        ${i+1}
 
         </button>
 
@@ -367,19 +266,16 @@ function createPalette() {
 
 
     document.getElementById(
-
         "palette"
-
-    ).innerHTML =
-
-    html;
+    ).innerHTML = html;
 
 }
 
 
-// =====================================
-// UPDATE PALETTE
-// =====================================
+
+// ======================================
+// Update Palette
+// ======================================
 
 function updatePalette() {
 
@@ -396,14 +292,11 @@ function updatePalette() {
         let box =
 
             document.getElementById(
-
                 `palette${i}`
-
             );
 
 
         box.className =
-
             "paletteButton";
 
 
@@ -414,9 +307,7 @@ function updatePalette() {
         ) {
 
             box.classList.add(
-
                 "answeredQuestion"
-
             );
 
         }
@@ -424,9 +315,7 @@ function updatePalette() {
         else {
 
             box.classList.add(
-
                 "unansweredQuestion"
-
             );
 
         }
@@ -439,9 +328,7 @@ function updatePalette() {
         ) {
 
             box.classList.add(
-
                 "currentQuestion"
-
             );
 
         }
@@ -451,17 +338,18 @@ function updatePalette() {
 }
 
 
-// =====================================
-// JUMP TO QUESTION
-// =====================================
+
+// ======================================
+// Jump To Question
+// ======================================
 
 function jumpToQuestion(index) {
 
-    saveCurrentQuestionTime();
+    saveTimeSpent();
 
     currentQuestion = index;
 
-    currentQuestionStartTime = Date.now();
+    questionStartTime = Date.now();
 
     questionTimeLeft = 300;
 
@@ -470,40 +358,33 @@ function jumpToQuestion(index) {
 }
 
 
-// =====================================
-// FORMAT TIME
-// =====================================
+
+// ======================================
+// Format Time
+// ======================================
 
 function formatTime(seconds) {
 
     let hrs =
 
         String(
-
             Math.floor(seconds/3600)
-
         ).padStart(2,'0');
 
 
     let mins =
 
         String(
-
             Math.floor(
-
                 (seconds%3600)/60
-
             )
-
         ).padStart(2,'0');
 
 
     let secs =
 
         String(
-
             seconds%60
-
         ).padStart(2,'0');
 
 
@@ -514,9 +395,10 @@ function formatTime(seconds) {
 }
 
 
-// =====================================
-// MASTER TIMER
-// =====================================
+
+// ======================================
+// Master Timer
+// ======================================
 
 function startMasterTimer() {
 
@@ -530,17 +412,15 @@ function startMasterTimer() {
 
 
             document.getElementById(
-
                 "masterTimer"
-
             ).innerHTML =
 
-            "Master Timer : " +
+            "Master Timer : "
+
+            +
 
             formatTime(
-
                 masterTimeLeft
-
             );
 
 
@@ -563,9 +443,10 @@ function startMasterTimer() {
 }
 
 
-// =====================================
-// QUESTION TIMER
-// =====================================
+
+// ======================================
+// Question Timer
+// ======================================
 
 function startQuestionTimer() {
 
@@ -579,17 +460,15 @@ function startQuestionTimer() {
 
 
             document.getElementById(
-
                 "questionTimer"
-
             ).innerHTML =
 
-            "Question Timer : " +
+            "Question Timer : "
+
+            +
 
             formatTime(
-
                 questionTimeLeft
-
             );
 
 
@@ -599,7 +478,7 @@ function startQuestionTimer() {
 
             ) {
 
-                saveCurrentQuestionTime();
+                saveTimeSpent();
 
 
                 if (
@@ -616,7 +495,7 @@ function startQuestionTimer() {
 
                     questionTimeLeft = 300;
 
-                    currentQuestionStartTime = Date.now();
+                    questionStartTime = Date.now();
 
                     loadQuestion();
 
@@ -639,25 +518,22 @@ function startQuestionTimer() {
 }
 
 
-// =====================================
-// UPDATE BUTTONS
-// =====================================
+
+// ======================================
+// Update Buttons
+// ======================================
 
 function updateButtons() {
 
     document.getElementById(
-
         "prevBtn"
-
     ).disabled =
 
         currentQuestion === 0;
 
 
     document.getElementById(
-
         "nextBtn"
-
     ).disabled =
 
         currentQuestion ===
@@ -675,17 +551,15 @@ function updateButtons() {
 
 
     document.getElementById(
-
         "finishBtn"
-
     ).disabled =
 
         answeredCount === 0;
 
 }
-// =====================================
-// SUBMIT ANSWER
-// =====================================
+// ======================================
+// Submit Answer
+// ======================================
 
 function submitAnswer() {
 
@@ -711,7 +585,7 @@ function submitAnswer() {
     }
 
 
-    saveCurrentQuestionTime();
+    saveTimeSpent();
 
 
     userAnswers[currentQuestion] =
@@ -728,7 +602,7 @@ function submitAnswer() {
     updateButtons();
 
 
-    // Auto move
+    // Move to next question
 
     if (
 
@@ -740,9 +614,7 @@ function submitAnswer() {
 
         currentQuestion++;
 
-        currentQuestionStartTime =
-
-            Date.now();
+        questionStartTime = Date.now();
 
         questionTimeLeft = 300;
 
@@ -760,13 +632,13 @@ function submitAnswer() {
 
 
 
-// =====================================
-// SKIP QUESTION
-// =====================================
+// ======================================
+// Skip Question
+// ======================================
 
 function skipQuestion() {
 
-    saveCurrentQuestionTime();
+    saveTimeSpent();
 
 
     if (
@@ -779,9 +651,7 @@ function skipQuestion() {
 
         currentQuestion++;
 
-        currentQuestionStartTime =
-
-            Date.now();
+        questionStartTime = Date.now();
 
         questionTimeLeft = 300;
 
@@ -799,9 +669,9 @@ function skipQuestion() {
 
 
 
-// =====================================
-// PREVIOUS QUESTION
-// =====================================
+// ======================================
+// Previous Question
+// ======================================
 
 function previousQuestion() {
 
@@ -811,13 +681,11 @@ function previousQuestion() {
 
     ) {
 
-        saveCurrentQuestionTime();
+        saveTimeSpent();
 
         currentQuestion--;
 
-        currentQuestionStartTime =
-
-            Date.now();
+        questionStartTime = Date.now();
 
         questionTimeLeft = 300;
 
@@ -829,9 +697,9 @@ function previousQuestion() {
 
 
 
-// =====================================
-// NEXT QUESTION
-// =====================================
+// ======================================
+// Next Question
+// ======================================
 
 function nextQuestion() {
 
@@ -843,13 +711,11 @@ function nextQuestion() {
 
     ) {
 
-        saveCurrentQuestionTime();
+        saveTimeSpent();
 
         currentQuestion++;
 
-        currentQuestionStartTime =
-
-            Date.now();
+        questionStartTime = Date.now();
 
         questionTimeLeft = 300;
 
@@ -861,10 +727,38 @@ function nextQuestion() {
 
 
 
+// ======================================
+// Finish Test
+// ======================================
 
-// =====================================
-// REVIEW MODE
-// =====================================
+function finishTest() {
+
+    saveTimeSpent();
+
+
+    clearInterval(
+
+        masterTimerInterval
+
+    );
+
+
+    clearInterval(
+
+        questionTimerInterval
+
+    );
+
+
+    generateReport();
+
+}
+
+
+
+// ======================================
+// Review Question
+// ======================================
 
 function reviewQuestion(index) {
 
@@ -876,9 +770,9 @@ function reviewQuestion(index) {
 
 
 
-// =====================================
-// KEYBOARD SHORTCUTS
-// =====================================
+// ======================================
+// Keyboard Shortcuts
+// ======================================
 
 document.addEventListener(
 
@@ -886,7 +780,8 @@ document.addEventListener(
 
     function(event) {
 
-        // Right Arrow
+
+        // Next Question
 
         if (
 
@@ -901,7 +796,7 @@ document.addEventListener(
         }
 
 
-        // Left Arrow
+        // Previous Question
 
         if (
 
@@ -916,7 +811,7 @@ document.addEventListener(
         }
 
 
-        // Finish test
+        // Finish Test
 
         if (
 
@@ -936,9 +831,9 @@ document.addEventListener(
 
 
 
-// =====================================
-// ENABLE FINISH BUTTON
-// =====================================
+// ======================================
+// Enable Finish Button
+// ======================================
 
 document.addEventListener(
 
@@ -968,9 +863,9 @@ document.addEventListener(
 
 
 
-// =====================================
-// REVIEW ALL QUESTIONS
-// =====================================
+// ======================================
+// Review Entire Test
+// ======================================
 
 function reviewAll() {
 
@@ -979,9 +874,326 @@ function reviewAll() {
     loadQuestion();
 
 }
-// =====================================
-// GENERATE REPORT
-// =====================================
+// ======================================
+// Submit Answer
+// ======================================
+
+function submitAnswer() {
+
+    let selected =
+
+        document.querySelector(
+
+            'input[name="option"]:checked'
+
+        );
+
+
+    if (!selected) {
+
+        alert(
+
+            "Please select an answer."
+
+        );
+
+        return;
+
+    }
+
+
+    saveTimeSpent();
+
+
+    userAnswers[currentQuestion] =
+
+        parseInt(
+
+            selected.value
+
+        );
+
+
+    updatePalette();
+
+    updateButtons();
+
+
+    // Move to next question
+
+    if (
+
+        currentQuestion <
+
+        questions.length - 1
+
+    ) {
+
+        currentQuestion++;
+
+        questionStartTime = Date.now();
+
+        questionTimeLeft = 300;
+
+        loadQuestion();
+
+    }
+
+    else {
+
+        finishTest();
+
+    }
+
+}
+
+
+
+// ======================================
+// Skip Question
+// ======================================
+
+function skipQuestion() {
+
+    saveTimeSpent();
+
+
+    if (
+
+        currentQuestion <
+
+        questions.length - 1
+
+    ) {
+
+        currentQuestion++;
+
+        questionStartTime = Date.now();
+
+        questionTimeLeft = 300;
+
+        loadQuestion();
+
+    }
+
+    else {
+
+        finishTest();
+
+    }
+
+}
+
+
+
+// ======================================
+// Previous Question
+// ======================================
+
+function previousQuestion() {
+
+    if (
+
+        currentQuestion > 0
+
+    ) {
+
+        saveTimeSpent();
+
+        currentQuestion--;
+
+        questionStartTime = Date.now();
+
+        questionTimeLeft = 300;
+
+        loadQuestion();
+
+    }
+
+}
+
+
+
+// ======================================
+// Next Question
+// ======================================
+
+function nextQuestion() {
+
+    if (
+
+        currentQuestion <
+
+        questions.length - 1
+
+    ) {
+
+        saveTimeSpent();
+
+        currentQuestion++;
+
+        questionStartTime = Date.now();
+
+        questionTimeLeft = 300;
+
+        loadQuestion();
+
+    }
+
+}
+
+
+
+// ======================================
+// Finish Test
+// ======================================
+
+function finishTest() {
+
+    saveTimeSpent();
+
+
+    clearInterval(
+
+        masterTimerInterval
+
+    );
+
+
+    clearInterval(
+
+        questionTimerInterval
+
+    );
+
+
+    generateReport();
+
+}
+
+
+
+// ======================================
+// Review Question
+// ======================================
+
+function reviewQuestion(index) {
+
+    currentQuestion = index;
+
+    loadQuestion();
+
+}
+
+
+
+// ======================================
+// Keyboard Shortcuts
+// ======================================
+
+document.addEventListener(
+
+    "keydown",
+
+    function(event) {
+
+
+        // Next Question
+
+        if (
+
+            event.key ===
+
+            "ArrowRight"
+
+        ) {
+
+            nextQuestion();
+
+        }
+
+
+        // Previous Question
+
+        if (
+
+            event.key ===
+
+            "ArrowLeft"
+
+        ) {
+
+            previousQuestion();
+
+        }
+
+
+        // Finish Test
+
+        if (
+
+            event.key ===
+
+            "f"
+
+        ) {
+
+            finishTest();
+
+        }
+
+    }
+
+);
+
+
+
+// ======================================
+// Enable Finish Button
+// ======================================
+
+document.addEventListener(
+
+    "change",
+
+    function(event) {
+
+        if (
+
+            event.target.name ===
+
+            "option"
+
+        ) {
+
+            document.getElementById(
+
+                "finishBtn"
+
+            ).disabled = false;
+
+        }
+
+    }
+
+);
+
+
+
+// ======================================
+// Review Entire Test
+// ======================================
+
+function reviewAll() {
+
+    currentQuestion = 0;
+
+    loadQuestion();
+
+}
+// ======================================
+// Generate Report
+// ======================================
 
 function generateReport() {
 
@@ -1002,9 +1214,9 @@ function generateReport() {
     let reportHTML = "";
 
 
-    // =====================================
-    // CALCULATE RESULTS
-    // =====================================
+    // ======================================
+    // Calculate Statistics
+    // ======================================
 
     for (
 
@@ -1018,9 +1230,13 @@ function generateReport() {
 
         let q = questions[i];
 
-        let topic = q.topic;
+        let topic =
 
-        let difficulty = q.difficulty;
+            q.topic || "General";
+
+        let difficulty =
+
+            q.difficulty || "Unknown";
 
 
         if (
@@ -1085,9 +1301,9 @@ function generateReport() {
 
         ) {
 
-            totalMarks += 3;
-
             correctCount++;
+
+            totalMarks += 3;
 
             topicStats[topic].correct++;
 
@@ -1097,9 +1313,9 @@ function generateReport() {
 
         else {
 
-            totalMarks -= 1;
-
             wrongCount++;
+
+            totalMarks -= 1;
 
         }
 
@@ -1111,9 +1327,9 @@ function generateReport() {
     }
 
 
-    // =====================================
-    // ACCURACY
-    // =====================================
+    // ======================================
+    // Accuracy
+    // ======================================
 
     let accuracy =
 
@@ -1131,14 +1347,12 @@ function generateReport() {
 
             )
 
-        )
-
-        *100;
+        ) * 100;
 
 
-    // =====================================
-    // SUMMARY
-    // =====================================
+    // ======================================
+    // Summary
+    // ======================================
 
     reportHTML +=
 
@@ -1149,7 +1363,6 @@ function generateReport() {
     TEST REPORT
 
     </h1>
-
 
     <table border="1">
 
@@ -1166,7 +1379,6 @@ function generateReport() {
     <th>Total Marks</th>
 
     </tr>
-
 
     <tr>
 
@@ -1211,9 +1423,9 @@ function generateReport() {
     `;
 
 
-    // =====================================
-    // TOPIC ANALYSIS
-    // =====================================
+    // ======================================
+    // Topic Analysis
+    // ======================================
 
     reportHTML +=
 
@@ -1225,7 +1437,7 @@ function generateReport() {
 
     reportHTML +=
 
-    "<tr><th>Topic</th><th>Correct</th><th>Avg Time</th></tr>";
+    "<tr><th>Topic</th><th>Correct</th><th>Average Time</th></tr>";
 
 
     for (
@@ -1233,25 +1445,6 @@ function generateReport() {
         let topic in topicStats
 
     ) {
-
-        let avgTime =
-
-            (
-
-                topicStats[topic].time
-
-                /
-
-                topicStats[topic].total
-
-                /
-
-                60
-
-            )
-
-            .toFixed(2);
-
 
         reportHTML +=
 
@@ -1277,7 +1470,7 @@ function generateReport() {
 
         <td>
 
-        ${avgTime}
+        ${(topicStats[topic].time/topicStats[topic].total/60).toFixed(2)}
 
         min
 
@@ -1294,9 +1487,9 @@ function generateReport() {
     "</table><br>";
 
 
-    // =====================================
-    // DIFFICULTY ANALYSIS
-    // =====================================
+    // ======================================
+    // Difficulty Analysis
+    // ======================================
 
     reportHTML +=
 
@@ -1350,9 +1543,9 @@ function generateReport() {
     "</table><br>";
 
 
-    // =====================================
-    // DETAILED REPORT
-    // =====================================
+    // ======================================
+    // Detailed Report
+    // ======================================
 
     reportHTML +=
 
@@ -1375,7 +1568,7 @@ function generateReport() {
 
         let marks = 0;
 
-        let colour = "#fff8dc";
+        let colour = "#fff3cd";
 
 
         if (
@@ -1447,7 +1640,7 @@ function generateReport() {
 
         padding:15px;
 
-        margin:20px;
+        margin:15px;
 
         border-radius:10px;
 
@@ -1535,16 +1728,6 @@ function generateReport() {
 
         min
 
-        <br><br>
-
-        <b>
-
-        Target Time :
-
-        </b>
-
-        5 min
-
         </div>
 
         `;
@@ -1552,9 +1735,9 @@ function generateReport() {
     }
 
 
-    // =====================================
-    // SHOW REPORT
-    // =====================================
+    // ======================================
+    // Display Report
+    // ======================================
 
     document.getElementById(
 
@@ -1591,291 +1774,4 @@ function generateReport() {
 
     "none";
 
-}
-// =====================================
-// AUTO SAVE
-// =====================================
-
-function saveProgress() {
-
-    let state = {
-
-        currentQuestion,
-
-        userAnswers,
-
-        questionTimes,
-
-        masterTimeLeft,
-
-        questionTimeLeft,
-
-        questions
-
-    };
-
-    localStorage.setItem(
-
-        "CAT_TEST_PROGRESS",
-
-        JSON.stringify(state)
-
-    );
-
-}
-
-
-
-// =====================================
-// RESTORE TEST
-// =====================================
-
-function restoreProgress() {
-
-    let saved =
-
-        localStorage.getItem(
-
-            "CAT_TEST_PROGRESS"
-
-        );
-
-    if (!saved) {
-
-        return false;
-
-    }
-
-    let state =
-
-        JSON.parse(saved);
-
-
-    questions = state.questions;
-
-    currentQuestion = state.currentQuestion;
-
-    userAnswers = state.userAnswers;
-
-    questionTimes = state.questionTimes;
-
-    masterTimeLeft = state.masterTimeLeft;
-
-    questionTimeLeft = state.questionTimeLeft;
-
-
-    createPalette();
-
-    loadQuestion();
-
-    startMasterTimer();
-
-    startQuestionTimer();
-
-    return true;
-
-}
-
-
-
-// =====================================
-// SAVE EVERY 10 SECONDS
-// =====================================
-
-setInterval(
-
-    saveProgress,
-
-    10000
-
-);
-
-
-
-// =====================================
-// CLEAR SAVED TEST
-// =====================================
-
-function clearSavedProgress() {
-
-    localStorage.removeItem(
-
-        "CAT_TEST_PROGRESS"
-
-    );
-
-}
-
-
-
-// =====================================
-// RESET TEST
-// =====================================
-
-function resetTest() {
-
-    clearSavedProgress();
-
-    location.reload();
-
-}
-
-
-
-// =====================================
-// DOWNLOAD REPORT
-// =====================================
-
-function downloadReport() {
-
-    let reportContent =
-
-        document.getElementById(
-
-            "report"
-
-        ).innerHTML;
-
-
-    let html =
-
-        `
-
-        <html>
-
-        <head>
-
-        <title>
-
-        CAT Report
-
-        </title>
-
-        </head>
-
-        <body>
-
-        ${reportContent}
-
-        </body>
-
-        </html>
-
-        `;
-
-
-    let blob =
-
-        new Blob(
-
-            [html],
-
-            {
-
-                type:
-
-                "text/html"
-
-            }
-
-        );
-
-
-    let link =
-
-        document.createElement(
-
-            "a"
-
-        );
-
-
-    link.href =
-
-        URL.createObjectURL(
-
-            blob
-
-        );
-
-
-    link.download =
-
-        "CAT_Report.html";
-
-
-    link.click();
-
-}
-
-
-
-// =====================================
-// MODIFY finishTest()
-// Replace your old finishTest()
-// with this version
-// =====================================
-
-function finishTest() {
-
-    saveCurrentQuestionTime();
-
-    clearInterval(
-
-        masterTimerInterval
-
-    );
-
-    clearInterval(
-
-        questionTimerInterval
-
-    );
-
-    clearSavedProgress();
-
-    generateReport();
-
-}
-
-
-
-// =====================================
-// ADD BUTTONS TO REPORT
-// =====================================
-
-function addReportButtons() {
-
-    let html =
-
-        `
-
-        <br><br>
-
-        <button
-
-        onclick="downloadReport()">
-
-        Download Report
-
-        </button>
-
-
-        <button
-
-        onclick="resetTest()">
-
-        New Test
-
-        </button>
-
-        `;
-
-
-    document.getElementById(
-
-        "report"
-
-    ).innerHTML += html;
-    addReportButtons();
 }
