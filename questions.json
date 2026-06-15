@@ -1,0 +1,19 @@
+[
+{
+"question":"If the average of 8 numbers is 21 and one number is removed, the average becomes 20. Find the removed number.",
+"options":["24","26","28","29"],
+"answer":2
+},
+
+{
+"question":"2x + 3 = 11. Find x.",
+"options":["2","3","4","5"],
+"answer":2
+},
+
+{
+"question":"A train travels 120 km in 2 hours. Its speed is:",
+"options":["40 km/h","50 km/h","60 km/h","70 km/h"],
+"answer":2
+}
+]
