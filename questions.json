@@ -539,4 +539,115 @@
   ],
   "answer": 2
 }
+  
+{
+  "question": "A car travels from A to B and back. On the onward journey, it covers the first half of the distance at 40 km/h and the second half at 60 km/h. On the return journey, it spends half the time at 40 km/h and the remaining half at 60 km/h. Find the average speed for the entire round trip.",
+  "options": [
+    "48 km/h",
+    "50 km/h",
+    "52 km/h",
+    "54 km/h"
+  ],
+  "answer": 1
+}
+
+{
+  "question": "An aircraft whose speed in still air is 300 km/h wishes to fly due north. A wind blowing from west to east at 100 km/h is present. The pilot adjusts the heading so that the aircraft reaches its destination exactly due north. Another aircraft starts simultaneously from the same point and flies due east at 400 km/h. Find the distance between the two aircraft after 2 hours.",
+  "options": [
+    "1000 km",
+    "800 km",
+    "600 km",
+    "1200 km"
+  ],
+  "answer": 0
+}
+
+{
+  "question": "A motorcyclist moves with constant speed 20 m/s. At the instant he passes a stationary car, the car starts from rest with a constant acceleration of 2 m/s². The car catches the motorcyclist and continues accelerating. Find the distance between them exactly 10 seconds after the car first overtakes the motorcyclist.",
+  "options": [
+    "100 m",
+    "200 m",
+    "300 m",
+    "400 m"
+  ],
+  "answer": 0
+}
+
+{
+  "question": "A man 2 m tall walks away from a lamp post 8 m high at a speed of 3 m/s. Find the speed with which the tip of his shadow moves.",
+  "options": [
+    "4 m/s",
+    "5 m/s",
+    "6 m/s",
+    "9 m/s"
+  ],
+  "answer": 0
+}
+
+{
+  "question": "Two aircraft A and B start simultaneously from points P and Q, 600 km apart, and fly towards each other. Their speeds in still air are 300 km/h each. A wind blows from west to east at 100 km/h. After meeting, aircraft A immediately turns back to P while B continues to Q. Find the distance between them one hour after their first meeting.",
+  "options": [
+    "400 km",
+    "500 km",
+    "600 km",
+    "800 km"
+  ],
+  "answer": 2
+}
+
+{
+  "question": "A and B start simultaneously from X towards Y, 240 km apart. A covers the first half of the distance at 40 km/h and the second half at 60 km/h. B spends half the total travel time at 40 km/h and the remaining half at 60 km/h. On reaching Y, B immediately starts back towards X without stopping and meets A again at point P. Find the distance of P from X.",
+  "options": [
+    "160 km",
+    "180 km",
+    "192 km",
+    "200 km"
+  ],
+  "answer": 2
+}
+
+{
+  "question": "Two aircraft A and B start simultaneously from airports P and Q, 1200 km apart. Their speeds in still air are 300 km/h and 400 km/h respectively. A constant wind of 100 km/h blows from west to east. Aircraft A wishes to reach Q exactly and therefore adjusts its heading continuously. B flies due west without heading correction. After meeting, A immediately turns back towards P while B continues to P. Find the distance between the two aircraft one hour after their first meeting.",
+  "options": [
+    "300 km",
+    "400 km",
+    "500 km",
+    "600 km"
+  ],
+  "answer": 2
+}
+
+{
+  "question": "A motorcycle moves with constant speed 20 m/s. At the instant it passes a stationary car, the car starts with constant acceleration a. The car overtakes the motorcycle for the first time after 20 seconds. After overtaking, the car immediately begins decelerating uniformly with the same magnitude a. Determine the time elapsed between the first and second meetings of the car and motorcycle.",
+  "options": [
+    "20 s",
+    "40 s",
+    "60 s",
+    "80 s"
+  ],
+  "answer": 1
+}
+
+{
+  "question": "A lamp post 8 m high moves horizontally with speed 2 m/s. At the same time a man 2 m tall walks in the same direction at 3 m/s. Initially the man is directly below the lamp. Find the speed of the tip of the man's shadow with respect to the ground.",
+  "options": [
+    "5 m/s",
+    "6 m/s",
+    "7 m/s",
+    "8 m/s"
+  ],
+  "answer": 0
+}
+
+{
+  "question": "A swimmer A starts from point P on the south bank of a river flowing eastward at 3 km/h. He always keeps his body perpendicular to the bank. Swimmer B starts simultaneously from the same point and continuously adjusts his direction so as to remain on the straight line joining A to a fixed point Q directly opposite P. Both swimmers have speed 5 km/h relative to water. After reaching the north bank, they immediately run eastward at 12 km/h to a point R located 2 km east of Q. Find the difference between their arrival times at R.",
+  "options": [
+    "2 min",
+    "4 min",
+    "6 min",
+    "8 min"
+  ],
+  "answer": 1
+}
+
 ]
