@@ -1,43 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>CAT Practice Test</title>
-    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+          href="style.css">
+
 </head>
+
 <body>
 
-<h1>CAT Practice Test</h1>
+    <h1>CAT Practice Test</h1>
 
-<div class="timers">
-    <h2 id="masterTimer">Master Timer: --:--</h2>
-    <h2 id="questionTimer">Question Timer: --:--</h2>
-</div>
+    <div class="timers">
 
-<h3 id="questionNumber"></h3>
+        <h2 id="masterTimer">
+            Master Timer : 00:00:00
+        </h2>
 
-<h2 id="question"></h2>
+        <h2 id="questionTimer">
+            Question Timer : 00:05:00
+        </h2>
 
-<div id="options"></div>
+    </div>
 
-<br>
+    <hr>
 
-<button onclick="submitAnswer()">Submit</button>
+    <h3 id="questionNumber">
+        Question 1
+    </h3>
 
-<button onclick="skipQuestion()">Skip</button>
+    <h2 id="question">
+        Loading...
+    </h2>
 
-<button onclick="previousQuestion()" id="prevBtn" disabled>
-    Previous
-</button>
+    <div id="options">
 
-<button onclick="nextQuestion()" id="nextBtn" disabled>
-    Next
-</button>
+    </div>
 
-<button onclick="finishTest()" id="finishBtn" disabled>
-    Finish Test
-</button>
+    <br>
 
-<script src="script.js"></script>
+    <div class="buttons">
+
+        <button onclick="submitAnswer()">
+            Submit
+        </button>
+
+        <button onclick="skipQuestion()">
+            Skip
+        </button>
+
+        <button onclick="previousQuestion()"
+                id="prevBtn"
+                disabled>
+            Previous
+        </button>
+
+        <button onclick="nextQuestion()"
+                id="nextBtn"
+                disabled>
+            Next
+        </button>
+
+        <button onclick="finishTest()"
+                id="finishBtn"
+                disabled>
+            Finish Test
+        </button>
+
+    </div>
+
+    <br>
+
+    <div id="report">
+
+    </div>
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
