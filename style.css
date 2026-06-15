@@ -1,21 +1,26 @@
+```css
 body{
-    font-family: Arial, sans-serif;
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
+    font-family: Arial;
+    max-width:800px;
+    margin:auto;
+    padding:20px;
 }
 
 h1{
-    color: navy;
+    color:navy;
 }
 
-#timer{
-    color: red;
-    font-size: 24px;
-    margin-bottom: 20px;
+#masterTimer{
+    color:red;
+}
+
+#questionTimer{
+    color:blue;
 }
 
 button{
-    padding: 10px 20px;
-    font-size: 18px;
+    padding:12px 20px;
+    margin-right:10px;
+    font-size:18px;
 }
+```
