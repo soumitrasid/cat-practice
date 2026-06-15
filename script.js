@@ -735,25 +735,15 @@ function finishTest() {
 
     saveTimeSpent();
 
+    clearInterval(masterTimerInterval);
 
-    clearInterval(
+    clearInterval(questionTimerInterval);
 
-        masterTimerInterval
-
-    );
-
-
-    clearInterval(
-
-        questionTimerInterval
-
-    );
-
+    clearSavedProgress();
 
     generateReport();
 
 }
-
 
 
 // ======================================
@@ -874,50 +864,6 @@ function reviewAll() {
     loadQuestion();
 
 }
-// ======================================
-// Submit Answer
-// ======================================
-
-function submitAnswer() {
-
-    let selected =
-
-        document.querySelector(
-
-            'input[name="option"]:checked'
-
-        );
-
-
-    if (!selected) {
-
-        alert(
-
-            "Please select an answer."
-
-        );
-
-        return;
-
-    }
-
-
-    saveTimeSpent();
-
-
-    userAnswers[currentQuestion] =
-
-        parseInt(
-
-            selected.value
-
-        );
-
-
-    updatePalette();
-
-    updateButtons();
-
 
     // Move to next question
 
@@ -1746,7 +1692,7 @@ function generateReport() {
     ).innerHTML =
 
     reportHTML;
-
+    addReportButtons();
 
     document.getElementById(
 
