@@ -10,6 +10,10 @@ let questionTime;
 let masterInterval;
 let questionInterval;
 
+// -------------------------
+// Load questions
+// -------------------------
+
 fetch("questions.json")
 .then(response => response.json())
 .then(data => {
@@ -18,8 +22,8 @@ fetch("questions.json")
 
     answers = new Array(questions.length).fill(null);
 
-    // 10 minutes per question
-    masterTime = questions.length * 600;
+    // 5 minutes per question
+    masterTime = questions.length * 5 * 60;
 
     startMasterTimer();
 
@@ -27,16 +31,22 @@ fetch("questions.json")
 
 });
 
+// -------------------------
+
 function formatTime(time) {
 
-    let min = Math.floor(time / 60);
-    let sec = time % 60;
+    let hrs = Math.floor(time / 3600);
+    let mins = Math.floor((time % 3600) / 60);
+    let secs = time % 60;
 
-    sec = sec.toString().padStart(2, '0');
+    hrs = hrs.toString().padStart(2, '0');
+    mins = mins.toString().padStart(2, '0');
+    secs = secs.toString().padStart(2, '0');
 
-    return min + ":" + sec;
-
+    return hrs + ":" + mins + ":" + secs;
 }
+
+// -------------------------
 
 function startMasterTimer() {
 
@@ -57,11 +67,14 @@ function startMasterTimer() {
 
 }
 
+// -------------------------
+
 function startQuestionTimer() {
 
     clearInterval(questionInterval);
 
-    questionTime = 600;
+    // 5 minutes
+    questionTime = 5 * 60;
 
     questionInterval = setInterval(function () {
 
@@ -79,6 +92,8 @@ function startQuestionTimer() {
     }, 1000);
 
 }
+
+// -------------------------
 
 function loadQuestion() {
 
@@ -99,10 +114,11 @@ function loadQuestion() {
 
         html += `
         <p>
-            <input type="radio"
-                   name="answer"
-                   value="${i}"
-                   ${checked}>
+            <input
+                type="radio"
+                name="answer"
+                value="${i}"
+                ${checked}>
             ${option}
         </p>
         `;
@@ -115,6 +131,8 @@ function loadQuestion() {
         startQuestionTimer();
 
 }
+
+// -------------------------
 
 function submitAnswer() {
 
@@ -130,6 +148,8 @@ function submitAnswer() {
 
 }
 
+// -------------------------
+
 function skipQuestion() {
 
     clearInterval(questionInterval);
@@ -137,6 +157,8 @@ function skipQuestion() {
     autoNext();
 
 }
+
+// -------------------------
 
 function autoNext() {
 
@@ -147,6 +169,7 @@ function autoNext() {
         loadQuestion();
 
     }
+
     else {
 
         enterReviewMode();
@@ -154,6 +177,8 @@ function autoNext() {
     }
 
 }
+
+// -------------------------
 
 function enterReviewMode() {
 
@@ -173,6 +198,8 @@ function enterReviewMode() {
 
 }
 
+// -------------------------
+
 function previousQuestion() {
 
     if (current > 0) {
@@ -185,7 +212,15 @@ function previousQuestion() {
 
 }
 
+// -------------------------
+
 function nextQuestion() {
+
+    let selected =
+        document.querySelector('input[name="answer"]:checked');
+
+    if (selected)
+        answers[current] = parseInt(selected.value);
 
     if (current < questions.length - 1) {
 
@@ -194,6 +229,7 @@ function nextQuestion() {
         loadQuestion();
 
     }
+
     else {
 
         finishTest();
@@ -201,6 +237,8 @@ function nextQuestion() {
     }
 
 }
+
+// -------------------------
 
 function finishTest() {
 
@@ -217,7 +255,8 @@ function finishTest() {
     }
 
     document.body.innerHTML =
+
         "<h1>Test Finished</h1>" +
-        "<h2>Score = " + score + " / " + questions.length + "</h2>";
+        "<h2>Score : " + score + " / " + questions.length + "</h2>";
 
 }
