@@ -1,36 +1,239 @@
+/* ---------- General Page ---------- */
+
 body {
+
     font-family: Arial, sans-serif;
+
     font-size: 14pt;
-    max-width: 900px;
+
+    max-width: 1000px;
+
     margin: auto;
+
     padding: 20px;
+
+    line-height: 1.6;
+
 }
+
+
+/* ---------- Heading ---------- */
 
 h1 {
+
     color: navy;
+
+    text-align: center;
+
 }
+
+
+h2 {
+
+    color: black;
+
+}
+
+
+h3 {
+
+    color: #444;
+
+}
+
+
+/* ---------- Timers ---------- */
 
 #masterTimer {
+
     color: red;
+
 }
+
 
 #questionTimer {
+
     color: blue;
+
 }
 
-button {
-    padding: 12px 20px;
-    margin-right: 10px;
-    margin-top: 15px;
-    font-size: 14pt;
-    cursor: pointer;
+
+.timers {
+
+    display: flex;
+
+    justify-content: space-between;
+
 }
+
+
+/* ---------- Question Area ---------- */
+
+#question {
+
+    margin-top: 25px;
+
+    margin-bottom: 20px;
+
+}
+
+
+#options {
+
+    margin-top: 20px;
+
+}
+
+
+#options p {
+
+    margin-bottom: 15px;
+
+}
+
+
+/* ---------- Radio Buttons ---------- */
 
 input[type="radio"] {
+
     transform: scale(1.3);
+
     margin-right: 10px;
+
 }
 
-p {
+
+/* ---------- Buttons ---------- */
+
+.buttons {
+
+    margin-top: 20px;
+
+}
+
+
+button {
+
     font-size: 14pt;
+
+    padding: 12px 18px;
+
+    margin-right: 10px;
+
+    margin-top: 10px;
+
+    cursor: pointer;
+
+    border-radius: 8px;
+
+}
+
+
+/* ---------- Disabled Buttons ---------- */
+
+button:disabled {
+
+    background-color: lightgray;
+
+    color: gray;
+
+    cursor: not-allowed;
+
+}
+
+
+/* ---------- Report Section ---------- */
+
+#report {
+
+    margin-top: 40px;
+
+}
+
+
+/* ---------- Table ---------- */
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin-top: 20px;
+
+}
+
+
+/* ---------- Table Cells ---------- */
+
+th, td {
+
+    border: 1px solid black;
+
+    padding: 10px;
+
+    text-align: center;
+
+}
+
+
+/* ---------- Header Row ---------- */
+
+th {
+
+    background-color: #d9e6ff;
+
+}
+
+
+/* ---------- Correct Answer Rows ---------- */
+
+.correct {
+
+    background-color: #ccffcc;
+
+}
+
+
+/* ---------- Wrong Answer Rows ---------- */
+
+.wrong {
+
+    background-color: #ffcccc;
+
+}
+
+
+/* ---------- Skipped Rows ---------- */
+
+.skipped {
+
+    background-color: #ffffcc;
+
+}
+
+
+/* ---------- Summary ---------- */
+
+.summary {
+
+    margin-top: 30px;
+
+    padding: 20px;
+
+    border: 2px solid black;
+
+    background-color: #f2f2f2;
+
+}
+
+
+/* ---------- Horizontal Line ---------- */
+
+hr {
+
+    margin-top: 25px;
+
+    margin-bottom: 25px;
+
 }
