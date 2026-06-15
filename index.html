@@ -18,6 +18,8 @@
 
 <button onclick="submitAnswer()">Submit</button>
 
+<button onclick="skipQuestion()">Skip</button>
+
 <script>
 
 let current = 0;
@@ -60,10 +62,13 @@ function loadQuestion() {
         `;
     });
 
-    document.getElementById("options").innerHTML = html;
+let minutes = Math.floor(time/60);
+let seconds = time%60;
 
-    startTimer();
-}
+seconds = seconds.toString().padStart(2,'0');
+
+document.getElementById("timer").innerHTML =
+"Time left : " + minutes + ":" + seconds;
 
 let interval;
 
@@ -96,6 +101,16 @@ function submitAnswer() {
 
         score++;
     }
+
+    current++;
+
+    loadQuestion();
+}
+
+
+function skipQuestion() {
+
+    clearInterval(interval);
 
     current++;
 
