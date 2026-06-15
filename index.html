@@ -2,12 +2,107 @@
 <html>
 <head>
     <title>CAT Practice</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Welcome to CAT Practice</h1>
+<h1>CAT Practice Test</h1>
 
-<p>This is my first CAT practice test website.</p>
+<div id="timer"></div>
+
+<h2 id="question"></h2>
+
+<div id="options"></div>
+
+<br>
+
+<button onclick="submitAnswer()">Submit</button>
+
+<script>
+
+let current = 0;
+let score = 0;
+let selected = null;
+let questions = [];
+
+fetch("questions.json")
+.then(response => response.json())
+.then(data => {
+    questions = data;
+    loadQuestion();
+});
+
+function loadQuestion() {
+
+    if (current >= questions.length) {
+
+        document.body.innerHTML =
+        "<h1>Test Finished</h1><h2>Your Score = " + score + "</h2>";
+
+        return;
+    }
+
+    selected = null;
+
+    document.getElementById("question").innerHTML =
+    questions[current].question;
+
+    let html = "";
+
+    questions[current].options.forEach((option, i) => {
+
+        html += `
+        <p>
+        <input type="radio" name="answer"
+        onclick="selected=${i}">
+        ${option}
+        </p>
+        `;
+    });
+
+    document.getElementById("options").innerHTML = html;
+
+    startTimer();
+}
+
+let interval;
+
+function startTimer() {
+
+    clearInterval(interval);
+
+    let time = 600;
+
+    interval = setInterval(function() {
+
+        document.getElementById("timer").innerHTML =
+        "Time left : " + time + " sec";
+
+        time--;
+
+        if (time < 0) {
+
+            submitAnswer();
+        }
+
+    },1000);
+}
+
+function submitAnswer() {
+
+    clearInterval(interval);
+
+    if (selected === questions[current].answer) {
+
+        score++;
+    }
+
+    current++;
+
+    loadQuestion();
+}
+
+</script>
 
 </body>
 </html>
