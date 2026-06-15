@@ -1,14 +1,20 @@
+```html
 <!DOCTYPE html>
 <html>
 <head>
-    <title>CAT Practice</title>
+    <title>CAT Practice Test</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <h1>CAT Practice Test</h1>
 
-<div id="timer"></div>
+<div class="timers">
+    <h2 id="masterTimer">Master Timer: --:--</h2>
+    <h2 id="questionTimer">Question Timer: --:--</h2>
+</div>
+
+<h3 id="questionNumber"></h3>
 
 <h2 id="question"></h2>
 
@@ -17,107 +23,12 @@
 <br>
 
 <button onclick="submitAnswer()">Submit</button>
-
 <button onclick="skipQuestion()">Skip</button>
+<button onclick="previousQuestion()" id="prevBtn" disabled>Previous</button>
+<button onclick="nextQuestion()" id="nextBtn" disabled>Next</button>
 
-<script>
-
-let current = 0;
-let score = 0;
-let selected = null;
-let questions = [];
-
-fetch("questions.json")
-.then(response => response.json())
-.then(data => {
-    questions = data;
-    loadQuestion();
-});
-
-function loadQuestion() {
-
-    if (current >= questions.length) {
-
-        document.body.innerHTML =
-        "<h1>Test Finished</h1><h2>Your Score = " + score + "</h2>";
-
-        return;
-    }
-
-    selected = null;
-
-    document.getElementById("question").innerHTML =
-    questions[current].question;
-
-    let html = "";
-
-    questions[current].options.forEach((option, i) => {
-
-        html += `
-        <p>
-        <input type="radio" name="answer"
-        onclick="selected=${i}">
-        ${option}
-        </p>
-        `;
-    });
-
-let minutes = Math.floor(time/60);
-let seconds = time%60;
-
-seconds = seconds.toString().padStart(2,'0');
-
-document.getElementById("timer").innerHTML =
-"Time left : " + minutes + ":" + seconds;
-
-let interval;
-
-function startTimer() {
-
-    clearInterval(interval);
-
-    let time = 600;
-
-    interval = setInterval(function() {
-
-        document.getElementById("timer").innerHTML =
-        "Time left : " + time + " sec";
-
-        time--;
-
-        if (time < 0) {
-
-            submitAnswer();
-        }
-
-    },1000);
-}
-
-function submitAnswer() {
-
-    clearInterval(interval);
-
-    if (selected === questions[current].answer) {
-
-        score++;
-    }
-
-    current++;
-
-    loadQuestion();
-}
-
-
-function skipQuestion() {
-
-    clearInterval(interval);
-
-    current++;
-
-    loadQuestion();
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
+```
