@@ -228,75 +228,7 @@ if (!restoreProgress()) {
     });
 
 }
-fetch("questions_master.json")
 
-.then(response => {
-
-    if (!response.ok) {
-
-        throw new Error(
-
-            "Cannot load questions_master.json"
-
-        );
-
-    }
-
-    return response.json();
-
-})
-
-.then(data => {
-
-    questions = selectQuestions(data);
-
-
-    userAnswers =
-
-        Array(
-
-            questions.length
-
-        ).fill(null);
-
-
-    questionTimes =
-
-        Array(
-
-            questions.length
-
-        ).fill(0);
-
-
-    masterTimeLeft =
-
-        questions.length * 300;
-
-
-    createPalette();
-
-    loadQuestion();
-
-    startMasterTimer();
-
-    startQuestionTimer();
-
-})
-
-.catch(error => {
-
-    console.error(error);
-
-    document.getElementById(
-
-        "question"
-
-    ).innerHTML =
-
-    "Error loading questions_master.json";
-
-});
 // =====================================
 // LOAD QUESTION
 // =====================================
@@ -927,31 +859,6 @@ function nextQuestion() {
 
 }
 
-
-
-// =====================================
-// FINISH TEST
-// =====================================
-
-function finishTest() {
-
-    saveCurrentQuestionTime();
-
-    clearInterval(
-
-        masterTimerInterval
-
-    );
-
-    clearInterval(
-
-        questionTimerInterval
-
-    );
-
-    generateReport();
-
-}
 
 
 
@@ -1970,5 +1877,5 @@ function addReportButtons() {
         "report"
 
     ).innerHTML += html;
-
+    addReportButtons();
 }
