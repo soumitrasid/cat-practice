@@ -506,4 +506,34 @@
   ],
   "answer": 2
 }
+{
+  "question": "Two swimmers A and B are standing at point P on the south bank of a river flowing eastward at 3 km/h. A can swim at 5 km/h relative to water and B at 10 km/h relative to water. Both wish to reach a point Q directly opposite P on the north bank, which is 1 km away. A always keeps his body perpendicular to the current while B continuously adjusts his direction so that he reaches Q exactly. After reaching the north bank, each immediately runs along the bank at 12 km/h to a point R located 2 km east of Q. Find the difference between the times taken by A and B to reach R.",
+  "options": [
+    "2.5 minutes",
+    "5 minutes",
+    "7.5 minutes",
+    "10 minutes"
+  ],
+  "answer": 1
+}
+{
+  "question": "An escalator moves upward at a constant speed. Ram walks upward and counts 60 steps while reaching the top. Shyam walks upward twice as fast as Ram and counts only 40 steps. On another day the escalator speed increases by 50%, while Ram and Shyam maintain their original walking speeds and start simultaneously from the bottom. After reaching the top, Shyam immediately turns back and walks downward on the moving escalator. How many steps from the top do Ram and Shyam meet?",
+  "options": [
+    "20",
+    "24",
+    "30",
+    "36"
+  ],
+  "answer": 1
+}
+{
+  "question": "Rain is falling vertically downward at constant speed. A cyclist travelling eastward at 12 km/h observes the rain to make an angle of 45° with the vertical. Another cyclist travelling northward at 16 km/h observes the rain to make an angle θ with the vertical. If a third cyclist moving northeast at 12√2 km/h finds the rain to appear perfectly vertical, find θ.",
+  "options": [
+    "30°",
+    "45°",
+    "60°",
+    "75°"
+  ],
+  "answer": 2
+}
 ]
