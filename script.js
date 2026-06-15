@@ -1,6 +1,6 @@
-// ===================================
-// Global Variables
-// ===================================
+// =====================================
+// GLOBAL VARIABLES
+// =====================================
 
 let questions = [];
 
@@ -10,7 +10,7 @@ let userAnswers = [];
 
 let questionTimes = [];
 
-let questionStartTime = Date.now();
+let currentQuestionStartTime = Date.now();
 
 let masterTimeLeft = 0;
 
@@ -21,9 +21,9 @@ let masterTimerInterval;
 let questionTimerInterval;
 
 
-// ===================================
-// Shuffle Array
-// ===================================
+// =====================================
+// SHUFFLE FUNCTION
+// =====================================
 
 function shuffleArray(arr) {
 
@@ -34,23 +34,212 @@ function shuffleArray(arr) {
         let j = Math.floor(Math.random() * (i + 1));
 
         [a[i], a[j]] = [a[j], a[i]];
+
     }
 
     return a;
+
 }
 
 
-// ===================================
-// Load Master Question Bank
-// ===================================
+// =====================================
+// SAVE TIME OF CURRENT QUESTION
+// =====================================
 
+function saveCurrentQuestionTime() {
+
+    let now = Date.now();
+
+    let secondsSpent =
+
+        Math.floor(
+
+            (now - currentQuestionStartTime) / 1000
+
+        );
+
+    questionTimes[currentQuestion] +=
+
+        secondsSpent;
+
+    currentQuestionStartTime = now;
+
+}
+
+
+// =====================================
+// SMART QUESTION SELECTION
+// =====================================
+
+function selectQuestions(data) {
+
+    let easyQuestions =
+
+        shuffleArray(
+
+            data.filter(
+
+                q => q.difficulty === "Easy"
+
+            )
+
+        );
+
+
+
+    let mediumQuestions =
+
+        shuffleArray(
+
+            data.filter(
+
+                q => q.difficulty === "Medium"
+
+            )
+
+        );
+
+
+
+    let hardQuestions =
+
+        shuffleArray(
+
+            data.filter(
+
+                q => q.difficulty === "Hard"
+
+            )
+
+        );
+
+
+    let selected = [];
+
+
+    // Safe selection
+
+    selected.push(
+
+        ...easyQuestions.slice(
+
+            0,
+
+            Math.min(10, easyQuestions.length)
+
+        )
+
+    );
+
+
+    selected.push(
+
+        ...mediumQuestions.slice(
+
+            0,
+
+            Math.min(10, mediumQuestions.length)
+
+        )
+
+    );
+
+
+    selected.push(
+
+        ...hardQuestions.slice(
+
+            0,
+
+            Math.min(10, hardQuestions.length)
+
+        )
+
+    );
+
+
+    // Fill remaining slots
+
+    let remainingPool =
+
+        shuffleArray(
+
+            data.filter(
+
+                q => !selected.includes(q)
+
+            )
+
+        );
+
+
+    while (
+
+        selected.length < 30 &&
+
+        remainingPool.length > 0
+
+    ) {
+
+        selected.push(
+
+            remainingPool.shift()
+
+        );
+
+    }
+
+
+    return shuffleArray(selected);
+
+}
+
+
+// =====================================
+// LOAD QUESTION BANK
+// =====================================
+if (!restoreProgress()) {
+
+    fetch("questions_master.json")
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        questions = selectQuestions(data);
+
+        userAnswers =
+            Array(questions.length).fill(null);
+
+        questionTimes =
+            Array(questions.length).fill(0);
+
+        masterTimeLeft =
+            questions.length * 300;
+
+        createPalette();
+
+        loadQuestion();
+
+        startMasterTimer();
+
+        startQuestionTimer();
+
+    });
+
+}
 fetch("questions_master.json")
 
 .then(response => {
 
     if (!response.ok) {
 
-        throw new Error("Cannot load questions_master.json");
+        throw new Error(
+
+            "Cannot load questions_master.json"
+
+        );
+
     }
 
     return response.json();
@@ -59,60 +248,29 @@ fetch("questions_master.json")
 
 .then(data => {
 
-    // Separate by difficulty
+    questions = selectQuestions(data);
 
-    let easyQuestions =
-        data.filter(q => q.difficulty === "Easy");
-
-    let mediumQuestions =
-        data.filter(q => q.difficulty === "Medium");
-
-    let hardQuestions =
-        data.filter(q => q.difficulty === "Hard");
-
-
-    // Randomly choose
-
-    easyQuestions =
-        shuffleArray(easyQuestions).slice(0,10);
-
-    mediumQuestions =
-        shuffleArray(mediumQuestions).slice(0,10);
-
-    hardQuestions =
-        shuffleArray(hardQuestions).slice(0,10);
-
-
-    // Create final paper
-
-    questions = [
-
-        ...easyQuestions,
-
-        ...mediumQuestions,
-
-        ...hardQuestions
-
-    ];
-
-
-    // Shuffle paper
-
-    questions = shuffleArray(questions);
-
-
-    // Initialize arrays
 
     userAnswers =
-        Array(questions.length).fill(null);
+
+        Array(
+
+            questions.length
+
+        ).fill(null);
+
 
     questionTimes =
-        Array(questions.length).fill(0);
 
+        Array(
 
-    // 5 minutes per question
+            questions.length
+
+        ).fill(0);
+
 
     masterTimeLeft =
+
         questions.length * 300;
 
 
@@ -130,50 +288,102 @@ fetch("questions_master.json")
 
     console.error(error);
 
-    document.getElementById("question").innerHTML =
+    document.getElementById(
 
-        "Error loading questions_master.json";
+        "question"
+
+    ).innerHTML =
+
+    "Error loading questions_master.json";
 
 });
-// ===================================
-// Load Question
-// ===================================
+// =====================================
+// LOAD QUESTION
+// =====================================
 
 function loadQuestion() {
 
     let q = questions[currentQuestion];
 
-    document.getElementById("questionNumber").innerHTML =
-        `Question ${currentQuestion + 1}`;
+    document.getElementById(
+        "questionNumber"
+    ).innerHTML =
 
-    document.getElementById("question").innerHTML =
-        q.question;
+    `Question ${currentQuestion + 1}`;
+
+    document.getElementById(
+        "question"
+    ).innerHTML =
+
+    q.question;
+
 
     let html = "";
 
-    for (let i = 0; i < q.options.length; i++) {
+
+    for (
+
+        let i = 0;
+
+        i < q.options.length;
+
+        i++
+
+    ) {
 
         let checked = "";
 
-        if (userAnswers[currentQuestion] === i)
+
+        if (
+
+            userAnswers[currentQuestion] === i
+
+        ) {
+
             checked = "checked";
 
+        }
+
+
         html +=
+
         `
+
         <p>
+
         <label>
-        <input type="radio"
-               name="option"
-               value="${i}"
-               ${checked}>
+
+        <input
+
+            type="radio"
+
+            name="option"
+
+            value="${i}"
+
+            ${checked}
+
+        >
+
         ${q.options[i]}
+
         </label>
+
         </p>
+
         `;
+
     }
 
-    document.getElementById("options").innerHTML =
-        html;
+
+    document.getElementById(
+
+        "options"
+
+    ).innerHTML =
+
+    html;
+
 
     updatePalette();
 
@@ -182,70 +392,144 @@ function loadQuestion() {
 }
 
 
-// ===================================
-// Create Palette
-// ===================================
+// =====================================
+// CREATE PALETTE
+// =====================================
 
 function createPalette() {
 
     let html = "";
 
-    for (let i = 0; i < questions.length; i++) {
+
+    for (
+
+        let i = 0;
+
+        i < questions.length;
+
+        i++
+
+    ) {
 
         html +=
 
-        `<button
+        `
+
+        <button
+
             class="paletteButton unansweredQuestion"
+
             id="palette${i}"
-            onclick="jumpToQuestion(${i})">
+
+            onclick="jumpToQuestion(${i})"
+
+        >
 
             ${i+1}
 
-        </button>`;
+        </button>
+
+        `;
+
     }
 
-    document.getElementById("palette").innerHTML =
-        html;
+
+    document.getElementById(
+
+        "palette"
+
+    ).innerHTML =
+
+    html;
 
 }
 
 
-// ===================================
-// Update Palette
-// ===================================
+// =====================================
+// UPDATE PALETTE
+// =====================================
 
 function updatePalette() {
 
-    for (let i = 0; i < questions.length; i++) {
+    for (
+
+        let i = 0;
+
+        i < questions.length;
+
+        i++
+
+    ) {
 
         let box =
-            document.getElementById(`palette${i}`);
 
-        box.className = "paletteButton";
+            document.getElementById(
 
-        if (userAnswers[i] !== null)
-            box.classList.add("answeredQuestion");
+                `palette${i}`
 
-        else
-            box.classList.add("unansweredQuestion");
+            );
 
-        if (i === currentQuestion)
-            box.classList.add("currentQuestion");
+
+        box.className =
+
+            "paletteButton";
+
+
+        if (
+
+            userAnswers[i] !== null
+
+        ) {
+
+            box.classList.add(
+
+                "answeredQuestion"
+
+            );
+
+        }
+
+        else {
+
+            box.classList.add(
+
+                "unansweredQuestion"
+
+            );
+
+        }
+
+
+        if (
+
+            i === currentQuestion
+
+        ) {
+
+            box.classList.add(
+
+                "currentQuestion"
+
+            );
+
+        }
 
     }
 
 }
 
 
-// ===================================
-// Jump To Question
-// ===================================
+// =====================================
+// JUMP TO QUESTION
+// =====================================
 
 function jumpToQuestion(index) {
 
+    saveCurrentQuestionTime();
+
     currentQuestion = index;
 
-    questionStartTime = Date.now();
+    currentQuestionStartTime = Date.now();
 
     questionTimeLeft = 300;
 
@@ -254,154 +538,279 @@ function jumpToQuestion(index) {
 }
 
 
-// ===================================
-// Format Time
-// ===================================
+// =====================================
+// FORMAT TIME
+// =====================================
 
 function formatTime(seconds) {
 
     let hrs =
-        String(Math.floor(seconds/3600))
-        .padStart(2,'0');
+
+        String(
+
+            Math.floor(seconds/3600)
+
+        ).padStart(2,'0');
+
 
     let mins =
-        String(Math.floor((seconds%3600)/60))
-        .padStart(2,'0');
+
+        String(
+
+            Math.floor(
+
+                (seconds%3600)/60
+
+            )
+
+        ).padStart(2,'0');
+
 
     let secs =
-        String(seconds%60)
-        .padStart(2,'0');
 
-    return `${hrs}:${mins}:${secs}`;
+        String(
+
+            seconds%60
+
+        ).padStart(2,'0');
+
+
+    return
+
+        `${hrs}:${mins}:${secs}`;
 
 }
 
 
-// ===================================
-// Master Timer
-// ===================================
+// =====================================
+// MASTER TIMER
+// =====================================
 
 function startMasterTimer() {
 
-    masterTimerInterval = setInterval(() => {
+    masterTimerInterval =
 
-        masterTimeLeft--;
+        setInterval(
 
-        document.getElementById("masterTimer")
-        .innerHTML =
+        function() {
 
-        "Master Timer : " +
-        formatTime(masterTimeLeft);
-
-        if (masterTimeLeft <= 0) {
-
-            clearInterval(masterTimerInterval);
-
-            finishTest();
-
-        }
-
-    },1000);
-
-}
+            masterTimeLeft--;
 
 
-// ===================================
-// Question Timer
-// ===================================
+            document.getElementById(
 
-function startQuestionTimer() {
+                "masterTimer"
 
-    questionTimerInterval = setInterval(() => {
+            ).innerHTML =
 
-        questionTimeLeft--;
+            "Master Timer : " +
 
-        questionTimes[currentQuestion]++;
+            formatTime(
 
-        document.getElementById("questionTimer")
-        .innerHTML =
+                masterTimeLeft
 
-        "Question Timer : " +
-        formatTime(questionTimeLeft);
+            );
 
 
-        if (questionTimeLeft <= 0) {
+            if (
 
-            questionTimeLeft = 300;
+                masterTimeLeft <= 0
 
-            if (currentQuestion <
-                questions.length - 1) {
+            ) {
 
-                currentQuestion++;
-
-                loadQuestion();
+                finishTest();
 
             }
 
-        }
+        },
 
-    },1000);
+        1000
+
+    );
 
 }
 
 
-// ===================================
-// Update Buttons
-// ===================================
+// =====================================
+// QUESTION TIMER
+// =====================================
+
+function startQuestionTimer() {
+
+    questionTimerInterval =
+
+        setInterval(
+
+        function() {
+
+            questionTimeLeft--;
+
+
+            document.getElementById(
+
+                "questionTimer"
+
+            ).innerHTML =
+
+            "Question Timer : " +
+
+            formatTime(
+
+                questionTimeLeft
+
+            );
+
+
+            if (
+
+                questionTimeLeft <= 0
+
+            ) {
+
+                saveCurrentQuestionTime();
+
+
+                if (
+
+                    currentQuestion
+
+                    <
+
+                    questions.length - 1
+
+                ) {
+
+                    currentQuestion++;
+
+                    questionTimeLeft = 300;
+
+                    currentQuestionStartTime = Date.now();
+
+                    loadQuestion();
+
+                }
+
+                else {
+
+                    finishTest();
+
+                }
+
+            }
+
+        },
+
+        1000
+
+    );
+
+}
+
+
+// =====================================
+// UPDATE BUTTONS
+// =====================================
 
 function updateButtons() {
 
-    document.getElementById("prevBtn").disabled =
+    document.getElementById(
+
+        "prevBtn"
+
+    ).disabled =
+
         currentQuestion === 0;
 
-    document.getElementById("nextBtn").disabled =
-        currentQuestion === questions.length - 1;
+
+    document.getElementById(
+
+        "nextBtn"
+
+    ).disabled =
+
+        currentQuestion ===
+
+        questions.length - 1;
 
 
     let answeredCount =
+
         userAnswers.filter(
+
             x => x !== null
+
         ).length;
 
 
-    document.getElementById("finishBtn")
-    .disabled =
+    document.getElementById(
+
+        "finishBtn"
+
+    ).disabled =
 
         answeredCount === 0;
 
 }
-// ===================================
-// Submit Answer
-// ===================================
+// =====================================
+// SUBMIT ANSWER
+// =====================================
 
 function submitAnswer() {
 
     let selected =
+
         document.querySelector(
+
             'input[name="option"]:checked'
+
         );
+
 
     if (!selected) {
 
-        alert("Please select an answer.");
+        alert(
+
+            "Please select an answer."
+
+        );
 
         return;
+
     }
 
+
+    saveCurrentQuestionTime();
+
+
     userAnswers[currentQuestion] =
-        parseInt(selected.value);
+
+        parseInt(
+
+            selected.value
+
+        );
+
 
     updatePalette();
 
     updateButtons();
 
 
-    // Move automatically to next question
+    // Auto move
 
-    if (currentQuestion <
-        questions.length - 1) {
+    if (
+
+        currentQuestion <
+
+        questions.length - 1
+
+    ) {
 
         currentQuestion++;
+
+        currentQuestionStartTime =
+
+            Date.now();
 
         questionTimeLeft = 300;
 
@@ -409,19 +818,38 @@ function submitAnswer() {
 
     }
 
+    else {
+
+        finishTest();
+
+    }
+
 }
 
 
-// ===================================
-// Skip Question
-// ===================================
+
+// =====================================
+// SKIP QUESTION
+// =====================================
 
 function skipQuestion() {
 
-    if (currentQuestion <
-        questions.length - 1) {
+    saveCurrentQuestionTime();
+
+
+    if (
+
+        currentQuestion <
+
+        questions.length - 1
+
+    ) {
 
         currentQuestion++;
+
+        currentQuestionStartTime =
+
+            Date.now();
 
         questionTimeLeft = 300;
 
@@ -429,19 +857,36 @@ function skipQuestion() {
 
     }
 
+    else {
+
+        finishTest();
+
+    }
+
 }
 
 
-// ===================================
-// Previous Question
-// ===================================
+
+// =====================================
+// PREVIOUS QUESTION
+// =====================================
 
 function previousQuestion() {
 
-    if (currentQuestion > 0) {
+    if (
+
+        currentQuestion > 0
+
+    ) {
+
+        saveCurrentQuestionTime();
 
         currentQuestion--;
 
+        currentQuestionStartTime =
+
+            Date.now();
+
         questionTimeLeft = 300;
 
         loadQuestion();
@@ -451,16 +896,28 @@ function previousQuestion() {
 }
 
 
-// ===================================
-// Next Question
-// ===================================
+
+// =====================================
+// NEXT QUESTION
+// =====================================
 
 function nextQuestion() {
 
-    if (currentQuestion <
-        questions.length - 1) {
+    if (
+
+        currentQuestion <
+
+        questions.length - 1
+
+    ) {
+
+        saveCurrentQuestionTime();
 
         currentQuestion++;
+
+        currentQuestionStartTime =
+
+            Date.now();
 
         questionTimeLeft = 300;
 
@@ -471,24 +928,36 @@ function nextQuestion() {
 }
 
 
-// ===================================
-// Finish Test
-// ===================================
+
+// =====================================
+// FINISH TEST
+// =====================================
 
 function finishTest() {
 
-    clearInterval(masterTimerInterval);
+    saveCurrentQuestionTime();
 
-    clearInterval(questionTimerInterval);
+    clearInterval(
+
+        masterTimerInterval
+
+    );
+
+    clearInterval(
+
+        questionTimerInterval
+
+    );
 
     generateReport();
 
 }
 
 
-// ===================================
-// Review Mode
-// ===================================
+
+// =====================================
+// REVIEW MODE
+// =====================================
 
 function reviewQuestion(index) {
 
@@ -499,9 +968,10 @@ function reviewQuestion(index) {
 }
 
 
-// ===================================
-// Keyboard Shortcuts
-// ===================================
+
+// =====================================
+// KEYBOARD SHORTCUTS
+// =====================================
 
 document.addEventListener(
 
@@ -509,15 +979,47 @@ document.addEventListener(
 
     function(event) {
 
-        if (event.key === "ArrowRight") {
+        // Right Arrow
+
+        if (
+
+            event.key ===
+
+            "ArrowRight"
+
+        ) {
 
             nextQuestion();
 
         }
 
-        if (event.key === "ArrowLeft") {
+
+        // Left Arrow
+
+        if (
+
+            event.key ===
+
+            "ArrowLeft"
+
+        ) {
 
             previousQuestion();
+
+        }
+
+
+        // Finish test
+
+        if (
+
+            event.key ===
+
+            "f"
+
+        ) {
+
+            finishTest();
 
         }
 
@@ -526,9 +1028,10 @@ document.addEventListener(
 );
 
 
-// ===================================
-// Finish Button Activation
-// ===================================
+
+// =====================================
+// ENABLE FINISH BUTTON
+// =====================================
 
 document.addEventListener(
 
@@ -538,12 +1041,16 @@ document.addEventListener(
 
         if (
 
-            event.target.name === "option"
+            event.target.name ===
+
+            "option"
 
         ) {
 
             document.getElementById(
+
                 "finishBtn"
+
             ).disabled = false;
 
         }
@@ -551,9 +1058,23 @@ document.addEventListener(
     }
 
 );
-// ===================================
-// Generate Report
-// ===================================
+
+
+
+// =====================================
+// REVIEW ALL QUESTIONS
+// =====================================
+
+function reviewAll() {
+
+    currentQuestion = 0;
+
+    loadQuestion();
+
+}
+// =====================================
+// GENERATE REPORT
+// =====================================
 
 function generateReport() {
 
@@ -571,14 +1092,22 @@ function generateReport() {
 
     let difficultyStats = {};
 
-    let reportHTML = "<h1>TEST REPORT</h1>";
+    let reportHTML = "";
 
 
-    // ===================================
-    // Summary Calculation
-    // ===================================
+    // =====================================
+    // CALCULATE RESULTS
+    // =====================================
 
-    for (let i = 0; i < questions.length; i++) {
+    for (
+
+        let i = 0;
+
+        i < questions.length;
+
+        i++
+
+    ) {
 
         let q = questions[i];
 
@@ -586,19 +1115,31 @@ function generateReport() {
 
         let difficulty = q.difficulty;
 
-        if (!topicStats[topic]) {
+
+        if (
+
+            !topicStats[topic]
+
+        ) {
 
             topicStats[topic] = {
 
                 correct:0,
 
-                total:0
+                total:0,
+
+                time:0
 
             };
 
         }
 
-        if (!difficultyStats[difficulty]) {
+
+        if (
+
+            !difficultyStats[difficulty]
+
+        ) {
 
             difficultyStats[difficulty] = {
 
@@ -610,12 +1151,22 @@ function generateReport() {
 
         }
 
+
         topicStats[topic].total++;
+
+        topicStats[topic].time +=
+
+            questionTimes[i];
+
 
         difficultyStats[difficulty].total++;
 
 
-        if (userAnswers[i] === null) {
+        if (
+
+            userAnswers[i] === null
+
+        ) {
 
             skippedCount++;
 
@@ -645,18 +1196,53 @@ function generateReport() {
 
         }
 
-        totalTime += questionTimes[i];
+
+        totalTime +=
+
+            questionTimes[i];
 
     }
 
 
-    // ===================================
-    // Summary Section
-    // ===================================
+    // =====================================
+    // ACCURACY
+    // =====================================
 
-    reportHTML += `
+    let accuracy =
 
-    <h2>Summary</h2>
+        (
+
+            correctCount /
+
+            (
+
+                correctCount +
+
+                wrongCount ||
+
+                1
+
+            )
+
+        )
+
+        *100;
+
+
+    // =====================================
+    // SUMMARY
+    // =====================================
+
+    reportHTML +=
+
+    `
+
+    <h1>
+
+    TEST REPORT
+
+    </h1>
+
 
     <table border="1">
 
@@ -673,6 +1259,7 @@ function generateReport() {
     <th>Total Marks</th>
 
     </tr>
+
 
     <tr>
 
@@ -691,41 +1278,35 @@ function generateReport() {
     </table>
 
     <br>
-    `;
 
+    <b>
 
-    let accuracy =
+    Accuracy :
 
-        (
-            correctCount /
-
-            (correctCount + wrongCount || 1)
-
-        ) * 100;
-
-
-    reportHTML +=
-
-    `<b>Accuracy :</b>
+    </b>
 
     ${accuracy.toFixed(2)} %
 
     <br><br>
 
-    <b>Average Time per Question :</b>
+    <b>
 
-    ${(totalTime/questions.length/60)
-    .toFixed(2)}
+    Average Time per Question :
+
+    </b>
+
+    ${(totalTime/questions.length/60).toFixed(2)}
 
     min
 
     <br><br>
+
     `;
 
 
-    // ===================================
-    // Topic Analysis
-    // ===================================
+    // =====================================
+    // TOPIC ANALYSIS
+    // =====================================
 
     reportHTML +=
 
@@ -737,17 +1318,45 @@ function generateReport() {
 
     reportHTML +=
 
-    "<tr><th>Topic</th><th>Correct</th></tr>";
+    "<tr><th>Topic</th><th>Correct</th><th>Avg Time</th></tr>";
 
 
+    for (
 
-    for (let topic in topicStats) {
+        let topic in topicStats
+
+    ) {
+
+        let avgTime =
+
+            (
+
+                topicStats[topic].time
+
+                /
+
+                topicStats[topic].total
+
+                /
+
+                60
+
+            )
+
+            .toFixed(2);
+
 
         reportHTML +=
 
-        `<tr>
+        `
 
-        <td>${topic}</td>
+        <tr>
+
+        <td>
+
+        ${topic}
+
+        </td>
 
         <td>
 
@@ -759,16 +1368,28 @@ function generateReport() {
 
         </td>
 
-        </tr>`;
+        <td>
+
+        ${avgTime}
+
+        min
+
+        </td>
+
+        </tr>
+
+        `;
 
     }
 
-    reportHTML += "</table><br>";
+    reportHTML +=
+
+    "</table><br>";
 
 
-    // ===================================
-    // Difficulty Analysis
-    // ===================================
+    // =====================================
+    // DIFFICULTY ANALYSIS
+    // =====================================
 
     reportHTML +=
 
@@ -783,14 +1404,23 @@ function generateReport() {
     "<tr><th>Difficulty</th><th>Correct</th></tr>";
 
 
+    for (
 
-    for (let d in difficultyStats) {
+        let d in difficultyStats
+
+    ) {
 
         reportHTML +=
 
-        `<tr>
+        `
 
-        <td>${d}</td>
+        <tr>
+
+        <td>
+
+        ${d}
+
+        </td>
 
         <td>
 
@@ -802,23 +1432,35 @@ function generateReport() {
 
         </td>
 
-        </tr>`;
+        </tr>
+
+        `;
 
     }
 
-    reportHTML += "</table><br>";
+    reportHTML +=
+
+    "</table><br>";
 
 
-    // ===================================
-    // Detailed Report
-    // ===================================
+    // =====================================
+    // DETAILED REPORT
+    // =====================================
 
     reportHTML +=
 
-    "<h2>Detailed Question Report</h2>";
+    "<h2>Detailed Report</h2>";
 
 
-    for (let i = 0; i < questions.length; i++) {
+    for (
+
+        let i = 0;
+
+        i < questions.length;
+
+        i++
+
+    ) {
 
         let q = questions[i];
 
@@ -826,11 +1468,20 @@ function generateReport() {
 
         let marks = 0;
 
-        if (userAnswers[i] === null) {
+        let colour = "#fff8dc";
+
+
+        if (
+
+            userAnswers[i] === null
+
+        ) {
 
             status = "Skipped";
 
             marks = 0;
+
+            colour = "#fff3cd";
 
         }
 
@@ -844,6 +1495,8 @@ function generateReport() {
 
             marks = 3;
 
+            colour = "#d4edda";
+
         }
 
         else {
@@ -851,6 +1504,8 @@ function generateReport() {
             status = "Wrong";
 
             marks = -1;
+
+            colour = "#f8d7da";
 
         }
 
@@ -877,7 +1532,21 @@ function generateReport() {
 
         `
 
-        <hr>
+        <div
+
+        style="
+
+        background:${colour};
+
+        padding:15px;
+
+        margin:20px;
+
+        border-radius:10px;
+
+        "
+
+        >
 
         <h3>
 
@@ -885,87 +1554,421 @@ function generateReport() {
 
         </h3>
 
-        <p>
+        <b>
 
-        <b>Topic:</b>
+        Topic :
+
+        </b>
 
         ${q.topic}
 
         <br>
 
-        <b>Difficulty:</b>
+        <b>
+
+        Difficulty :
+
+        </b>
 
         ${q.difficulty}
 
-        </p>
-
-        <p>
+        <br><br>
 
         ${q.question}
 
-        </p>
+        <br><br>
 
-        <p>
+        <b>
 
-        <b>Your Answer:</b>
+        Your Answer :
+
+        </b>
 
         ${candidateAnswer}
 
-        </p>
+        <br><br>
 
-        <p>
+        <b>
 
-        <b>Correct Answer:</b>
+        Correct Answer :
+
+        </b>
 
         ${correctAnswer}
 
-        </p>
+        <br><br>
 
-        <p>
+        <b>
 
-        <b>Status:</b>
+        Result :
+
+        </b>
 
         ${status}
 
-        </p>
+        <br><br>
 
-        <p>
+        <b>
 
-        <b>Marks:</b>
+        Marks :
+
+        </b>
 
         ${marks}
 
-        </p>
+        <br><br>
 
-        <p>
+        <b>
 
-        <b>Time Spent:</b>
+        Time Spent :
+
+        </b>
 
         ${(questionTimes[i]/60).toFixed(2)}
 
         min
 
-        </p>
+        <br><br>
 
-        <p>
+        <b>
 
-        <b>Target Time:</b>
+        Target Time :
+
+        </b>
 
         5 min
 
-        </p>
+        </div>
 
         `;
 
     }
 
 
-    // ===================================
-    // Show Report
-    // ===================================
+    // =====================================
+    // SHOW REPORT
+    // =====================================
 
-    document.body.innerHTML =
+    document.getElementById(
 
-        reportHTML;
+        "report"
+
+    ).innerHTML =
+
+    reportHTML;
+
+
+    document.getElementById(
+
+        "question"
+
+    ).style.display =
+
+    "none";
+
+
+    document.getElementById(
+
+        "options"
+
+    ).style.display =
+
+    "none";
+
+
+    document.getElementById(
+
+        "palette"
+
+    ).style.display =
+
+    "none";
+
+}
+// =====================================
+// AUTO SAVE
+// =====================================
+
+function saveProgress() {
+
+    let state = {
+
+        currentQuestion,
+
+        userAnswers,
+
+        questionTimes,
+
+        masterTimeLeft,
+
+        questionTimeLeft,
+
+        questions
+
+    };
+
+    localStorage.setItem(
+
+        "CAT_TEST_PROGRESS",
+
+        JSON.stringify(state)
+
+    );
+
+}
+
+
+
+// =====================================
+// RESTORE TEST
+// =====================================
+
+function restoreProgress() {
+
+    let saved =
+
+        localStorage.getItem(
+
+            "CAT_TEST_PROGRESS"
+
+        );
+
+    if (!saved) {
+
+        return false;
+
+    }
+
+    let state =
+
+        JSON.parse(saved);
+
+
+    questions = state.questions;
+
+    currentQuestion = state.currentQuestion;
+
+    userAnswers = state.userAnswers;
+
+    questionTimes = state.questionTimes;
+
+    masterTimeLeft = state.masterTimeLeft;
+
+    questionTimeLeft = state.questionTimeLeft;
+
+
+    createPalette();
+
+    loadQuestion();
+
+    startMasterTimer();
+
+    startQuestionTimer();
+
+    return true;
+
+}
+
+
+
+// =====================================
+// SAVE EVERY 10 SECONDS
+// =====================================
+
+setInterval(
+
+    saveProgress,
+
+    10000
+
+);
+
+
+
+// =====================================
+// CLEAR SAVED TEST
+// =====================================
+
+function clearSavedProgress() {
+
+    localStorage.removeItem(
+
+        "CAT_TEST_PROGRESS"
+
+    );
+
+}
+
+
+
+// =====================================
+// RESET TEST
+// =====================================
+
+function resetTest() {
+
+    clearSavedProgress();
+
+    location.reload();
+
+}
+
+
+
+// =====================================
+// DOWNLOAD REPORT
+// =====================================
+
+function downloadReport() {
+
+    let reportContent =
+
+        document.getElementById(
+
+            "report"
+
+        ).innerHTML;
+
+
+    let html =
+
+        `
+
+        <html>
+
+        <head>
+
+        <title>
+
+        CAT Report
+
+        </title>
+
+        </head>
+
+        <body>
+
+        ${reportContent}
+
+        </body>
+
+        </html>
+
+        `;
+
+
+    let blob =
+
+        new Blob(
+
+            [html],
+
+            {
+
+                type:
+
+                "text/html"
+
+            }
+
+        );
+
+
+    let link =
+
+        document.createElement(
+
+            "a"
+
+        );
+
+
+    link.href =
+
+        URL.createObjectURL(
+
+            blob
+
+        );
+
+
+    link.download =
+
+        "CAT_Report.html";
+
+
+    link.click();
+
+}
+
+
+
+// =====================================
+// MODIFY finishTest()
+// Replace your old finishTest()
+// with this version
+// =====================================
+
+function finishTest() {
+
+    saveCurrentQuestionTime();
+
+    clearInterval(
+
+        masterTimerInterval
+
+    );
+
+    clearInterval(
+
+        questionTimerInterval
+
+    );
+
+    clearSavedProgress();
+
+    generateReport();
+
+}
+
+
+
+// =====================================
+// ADD BUTTONS TO REPORT
+// =====================================
+
+function addReportButtons() {
+
+    let html =
+
+        `
+
+        <br><br>
+
+        <button
+
+        onclick="downloadReport()">
+
+        Download Report
+
+        </button>
+
+
+        <button
+
+        onclick="resetTest()">
+
+        New Test
+
+        </button>
+
+        `;
+
+
+    document.getElementById(
+
+        "report"
+
+    ).innerHTML += html;
 
 }
