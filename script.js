@@ -111,23 +111,46 @@ console.log(
 );
 
     // Separate by difficulty
-let easyQuestions = shuffleArray(
-    data.filter(q => q.difficulty === "Easy")
-).slice(0, 10);
+let easyQuestions =
+    shuffleArray(
+        data.filter(q => q.difficulty === "Easy")
+    ).slice(0,10);
 
-let mediumQuestions = shuffleArray(
-    data.filter(q => q.difficulty === "Medium")
-).slice(0, 10);
+let mediumQuestions =
+    shuffleArray(
+        data.filter(q => q.difficulty === "Medium")
+    );
 
-let hardQuestions = shuffleArray(
-    data.filter(q => q.difficulty === "Hard")
-).slice(0, 10);
+let hardQuestions =
+    shuffleArray(
+        data.filter(q => q.difficulty === "Hard")
+    ).slice(0,10);
 
-questions = shuffleArray([
+questions = [
     ...easyQuestions,
     ...mediumQuestions,
     ...hardQuestions
-]);
+];
+
+let remaining =
+    30 - questions.length;
+
+if (remaining > 0) {
+
+    let extraQuestions =
+        shuffleArray(
+            data.filter(
+                q => q.difficulty !== "Medium"
+            )
+        ).slice(0, remaining);
+
+    questions = [
+        ...questions,
+        ...extraQuestions
+    ];
+}
+
+questions = shuffleArray(questions);
 
 // Combine and shuffle again
 questions =
