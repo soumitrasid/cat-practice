@@ -90,9 +90,25 @@ fetch("questions.json")
 
     return response.json();
 
-})
+console.log(data);
 
-.then(data => {
+console.log(
+    "Easy =", data.filter(q =>
+        q.difficulty === "Easy"
+    ).length
+);
+
+console.log(
+    "Medium =", data.filter(q =>
+        q.difficulty === "Medium"
+    ).length
+);
+
+console.log(
+    "Hard =", data.filter(q =>
+        q.difficulty === "Hard"
+    ).length
+);
 
     // Separate by difficulty
 let easyQuestions = shuffleArray(
