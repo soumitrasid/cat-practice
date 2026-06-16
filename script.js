@@ -95,26 +95,23 @@ fetch("questions.json")
 .then(data => {
 
     // Separate by difficulty
-let easyQuestions =
-    shuffleArray(
-        data.filter(
-            q => q.difficulty.toLowerCase() === "easy"
-        )
-    ).slice(0, 10);
+let easyQuestions = shuffleArray(
+    data.filter(q => q.difficulty === "Easy")
+).slice(0, 10);
 
-let mediumQuestions =
-    shuffleArray(
-        data.filter(
-            q => q.difficulty.toLowerCase() === "medium"
-        )
-    ).slice(0, 10);
+let mediumQuestions = shuffleArray(
+    data.filter(q => q.difficulty === "Medium")
+).slice(0, 10);
 
-let hardQuestions =
-    shuffleArray(
-        data.filter(
-            q => q.difficulty.toLowerCase() === "hard"
-        )
-    ).slice(0, 10);
+let hardQuestions = shuffleArray(
+    data.filter(q => q.difficulty === "Hard")
+).slice(0, 10);
+
+questions = shuffleArray([
+    ...easyQuestions,
+    ...mediumQuestions,
+    ...hardQuestions
+]);
 
 // Combine and shuffle again
 questions =
