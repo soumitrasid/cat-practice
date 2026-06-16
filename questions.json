@@ -650,7 +650,7 @@
   {
     "difficulty": "Hard",
     "topic": "Airplane",
-    "question": "Two aircraft A and B start simultaneously from points P and Q, 600 km apart, and fly towards each other. Their speeds in still air are 300 km/h each. A wind blows from west to east at 100 km/h. After meeting, aircraft A immediately turns back to P while B continues to Q. Find the distance between them one hour after their first meeting.",
+    "question": "Two aircraft A and B start simultaneously from points P and Q, which are 600 km apart, with P lying west of Q. They fly directly towards each other along the east–west line. Their speeds in still air are 300 km/h each. A wind blows from west to east at 100 km/h. After meeting, aircraft A immediately turns back and flies to P, while aircraft B continues to Q. Find the distance between the two aircraft one hour after their first meeting.",
     "options": [
       "400 km",
       "500 km",
