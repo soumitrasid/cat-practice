@@ -74,26 +74,15 @@ function saveTimeSpent() {
 // Load Questions
 // ======================================
 
-```javascript
+
 fetch("questions.json")
 .then(response => {
     if (!response.ok) {
         throw new Error("Cannot load questions.json");
     }
-
     return response.json();
 })
-
 .then(data => {
-
-    console.log("Easy:",
-        data.filter(q => q.difficulty === "Easy").length);
-
-    console.log("Medium:",
-        data.filter(q => q.difficulty === "Medium").length);
-
-    console.log("Hard:",
-        data.filter(q => q.difficulty === "Hard").length);
 
     let easyQuestions =
         shuffleArray(
@@ -148,17 +137,19 @@ fetch("questions.json")
     loadQuestion();
     startMasterTimer();
     startQuestionTimer();
-})
 
+})
 .catch(error => {
 
     console.error(error);
 
-    document.getElementById("question").innerHTML =
-        "Error loading questions.json";
+    document.getElementById(
+        "question"
+    ).innerHTML =
+    "Error loading questions.json";
 
 });
-```
+
 
     // Separate by difficulty
 let easyQuestions =
