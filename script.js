@@ -74,41 +74,91 @@ function saveTimeSpent() {
 // Load Questions
 // ======================================
 
+```javascript
 fetch("questions.json")
-
 .then(response => {
-
     if (!response.ok) {
-
-        throw new Error(
-
-            "Cannot load questions.json"
-
-        );
-
+        throw new Error("Cannot load questions.json");
     }
 
     return response.json();
+})
 
-console.log(data);
+.then(data => {
 
-console.log(
-    "Easy =", data.filter(q =>
-        q.difficulty === "Easy"
-    ).length
-);
+    console.log("Easy:",
+        data.filter(q => q.difficulty === "Easy").length);
 
-console.log(
-    "Medium =", data.filter(q =>
-        q.difficulty === "Medium"
-    ).length
-);
+    console.log("Medium:",
+        data.filter(q => q.difficulty === "Medium").length);
 
-console.log(
-    "Hard =", data.filter(q =>
-        q.difficulty === "Hard"
-    ).length
-);
+    console.log("Hard:",
+        data.filter(q => q.difficulty === "Hard").length);
+
+    let easyQuestions =
+        shuffleArray(
+            data.filter(q => q.difficulty === "Easy")
+        ).slice(0,10);
+
+    let mediumQuestions =
+        shuffleArray(
+            data.filter(q => q.difficulty === "Medium")
+        );
+
+    let hardQuestions =
+        shuffleArray(
+            data.filter(q => q.difficulty === "Hard")
+        ).slice(0,10);
+
+    questions = [
+        ...easyQuestions,
+        ...mediumQuestions,
+        ...hardQuestions
+    ];
+
+    let remaining = 30 - questions.length;
+
+    if (remaining > 0) {
+
+        let extraQuestions =
+            shuffleArray(
+                data.filter(
+                    q => q.difficulty !== "Medium"
+                )
+            ).slice(0, remaining);
+
+        questions = [
+            ...questions,
+            ...extraQuestions
+        ];
+    }
+
+    questions = shuffleArray(questions);
+
+    userAnswers =
+        Array(questions.length).fill(null);
+
+    questionTimes =
+        Array(questions.length).fill(0);
+
+    masterTimeLeft =
+        questions.length * 300;
+
+    createPalette();
+    loadQuestion();
+    startMasterTimer();
+    startQuestionTimer();
+})
+
+.catch(error => {
+
+    console.error(error);
+
+    document.getElementById("question").innerHTML =
+        "Error loading questions.json";
+
+});
+```
 
     // Separate by difficulty
 let easyQuestions =
