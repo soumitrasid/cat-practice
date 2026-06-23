@@ -85,18 +85,6 @@
   },
   {
     "difficulty": "Easy",
-    "topic": "Pipes and Cisterns",
-    "question": "A water tank has M inlet pipes and N outlet pipes. Each inlet pipe can fill the tank in 8 hours while each outlet pipe can empty the tank in 12 hours. If all the pipes are opened simultaneously, the empty tank gets filled in 6 hours. What is the ratio M : N?",
-    "options": [
-      "1 : 1",
-      "2 : 1",
-      "3 : 2",
-      "Cannot be determined"
-    ],
-    "answer": 2
-  },
-  {
-    "difficulty": "Easy",
     "topic": "Pumps and Pipes",
     "question": "Four small pumps and a large pump are filling a tank. Each small pump works at three-fourths the rate of the large pump. If all five pumps work together, they fill the tank in what fraction of the time taken by the large pump alone?",
     "options": [
@@ -133,18 +121,6 @@
   },
   {
     "difficulty": "Easy",
-    "topic": "Food and Consumption",
-    "question": "In a garrison, there was food for 1000 soldiers for one month. After 10 days, 1000 more soldiers joined the garrison. For how many more days can the remaining food sustain the soldiers?",
-    "options": [
-      "5 days",
-      "10 days",
-      "15 days",
-      "20 days"
-    ],
-    "answer": 2
-  },
-  {
-    "difficulty": "Easy",
     "topic": "Relative Efficiency",
     "question": "Anmol is three times as efficient as Vinay and therefore can finish a job 60 days earlier than Vinay. In how many days will they finish the job working together?",
     "options": [
@@ -166,18 +142,6 @@
       "33.33 hours"
     ],
     "answer": 1
-  },
-  {
-    "difficulty": "Easy",
-    "topic": "Work Rate",
-    "question": "Subhash can copy 50 pages in 10 hours and Prakash can copy 300 pages in 40 hours. In how many hours can Prakash copy 30 pages?",
-    "options": [
-      "9 h",
-      "11 h",
-      "12 h",
-      "13 h"
-    ],
-    "answer": 3
   },
   {
     "difficulty": "Medium",
@@ -487,8 +451,8 @@
     "difficulty": "Hard",
     "topic": "Pipes and Cisterns",
     "question": "Three taps A, B and C can fill a tank in 10, 20 and 25 hours respectively. All are opened together. After 2 hours C is closed, and after 4 hours B is closed. What percentage of the work is done by A alone?",
-    "options": ["32%","52%","75%","None of these"],
-    "answer": 4
+    "options": ["52%", "60%", "72%", "75%"],
+    "answer": 3
   },
   {
     "difficulty": "Hard",
@@ -503,7 +467,31 @@
     "question": "Eleven dogs and eight cats can finish a job in two-thirds the time taken by five cats and eight dogs. If two cats can finish the job in 13 days, how many dogs can finish the job in 13 days?",
     "options": ["4 dogs","5 dogs","6 dogs","7 dogs"],
     "answer": 2
-  }
+  },
+  {
+  "difficulty": "Medium",
+  "topic": "Sequential Work",
+  "question": "Three cooks together make 20 idlis per minute. They have to prepare 80 idlis. The first cook starts alone and makes 20 idlis, having worked for more than three minutes. The remaining idlis are prepared by the second and third cooks together. The total time taken to complete the 80 idlis is eight minutes. How many minutes would the first cook alone take to prepare 160 idlis?",
+  "options": [
+    "16 minutes",
+    "24 minutes",
+    "32 minutes",
+    "40 minutes"
+  ],
+  "answer": 3
+  },
+  {
+  "difficulty": "Hard",
+  "topic": "Relative Efficiency",
+  "question": "Three students Alok, Baman and Charu are working on a project. Alok is 25% more efficient than Baman, who is 20% more efficient than Charu. Alok takes 10 days less than Baman to complete the project alone. Alok works for 10 days, then Baman works for the next 14 days, after which Charu completes the remaining work. In how many days does Charu complete the remaining work?",
+  "options": [
+    "8 days",
+    "10 days",
+    "12 days",
+    "16 days"
+  ],
+  "answer": 3
+  } 
 ]
 
 
