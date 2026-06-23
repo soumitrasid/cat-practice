@@ -1,1 +1,509 @@
+[
+  {
+    "difficulty": "Easy",
+    "topic": "Combined Work",
+    "question": "A can complete a piece of work in 20 days and B can do it in 15 days. In how many days will they complete the work together?",
+    "options": [
+      "8 4/7 days",
+      "8 6/7 days",
+      "9 3/7 days",
+      "9 4/7 days"
+    ],
+    "answer": 1
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Relative Efficiency",
+    "question": "A alone can complete a job in 4 days. A is twice as fast as B and B is twice as fast as C. In how many days will A, B and C together complete the work?",
+    "options": [
+      "1.14 days",
+      "1.6 days",
+      "2 days",
+      "2.5 days"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Combined Work",
+    "question": "A can do a piece of work in 10 days and B can do the same work in 20 days. With the help of C, they finish the work in 5 days. In how many days can C alone complete the work?",
+    "options": [
+      "10 days",
+      "15 days",
+      "20 days",
+      "35 days"
+    ],
+    "answer": 3
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Sequential Work",
+    "question": "A can do a work in 18 days, B in 9 days and C in 6 days. A and B start working together and C joins them after 2 days. In how many days will the work be completed?",
+    "options": [
+      "4 days",
+      "4.33 days",
+      "4.66 days",
+      "5 days"
+    ],
+    "answer": 1
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Men and Work",
+    "question": "Thirty men working 5 hours a day can complete a work in 16 days. In how many days can 20 men working 6 hours a day complete the same work?",
+    "options": [
+      "20 days",
+      "21 days",
+      "22.5 days",
+      "25 days"
+    ],
+    "answer": 1
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Men and Work",
+    "question": "Twenty-four men working 8 hours a day complete a work in 10 days. If they work 10 hours a day, how many men are required to finish the same work in 6 days?",
+    "options": [
+      "30",
+      "32",
+      "34",
+      "36"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Pipes and Cisterns",
+    "question": "The rate at which tap X fills a tank is 50% more than that of tap Y. If both the taps are opened simultaneously, they take 40 hours to fill the tank. The time taken by Y alone to fill the tank is",
+    "options": [
+      "60 hours",
+      "80 hours",
+      "100 hours",
+      "120 hours"
+    ],
+    "answer": 3
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Pipes and Cisterns",
+    "question": "A water tank has M inlet pipes and N outlet pipes. Each inlet pipe can fill the tank in 8 hours while each outlet pipe can empty the tank in 12 hours. If all the pipes are opened simultaneously, the empty tank gets filled in 6 hours. What is the ratio M : N?",
+    "options": [
+      "1 : 1",
+      "2 : 1",
+      "3 : 2",
+      "Cannot be determined"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Pumps and Pipes",
+    "question": "Four small pumps and a large pump are filling a tank. Each small pump works at three-fourths the rate of the large pump. If all five pumps work together, they fill the tank in what fraction of the time taken by the large pump alone?",
+    "options": [
+      "1/2",
+      "1/4",
+      "2/7",
+      "1/7"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Work Sharing",
+    "question": "Baba can complete a work in 10 days and Anshu in 15 days. If the total wages for the work are ₹50 and they work together throughout, how much should Baba receive?",
+    "options": [
+      "₹20",
+      "₹25",
+      "₹30",
+      "₹35"
+    ],
+    "answer": 3
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Work Sharing",
+    "question": "Ajay and Vijay undertake a job for ₹200. Ajay alone can do it in 24 days and Vijay alone in 30 days. With the help of Pradeep, they finish the work in 12 days. How much should Pradeep receive?",
+    "options": [
+      "₹20",
+      "₹50",
+      "₹100",
+      "₹180"
+    ],
+    "answer": 1
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Food and Consumption",
+    "question": "In a garrison, there was food for 1000 soldiers for one month. After 10 days, 1000 more soldiers joined the garrison. For how many more days can the remaining food sustain the soldiers?",
+    "options": [
+      "5 days",
+      "10 days",
+      "15 days",
+      "20 days"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Relative Efficiency",
+    "question": "Anmol is three times as efficient as Vinay and therefore can finish a job 60 days earlier than Vinay. In how many days will they finish the job working together?",
+    "options": [
+      "11.5 days",
+      "15 days",
+      "20 days",
+      "22.5 days"
+    ],
+    "answer": 4
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Pipes and Cisterns",
+    "question": "Pipe A fills a tank in 10 hours and Pipe B empties it in 15 hours. How long will it take to fill a tank that is initially half full if both pipes are opened together?",
+    "options": [
+      "15 hours",
+      "20 hours",
+      "30 hours",
+      "33.33 hours"
+    ],
+    "answer": 1
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Work Rate",
+    "question": "Subhash can copy 50 pages in 10 hours and Prakash can copy 300 pages in 40 hours. In how many hours can Prakash copy 30 pages?",
+    "options": [
+      "9 h",
+      "11 h",
+      "12 h",
+      "13 h"
+    ],
+    "answer": 3
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Relative Efficiency",
+    "question": "Ashu and Ben completed a work together in 10 days. Had Ashu worked at two-thirds of his normal speed and Ben at one and a half times his normal speed, they would still have completed the work in 10 days. How much time would Ashu alone take to complete the work?",
+    "options": ["15 days","20 days","25 days","30 days"],
+    "answer": 4
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Work and Time",
+    "question": "Two persons can do a typing job in 7.5 minutes if they work together. If the first person typed alone for two minutes and then the second person typed alone for five minutes, three-fourths of the work would remain unfinished. How many minutes would the first person take to complete the job alone?",
+    "options": ["30 minutes","36 minutes","40 minutes","48 minutes"],
+    "answer": 3
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Relative Efficiency",
+    "question": "A, B and C take different times to complete a work. C needs one hour less than A. Working together, they complete 50% of the work in 30 minutes. The work is also completed if A and B start together, A leaves after one hour and B continues for another three hours. What percentage of the work does C do in one hour?",
+    "options": ["16.66%","33.33%","50%","66.66%"],
+    "answer": 2
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Work and Time",
+    "question": "Two women, Renu and Ushi, are working on an embroidery design. If Ushi worked alone, she would need eight hours more than the time required by both together. If Renu worked alone, she would need 4.5 hours more than the time required by both together. How much time would Renu alone take to complete the design?",
+    "options": ["10.5 hours","12.5 hours","14.5 hours","18.5 hours"],
+    "answer": 2
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Men and Work",
+    "question": "A project is to be completed in 60 days and 90 men are set to work, each working 6 hours a day. After 20 days, only one-fifth of the work is finished. How many additional men need to be employed so that the work may be completed on time if each man now works 8 hours a day?",
+    "options": ["30","45","60","90"],
+    "answer": 2
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Pipes and Cisterns",
+    "question": "Two pipes can fill a cistern in 12 hours and 18 hours respectively. They are opened simultaneously, but due to a leak in the bottom the cistern takes 48 minutes extra to get filled. When the cistern is full, in how many hours will the leak alone empty it?",
+    "options": ["72 hours","80 hours","90 hours","110 hours"],
+    "answer": 3
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Pipes and Cisterns",
+    "question": "A dam has four inlets. Through the first three inlets, the dam can be filled in 12 minutes; through the second, third and fourth inlet, it can be filled in 15 minutes; and through the first and fourth inlet, it can be filled in 20 minutes. In how many minutes will all the four inlets together fill the dam?",
+    "options": ["8 min","10 min","12 min","None of these"],
+    "answer": 2
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Pumps and Pipes",
+    "question": "A tank of 3600 cubic metres capacity is being filled with water. The delivery of the pump discharging the tank is 20% more than the delivery of the pump filling the same tank. As a result, twelve minutes more time is needed to fill the tank than to discharge it. Determine the delivery of the pump discharging the tank.",
+    "options": ["40 m³/min","50 m³/min","60 m³/min","80 m³/min"],
+    "answer": 3
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Work and Time",
+    "question": "Dev and Tukku can do a piece of work in 45 days and 40 days respectively. They begin working together, but Dev leaves after some days and Tukku finishes the remaining work in 23 days. After how many days did Dev leave?",
+    "options": ["7 days","8 days","9 days","11 days"],
+    "answer": 3
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Relative Efficiency",
+    "question": "Three diggers dug a ditch of 324 metres in six days working simultaneously. During one shift, the third digger digs as many metres more than the second as the second digs more than the first. The third digger's work in 10 days equals the first digger's work in 14 days. How many metres does the first digger dig per shift?",
+    "options": ["15 m","18 m","21 m","27 m"],
+    "answer": 2
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Men and Women",
+    "question": "Men and women can both perform a job but at different efficiencies. Fifteen men and five women together take thirty hours to finish a job, whereas five men and fifteen women together take sixty hours. In how many hours will fifteen men working alone complete the same job?",
+    "options": ["36 hours","40 hours","45 hours","50 hours"],
+    "answer": 3
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Relative Efficiency",
+    "question": "At their usual efficiency levels, A and B together finish a task in 15 days. If A worked at one-third of his usual efficiency and B worked at four times his usual efficiency, the task would have been completed in 12 days. How many days would A alone take to complete the task?",
+    "options": ["18 days","24 days","30 days","36 days"],
+    "answer": 3
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Men and Work",
+    "question": "In Azmatpur village, 18 men and 24 boys completed a school in 60 days by working 7.5 hours a day. A similar school three times as large is to be built in 50 days by working 9 hours a day. If one man does as much work as two boys, how many boys are required?",
+    "options": ["72","84","96","108"],
+    "answer": 3
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Men and Women",
+    "question": "All men work at the same rate and all women work at the same rate. A task is completed in 30 days by 10 men and 45 women and in 60 days by 8 men and 18 women. In how many days will 20 men and 18 women complete the work?",
+    "options": ["12","15","18","20"],
+    "answer": 2
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Alternate Working",
+    "question": "Abbot, Bill and Clinton can complete a work in 10 days, 20 days and 40 days respectively. They work in turns with Abbot on day 1, Bill on day 2 and Clinton on day 3. In how many days will the work be completed?",
+    "options": ["15 days","16 days","16.5 days","17 days"],
+    "answer": 3
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Pipes and Cisterns",
+    "question": "Two taps together can fill a tank in 4 hours. Individually they can fill it in 5 hours and 20 hours respectively. A leak delays the filling by one hour. In how many hours can the leak empty the full tank?",
+    "options": ["15","20","25","40"],
+    "answer": 2
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Work and Time",
+    "question": "Anju, Manju and Sanju together can reap a field in 6 days. Anju alone can do it in 10 days and Manju alone in 24 days. In how many days can Sanju alone reap the field?",
+    "options": ["32","35","36","40"],
+    "answer": 4
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Men and Work",
+    "question": "A group of men was assigned a job to be completed in 20 days. Twelve men did not turn up, and the work was completed in 32 days. What was the original number of men?",
+    "options": ["32","34","36","40"],
+    "answer": 1
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Men and Women",
+    "question": "Five women can paint a building in 30 working hours. After 16 hours of work, two women leave. In how many hours will the work be completed?",
+    "options": ["40","42","46","50"],
+    "answer": 2
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Relative Efficiency",
+    "question": "A, B and C together can complete a work in 36 days. A and B together do twice as much work as C alone and A and C together do thrice as much work as B alone. In how many days can C alone complete the work?",
+    "options": ["72","96","108","120"],
+    "answer": 3
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Pipes and Cisterns",
+    "question": "Pipes A and B together can fill a cistern in 6 minutes. If B takes 5 minutes more than A to fill the cistern alone, in what time can A and B fill it separately?",
+    "options": ["10 min, 15 min","15 min, 10 min","15 min, 20 min","25 min, 20 min"],
+    "answer": 1
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Men and Women",
+    "question": "Four men and three women can complete a work in 6 days, while five men and seven women can complete the same work in 4 days. In how many days can one man and one woman together complete the work?",
+    "options": ["22 2/7 days","25 1/2 days","5 1/7 days","12 7/22 days"],
+    "answer": 1
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Work Sharing",
+    "question": "Apurva can do a piece of work in 12 days. Apurva and Amit together are paid ₹54 and ₹81 respectively for completing the work. Assuming payment is proportional to work done, how many days did they take to complete the work together?",
+    "options": ["4 days","4.5 days","4.8 days","5 days"],
+    "answer": 3
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Sequential Work",
+    "question": "Partha alone can do a job in 12 days and Sunil alone in 24 days. Partha starts the work and Sunil joins after three days. Later Varun joins them and by the end Varun has completed 25% of the work. In how many days is the entire work completed?",
+    "options": ["6 days","7 days","8 days","9 days"],
+    "answer": 3
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Men and Women",
+    "question": "Fifteen men can complete a work in 10 days while twenty women can complete the same work in 15 days. Eight men and four women start working and after nine days ten more women join. In how many more days will the remaining work be completed?",
+    "options": ["2 days","3 days","4 days","5 days"],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Scheduling and Work",
+    "question": "A, B and C can complete a work in 6, 8 and 12 hours respectively. At most one person can work in each hour and nobody can work for two consecutive hours. Find the minimum number of hours required to complete the work.",
+    "options": ["8 hours","9 hours","10 hours","11 hours"],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Pipes and Cisterns",
+    "question": "Three water pipes A, B and C can individually fill a container in 6 minutes, 12 minutes and 18 minutes respectively. Pipes A and B work at two-thirds of their normal rates during the first minute and thereafter at normal rates. Pipe C works at half its normal rate during the first three minutes and thereafter at normal rate. In how much time will the container be filled?",
+    "options": ["3 min 54 sec","4 min 00 sec","4 min 06 sec","4 min 12 sec"],
+    "answer": 3
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Relative Efficiency",
+    "question": "Two men and a woman are entrusted with a task. The second man needs three hours more to complete the job than the first man and the woman together. The first man alone would need as much time as the second man and the woman together. The first man working alone would spend eight hours less than twice the time taken by the second man working alone. How much time would all three together take to complete the task?",
+    "options": ["2 hours","3 hours","4 hours","5 hours"],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Pipes and Cisterns",
+    "question": "Two pipes A and B can fill a half-full tank in 1.2 hours. Pipe B is opened for half the time required by pipe A alone to fill the tank. Then pipe A is opened for as much time as pipe B alone requires to fill one-third of the tank. At that stage the tank is found to be five-sixths full. What is the least time in which either pipe can fill the tank completely?",
+    "options": ["3.6 hours","4 hours","4.8 hours","6 hours"],
+    "answer": 1
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Pipes and Cisterns",
+    "question": "A tank of 425 litres capacity is filled by two pipes. The first pipe was open for five hours longer than the second. If the first pipe had been opened for as long as the second and the second for as long as the first, the first pipe would have delivered half the amount delivered by the second. If both pipes were opened simultaneously, the tank would have been filled in 17 hours. For how many hours was the second pipe actually open?",
+    "options": ["10 hours","12 hours","15 hours","18 hours"],
+    "answer": 3
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Work and Time",
+    "question": "A, B and C working together complete a job in 10 days. However, C works only for the first three days when 37/100 of the job is completed. The amount of work done by A in 5 days equals the amount of work done by B in 4 days. In how many days can the fastest worker complete the entire job alone?",
+    "options": ["20 days","25 days","30 days","40 days"],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Pipes and Cisterns",
+    "question": "Three pipes are connected to an inverted cone with its base at the top. Two inlet pipes A and B can fill the empty cone in 8 hours and 12 hours respectively. The outlet pipe C can empty a full cone in 4 hours. When the cone is full, all three pipes are opened. Two of the pipes remain open for 20 hours continuously while the third pipe remains open for a lesser time. As a result, the height of water in the cone falls to 50% of its original value. Which of the following is possible?",
+    "options": [
+      "Pipe A was open for 19 hours",
+      "Pipe A was open for 19 hours 30 minutes",
+      "Pipe B was open for 19 hours 30 minutes",
+      "Pipe C was open for 19 hours 50 minutes"
+    ],
+    "answer": 4
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Relative Efficiency",
+    "question": "Arun takes three times as much time as Amitabh to finish a job. Amitabh and Aruna together take one-fourth of the time that Arun takes alone. Moreover, Arun working alone takes four days more than all three working together. In how many days will Aruna finish the job working alone?",
+    "options": ["12 days","16 days","18 days","24 days"],
+    "answer": 4
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Variable Workforce",
+    "question": "At the annual forest party the work is entrusted to rabbits and deer. No deer turns up at all, while on the first day one rabbit starts the work. On the second day two new rabbits join the first rabbit, on the third day three new rabbits join the previous day's rabbits and so on. The work gets completed in 23 days. If a deer is twice as efficient as a rabbit, in how many days would 23 deer complete the work?",
+    "options": ["2 days","3 days","4 days","6 days"],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Pipes and Cisterns",
+    "question": "A tank has two inlet pipes that can fill it in 24 hours and 16 hours respectively, and an outlet pipe that can empty a full tank in 24 hours. Ayesha plans to open the outlet pipe when the tank is 75% full, but by mistake it is opened when the tank is only 50% full. What percentage of the tank remains empty when she returns?",
+    "options": ["12.5%","18.75%","25%","37.5%"],
+    "answer": 1
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Relative Efficiency",
+    "question": "Dr. Gupta is 40% more efficient than Dr. Sharma, who is 20% more efficient than Dr. Singh. Dr. Gupta works for 10 days, Dr. Sharma for the next 15 days and Dr. Singh completes the remaining work. In how many days does Dr. Singh complete the remaining work?",
+    "options": ["5 days","10 days","15 days","20 days"],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Pipes and Cisterns",
+    "question": "Four pipes A, B, C and D can fill an empty tank in 8, 12, 16 and 24 hours respectively. For the first two hours, A and B work at three-fifths of their capacity. C and D work at two-fifths of their capacity for the first three hours. After how many hours will the tank be completely filled?",
+    "options": ["4 hours","4.5 hours","5 hours","5.5 hours"],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Relative Efficiency",
+    "question": "Arun, Mini and Sherry work together to arrange a party. The time they take together is 2.5 hours less than what Arun would take alone and 5/6 hour less than what Mini would take alone. Sherry takes twice the time that Mini takes to complete the work. How long do they take together?",
+    "options": ["20 minutes","30 minutes","40 minutes","50 minutes"],
+    "answer": 4
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Work and Time",
+    "question": "A paint manufacturer produces standard and deluxe paints. Profit per litre is ₹200 and ₹300 respectively. One litre of standard paint requires 8 hours on machine A and 12 hours on machine B, whereas one litre of deluxe paint requires 10 hours on machine A and 20 hours on machine B. Monthly availability is 1400 hours on machine A and 2500 hours on machine B. Which production plan maximizes profit?",
+    "options": [
+      "Standard 75 litres, Deluxe 80 litres",
+      "Standard 100 litres, Deluxe 60 litres",
+      "Standard 50 litres, Deluxe 100 litres",
+      "Standard 60 litres, Deluxe 90 litres"
+    ],
+    "answer": 1
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Work and Time",
+    "question": "A shoe machine produces 200 shoes per minute and requires 5 minutes of cleaning after every 1400 shoes. A lace machine produces 150 laces per minute and requires 10 minutes of cleaning after every 1500 laces. If both machines start together and each must produce 15000 units, how many minutes more will the lace machine take?",
+    "options": ["65 minutes","75 minutes","90 minutes","125 minutes"],
+    "answer": 1
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Variable Workforce",
+    "question": "A group of men must shift 545 crates. Every day after the first, 6 more men join the work. Also, each day every man shifts 5 fewer crates than on the previous day. If the work is completed in 5 days, how many crates were shifted on the third day?",
+    "options": ["137","169","152","26"],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Relative Efficiency",
+    "question": "Murali and Conti together can complete a work in 32 days. After working together for 14 days, Murali's efficiency drops by 30%. The work is completed in 34 days instead of 32 days. If Conti had worked alone after Murali's efficiency dropped, how many additional days would have been required?",
+    "options": ["4 days","6 days","8 days","10 days"],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Pipes and Cisterns",
+    "question": "Three taps A, B and C can fill a tank in 10, 20 and 25 hours respectively. All are opened together. After 2 hours C is closed, and after 4 hours B is closed. What percentage of the work is done by A alone?",
+    "options": ["32%","52%","75%","None of these"],
+    "answer": 4
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Relative Efficiency",
+    "question": "A takes 5 days more than B to complete a job and 9 days more than C. A and B together can do the job in the same time that C alone takes. In how many days can A alone complete the job?",
+    "options": ["10 days","15 days","16 days","20 days"],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Men and Animals",
+    "question": "Eleven dogs and eight cats can finish a job in two-thirds the time taken by five cats and eight dogs. If two cats can finish the job in 13 days, how many dogs can finish the job in 13 days?",
+    "options": ["4 dogs","5 dogs","6 dogs","7 dogs"],
+    "answer": 2
+  }
+]
+
 
