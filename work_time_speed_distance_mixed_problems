@@ -238,5 +238,170 @@
     "49 m"
   ],
   "answer": 0
+},
+
+{
+  "difficulty": "Easy",
+  "topic": "Combined Work",
+  "question": "A can complete a piece of work in 20 days and B can do it in 15 days. In how many days will they complete the work together?",
+  "options": ["8 4/7 days","8 6/7 days","9 3/7 days","9 4/7 days"],
+  "answer": 1
+},
+
+{
+  "difficulty": "Easy",
+  "topic": "Relative Efficiency",
+  "question": "A alone can complete a job in 4 days. A is twice as fast as B and B is twice as fast as C. In how many days will A, B and C together complete the work?",
+  "options": ["1.14 days","1.6 days","2 days","2.5 days"],
+  "answer": 2
+},
+
+{
+  "difficulty": "Easy",
+  "topic": "Combined Work",
+  "question": "A can do a piece of work in 10 days and B can do the same work in 20 days. With the help of C, they finish the work in 5 days. In how many days can C alone complete the work?",
+  "options": ["10 days","15 days","20 days","35 days"],
+  "answer": 3
+},
+
+{
+  "difficulty": "Easy",
+  "topic": "Sequential Work",
+  "question": "A can do a work in 18 days, B in 9 days and C in 6 days. A and B start working together and C joins them after 2 days. In how many days will the work be completed?",
+  "options": ["4 days","4.33 days","4.66 days","5 days"],
+  "answer": 1
+},
+
+{
+  "difficulty": "Easy",
+  "topic": "Men and Work",
+  "question": "Thirty men working 5 hours a day can complete a work in 16 days. In how many days can 20 men working 6 hours a day complete the same work?",
+  "options": ["20 days","21 days","22.5 days","25 days"],
+  "answer": 1
+},
+
+{
+  "difficulty": "Medium",
+  "topic": "Men and Work",
+  "question": "A project is to be completed in 60 days and 90 men are set to work, each working 6 hours a day. After 20 days, only one-fifth of the work is finished. How many additional men need to be employed so that the work may be completed on time if each man now works 8 hours a day?",
+  "options": ["30","45","60","90"],
+  "answer": 2
+},
+
+{
+  "difficulty": "Easy",
+  "topic": "Work Sharing",
+  "question": "Ajay and Vijay undertake a job for ₹200. Ajay alone can do it in 24 days and Vijay alone in 30 days. With the help of Pradeep, they finish the work in 12 days. How much should Pradeep receive?",
+  "options": ["₹20","₹50","₹100","₹180"],
+  "answer": 1
+},
+
+{
+  "difficulty": "Medium",
+  "topic": "Relative Efficiency",
+  "question": "Ashu and Ben completed a work together in 10 days. Had Ashu worked at two-thirds of his normal speed and Ben at one and a half times his normal speed, they would still have completed the work in 10 days. How much time would Ashu alone take to complete the work?",
+  "options": ["15 days","20 days","25 days","30 days"],
+  "answer": 4
+},
+
+{
+  "difficulty": "Medium",
+  "topic": "Men and Women",
+  "question": "Men and women can both perform a job but at different efficiencies. Fifteen men and five women together take thirty hours to finish a job, whereas five men and fifteen women together take sixty hours. In how many hours will fifteen men working alone complete the same job?",
+  "options": ["36 hours","40 hours","45 hours","50 hours"],
+  "answer": 3
+},
+
+{
+  "difficulty": "Medium",
+  "topic": "Alternate Working",
+  "question": "Abbot, Bill and Clinton can complete a work in 10 days, 20 days and 40 days respectively. They work in turns with Abbot on day 1, Bill on day 2 and Clinton on day 3. In how many days will the work be completed?",
+  "options": ["15 days","16 days","16.5 days","17 days"],
+  "answer": 3
+},
+
+{
+  "difficulty": "Medium",
+  "topic": "Fractional Work",
+  "question": "A completes two-thirds of a work in 6 days, B completes one-third of the same work in 8 days and C completes three-fourths of the work in 12 days. They work together for 4 days after which A and C leave. In how many days will B complete the remaining work?",
+  "options": ["2.2 days","3.3 days","3.8 days","4.4 days"],
+  "answer": 1
+},
+
+{
+  "difficulty": "Medium",
+  "topic": "Sequential Work",
+  "question": "Three cooks together make 20 idlis per minute. They have to prepare 80 idlis. The first cook starts alone and makes 20 idlis, having worked for more than three minutes. The remaining idlis are prepared by the second and third cooks together. The total time taken to complete the 80 idlis is eight minutes. How many minutes would the first cook alone take to prepare 160 idlis?",
+  "options": ["16 minutes","24 minutes","32 minutes","40 minutes"],
+  "answer": 3
+},
+
+{
+  "difficulty": "Hard",
+  "topic": "Scheduling and Work",
+  "question": "A, B and C can complete a work in 6, 8 and 12 hours respectively. At most one person can work in each hour and nobody can work for two consecutive hours. Find the minimum number of hours required to complete the work.",
+  "options": ["8 hours","9 hours","10 hours","11 hours"],
+  "answer": 2
+},
+
+{
+  "difficulty": "Hard",
+  "topic": "Variable Workforce",
+  "question": "At the annual forest party the work is entrusted to rabbits and deer. No deer turns up at all, while on the first day one rabbit starts the work. On the second day two new rabbits join the first rabbit, on the third day three new rabbits join the previous day's rabbits and so on. The work gets completed in 23 days. If a deer is twice as efficient as a rabbit, in how many days would 23 deer complete the work?",
+  "options": ["2 days","3 days","4 days","6 days"],
+  "answer": 2
+},
+
+{
+  "difficulty": "Hard",
+  "topic": "Relative Efficiency",
+  "question": "Two men and a woman are entrusted with a task. The second man needs three hours more to complete the job than the first man and the woman together. The first man alone would need as much time as the second man and the woman together. The first man working alone would spend eight hours less than twice the time taken by the second man working alone. How much time would all three together take to complete the task?",
+  "options": ["2 hours","3 hours","4 hours","5 hours"],
+  "answer": 2
+},
+
+{
+  "difficulty": "Hard",
+  "topic": "Work and Time",
+  "question": "A, B and C working together complete a job in 10 days. However, C works only for the first three days when 37/100 of the job is completed. The amount of work done by A in 5 days equals the amount of work done by B in 4 days. In how many days can the fastest worker complete the entire job alone?",
+  "options": ["20 days","25 days","30 days","40 days"],
+  "answer": 2
+},
+
+{
+  "difficulty": "Hard",
+  "topic": "Relative Efficiency",
+  "question": "Dr. Gupta is 40% more efficient than Dr. Sharma, who is 20% more efficient than Dr. Singh. Dr. Gupta works for 10 days, Dr. Sharma for the next 15 days and Dr. Singh completes the remaining work. In how many days does Dr. Singh complete the remaining work?",
+  "options": ["5 days","10 days","15 days","20 days"],
+  "answer": 2
+},
+
+{
+  "difficulty": "Hard",
+  "topic": "Variable Efficiency",
+  "question": "Murali and Conti together can complete a work in 32 days. After working together for 14 days, Murali's efficiency drops by 30%. The work is completed in 34 days instead of 32 days. If Conti had worked alone after Murali's efficiency dropped, how many additional days would have been required?",
+  "options": ["4 days","6 days","8 days","10 days"],
+  "answer": 2
+},
+
+{
+  "difficulty": "Hard",
+  "topic": "Optimization",
+  "question": "A paint manufacturer produces standard and deluxe paints. Profit per litre is ₹200 and ₹300 respectively. One litre of standard paint requires 8 hours on machine A and 12 hours on machine B, whereas one litre of deluxe paint requires 10 hours on machine A and 20 hours on machine B. Monthly availability is 1400 hours on machine A and 2500 hours on machine B. Which production plan maximizes profit?",
+  "options": [
+    "Standard 75 litres, Deluxe 80 litres",
+    "Standard 100 litres, Deluxe 60 litres",
+    "Standard 50 litres, Deluxe 100 litres",
+    "Standard 60 litres, Deluxe 90 litres"
+  ],
+  "answer": 1
+},
+
+{
+  "difficulty": "Hard",
+  "topic": "Machine Scheduling",
+  "question": "A shoe machine produces 200 shoes per minute and requires 5 minutes of cleaning after every 1400 shoes. A lace machine produces 150 laces per minute and requires 10 minutes of cleaning after every 1500 laces. If both machines start together and each must produce 15000 units, how many minutes more will the lace machine take?",
+  "options": ["65 minutes","75 minutes","90 minutes","125 minutes"],
+  "answer": 1
 }
 ]
