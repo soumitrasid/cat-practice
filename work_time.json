@@ -491,7 +491,103 @@
     "16 days"
   ],
   "answer": 3
-  } 
+  },
+  {
+  "difficulty": "Hard",
+  "topic": "Sequential Work",
+  "question": "A, B and C can complete a work in 24, 30 and 40 days respectively. They start together. A leaves after 6 days and B leaves 4 days before the completion of the work. In how many days is the work completed?",
+  "options": [
+    "14 days",
+    "16 days",
+    "18 days",
+    "20 days"
+  ],
+  "answer": 2
+  },
+  {
+  "difficulty": "Hard",
+  "topic": "Alternate Working",
+  "question": "A, B and C can complete a work in 12, 18 and 24 days respectively. A works on the first day, B on the second day and C on the third day, and this cycle continues. If the work starts with A, after how many days will the work be completed?",
+  "options": [
+    "14 days",
+    "15 days",
+    "16 days",
+    "17 days"
+  ],
+  "answer": 2
+  },
+  {
+  "difficulty": "Hard",
+  "topic": "Relative Efficiency",
+  "question": "A is 25% more efficient than B, and B is 20% more efficient than C. A alone takes 12 days less than C to complete the work. A works for 8 days, B works for the next 10 days and C completes the remaining work. In how many days does C work?",
+  "options": [
+    "8 days",
+    "10 days",
+    "12 days",
+    "16 days"
+  ],
+  "answer": 3
+  },
+  {
+  "difficulty": "Medium",
+  "topic": "Fractional Work",
+  "question": "A completes two-thirds of a work in 6 days, B completes one-third of the same work in 8 days and C completes three-fourths of the work in 12 days. They work together for 4 days after which A and C leave. In how many days will B complete the remaining work?",
+  "options": [
+    "2.2 days",
+    "3.3 days",
+    "3.8 days",
+    "4.4 days"
+  ],
+  "answer": 1
+  },
+  {
+  "difficulty": "Hard",
+  "topic": "Variable Efficiency",
+  "question": "A and B together can complete a work in 20 days. After working together for 8 days, A's efficiency falls by 25%. The work is completed in 22 days. If B had worked alone after the drop in A's efficiency, how many additional days would have been required?",
+  "options": [
+    "3 days",
+    "4 days",
+    "5 days",
+    "6 days"
+  ],
+  "answer": 2
+  },
+  {
+  "difficulty": "Hard",
+  "topic": "Scheduling",
+  "question": "A, B and C can complete a work in 8, 10 and 20 hours respectively. At most one person can work during any hour and no one is allowed to work in two consecutive hours. What is the minimum number of hours required to complete the work?",
+  "options": [
+    "10 hours",
+    "11 hours",
+    "12 hours",
+    "13 hours"
+  ],
+  "answer": 3
+  },
+  {
+  "difficulty": "Hard",
+  "topic": "Variable Workforce",
+  "question": "A group of workers completes a task in 6 days. Every day 5 new workers join, but the work done by each worker decreases by 4 units from the previous day. If the amount of work done each day starts decreasing after the third day, on which day is the maximum amount of work completed?",
+  "options": [
+    "Second day",
+    "Third day",
+    "Fourth day",
+    "Fifth day"
+  ],
+  "answer": 2
+  },
+  {
+  "difficulty": "Hard",
+  "topic": "Pipes and Cisterns",
+  "question": "Two pipes can fill a tank in 16 hours and 24 hours respectively, while a leak can empty the full tank in 32 hours. Both pipes are opened together and the leak is opened only after the tank becomes half full. In how many hours will the tank be completely filled?",
+  "options": [
+    "9.6 hours",
+    "10.4 hours",
+    "11.2 hours",
+    "12 hours"
+  ],
+  "answer": 2
+  }  
 ]
 
 
