@@ -1,0 +1,206 @@
+[
+  {
+    "difficulty": "Medium",
+    "topic": "Compound Interest",
+    "question": "A sum of money is borrowed and paid back in two equal annual instalments of ₹882 each, allowing 5% compound interest. What was the sum borrowed?",
+    "options": [
+      "₹1640",
+      "₹1680",
+      "₹1620",
+      "₹1700"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "SI and CI Difference",
+    "question": "The compound interest on a sum of money for two years is ₹3328 and the simple interest on the same sum for the same period is ₹3200. What will be the difference between compound interest and simple interest for three years?",
+    "options": [
+      "₹394.24",
+      "₹392.24",
+      "₹398.56",
+      "None of these"
+    ],
+    "answer": 1
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "SI vs Half-Yearly CI",
+    "question": "The difference between the simple interest on a certain amount at 20% per annum for 1.5 years and compound interest at the same rate compounded every six months is ₹155. Find the principal amount.",
+    "options": [
+      "₹4000",
+      "₹5000",
+      "₹6000",
+      "None of these"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Half-Yearly Compounding",
+    "question": "In how many years will a sum of ₹18000 at 20% per annum compounded half-yearly become ₹23958?",
+    "options": [
+      "1 year",
+      "1.5 years",
+      "2 years",
+      "2.5 years"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Doubling under Compound Interest",
+    "question": "A sum of money doubles itself in 5 years. In how many years will it become four times itself if interest is compounded?",
+    "options": [
+      "15 years",
+      "10 years",
+      "20 years",
+      "12 years"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Annual Instalments",
+    "question": "What annual payment will discharge a debt of ₹808 due in 2 years at 2% per annum, if equal payments are made at the end of each year?",
+    "options": [
+      "₹200",
+      "₹300",
+      "₹400",
+      "₹350"
+    ],
+    "answer": 3
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Unequal Instalments",
+    "question": "An amount of ₹12820 due 3 years hence is fully repaid in three annual instalments starting after 1 year. The first instalment is half the second and the second is two-thirds of the third. If the interest rate is 10% per annum, find the first instalment.",
+    "options": [
+      "₹1800",
+      "₹2000",
+      "₹2400",
+      "₹2500"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Mixed Investment and Depreciation",
+    "question": "A sum is divided between A and B in the ratio 1 : 2. A purchases a car that depreciates at 14 2/7% per annum while B deposits his amount in a bank paying 20% per annum compounded annually. Approximately by what percentage will the total wealth increase after two years?",
+    "options": [
+      "20%",
+      "26.66%",
+      "30%",
+      "25%"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Assets and Compound Growth",
+    "question": "Michael Bolton has $90,000. He buys a car, laptop and flat for $15,000, $13,000 and $35,000 respectively and deposits the remaining amount at 15% compound interest. After 2 years, he sells all assets at 80% of their original prices and closes the bank account. What is the approximate percentage change in his total assets?",
+    "options": [
+      "-4.5%",
+      "+3.5%",
+      "-4.32%",
+      "+5.5%"
+    ],
+    "answer": 3
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Loan Repayment",
+    "question": "Mohit Anand borrows a sum from a bank at 10% compound interest. The debt is discharged by two equal annual payments of ₹1000 each at the end of the first and second years. Approximately what amount was borrowed?",
+    "options": [
+      "₹1852",
+      "₹1736",
+      "₹1694",
+      "₹1792"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Two Instalments Problem",
+    "question": "Amit borrowed ₹168000 at 10% per annum compounded annually. He repaid the loan in two equal annual instalments. The first instalment paid off the first year's interest and part of the principal, while the second instalment cleared the balance. What was the value of each instalment?",
+    "options": [
+      "₹96000",
+      "₹96800",
+      "₹97000",
+      "₹98000"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Appreciation and Depreciation",
+    "question": "Mr. Vinay invested ₹2025 in a crypto trading app. The investment appreciated for 2 years at 20% compound growth. The final amount equals the amount obtained after depreciating ₹4000 for 3 years at a constant compound rate. Find the difference between the appreciation rate and the depreciation rate.",
+    "options": [
+      "8.5%",
+      "5%",
+      "10%",
+      "12%"
+    ],
+    "answer": 3
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Multiple Compounding Schemes",
+    "question": "Kaalia borrowed money at 15% simple interest for 2 years. He then lent half of it to Mallya at 16% compounded half-yearly and the other half to Jaalia at 15% compounded annually, both for 2 years. Approximately what percentage profit on the original amount did Kaalia earn?",
+    "options": [
+      "5.2%",
+      "4.1%",
+      "6.6%",
+      "3.5%"
+    ],
+    "answer": 1
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Education Planning - Simple Interest",
+    "question": "Mr. Mehra has two sons aged 15 and 12 years. He divides ₹20 lakh into two parts and invests them at simple interest so that each son receives ₹25 lakh on reaching the age of 21. What annual rate of simple interest should the investments yield?",
+    "options": [
+      "7.5%",
+      "8.33%",
+      "10%",
+      "12%"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Education Planning - Compound Interest",
+    "question": "Mr. Suratkal divides ₹20 lakh between his two sons aged 15 and 12 years so that both receive the same amount at age 21. If the investments earn 12% compounded annually, approximately how much should be invested for the younger son?",
+    "options": [
+      "₹801125",
+      "₹831625",
+      "₹901125",
+      "₹931615"
+    ],
+    "answer": 3
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Early Repayment",
+    "question": "You borrow the same amount at 12% simple interest and at 10% simple interest for the same period. The first loan is repaid six months early while the second is repaid on schedule. In both cases the amount repaid is ₹92625. Determine the principal and the time period.",
+    "options": [
+      "₹75000, 2 years",
+      "₹75000, 3 years",
+      "₹82500, 2 years",
+      "₹82500, 3 years"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Population Growth and Migration",
+    "question": "The population growth rate of a city follows an increasing AP with first-year rate 5% and common difference 5%, while migration follows an increasing GP with first term 1% and common ratio 2. If the population on 31 December 2010 is one million, in which year will the city witness its first fall in population?",
+    "options": [
+      "2015",
+      "2016",
+      "2017",
+      "2018"
+    ],
+    "answer": 2
+  }
+]
