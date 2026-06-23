@@ -251,4 +251,28 @@
     ],
     "answer": 1
   },
+  {
+  "difficulty": "Medium",
+  "topic": "Weighted Average Interest",
+  "question": "A man invests a total of ₹17 lakh. Part of it is invested at 6%, and the remainder is invested in two banks in the ratio 3:1 at 5% and 4% respectively. If the total annual interest earned is ₹92000, find the amount invested at 6%.",
+  "options": [
+    "₹4 lakh",
+    "₹6 lakh",
+    "₹8 lakh",
+    "₹10 lakh"
+  ],
+  "answer": 3
+ },
+ {
+  "difficulty": "Hard",
+  "topic": "Simple Interest with Different Starting Times",
+  "question": "Abhijit invested ₹20000 at 6% simple interest, while Amartya invested ₹18000 at 10% simple interest five years later. After how many years from Abhijit's investment will Amartya's accumulated amount exceed Abhijit's accumulated amount?",
+  "options": [
+    "10 years",
+    "12 years",
+    "15 years",
+    "20 years"
+  ],
+  "answer": 3
+ }
 ]
