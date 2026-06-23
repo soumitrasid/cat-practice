@@ -1,0 +1,242 @@
+[
+{
+  "difficulty": "Easy",
+  "topic": "Relative Motion",
+  "question": "In a 100 m race, Ajay can give Bhuvi a 20 m start and Chaya a 30 m start. How many metres start can Bhuvi give to Chaya in a 500 m race?",
+  "options": [
+    "100 m",
+    "67.5 m",
+    "62.5 m",
+    "None of these"
+  ],
+  "answer": 1
+},
+{
+  "difficulty": "Easy",
+  "topic": "Relative Motion",
+  "question": "Vinay runs 100 m in 20 seconds and Ajay runs the same distance in 25 seconds. By what distance will Vinay beat Ajay in a 100 m race?",
+  "options": [
+    "10 m",
+    "20 m",
+    "25 m",
+    "12 m"
+  ],
+  "answer": 1
+},
+{
+  "difficulty": "Medium",
+  "topic": "Relative Motion",
+  "question": "Two tourists left simultaneously from point A for point B. The first tourist covers each kilometre two minutes faster than the second. After travelling 30 per cent of the way, the first tourist returned to A, stopped there for 102 minutes and again started for B. The two tourists arrived at B simultaneously. What is the distance between A and B if the second tourist covered it in 2.5 hours?",
+  "options": [
+    "60 km",
+    "70 km",
+    "45 km",
+    "None of these"
+  ],
+  "answer": 0
+},
+{
+  "difficulty": "Hard",
+  "topic": "Relative Motion",
+  "question": "A motorcyclist left point A for point B. Two hours later, another motorcyclist left A for B and arrived at B at the same time as the first motorcyclist. Had both the motorcyclists started simultaneously from A and B travelling towards each other, they would have met in 80 minutes. How much time did it take the faster motorcyclist to travel from A to B?",
+  "options": [
+    "6 hours",
+    "3 hours",
+    "2 hours",
+    "4 hours"
+  ],
+  "answer": 0
+},
+{
+  "difficulty": "Easy",
+  "topic": "Average Speed",
+  "question": "A car travels from A to B and back. On the onward journey, it covers the first half of the distance at 40 km/h and the second half at 60 km/h. On the return journey, it spends half the time at 40 km/h and the remaining half at 60 km/h. Find the average speed for the entire round trip.",
+  "options": [
+    "48 km/h",
+    "50 km/h",
+    "52 km/h",
+    "54 km/h"
+  ],
+  "answer": 1
+},
+{
+  "difficulty": "Medium",
+  "topic": "Circular Motion",
+  "question": "Two ducks move along the circumference of a circular pond in the same direction and come alongside each other every 54 minutes. If they moved with the same speeds in opposite directions, they would meet every nine minutes. It is known that when the ducks moved along the opposite directions, the distance between them decreased from 54 feet to 14 feet every 48 seconds. What is the speed of the slower duck?",
+  "options": [
+    "20 feet/min",
+    "15 feet/min",
+    "30 feet/min",
+    "20.83 feet/min"
+  ],
+  "answer": 2
+},
+{
+  "difficulty": "Easy",
+  "topic": "Boats & Streams",
+  "question": "A boat goes 6 km in one hour in still water, but takes thrice as much time in going the same distance against the current. The speed of the current (in kmph) is:",
+  "options": [
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "answer": 2
+},
+{
+  "difficulty": "Hard",
+  "topic": "River Crossing",
+  "question": "Two swimmers A and B are standing at point P on the south bank of a river flowing eastward at 3 km/h. A can swim at 5 km/h relative to water and B at 10 km/h relative to water. Both wish to reach a point Q directly opposite P, which is 1 km away. A always keeps his body perpendicular to the current while B continuously adjusts his direction so that he reaches Q exactly. After reaching the north bank, each immediately runs along the bank at 12 km/h to a point R located 2 km east of Q. Find the difference between the times taken by A and B to reach R.",
+  "options": [
+    "2.5 minutes",
+    "5 minutes",
+    "7.5 minutes",
+    "10 minutes"
+  ],
+  "answer": 1
+},
+{
+  "difficulty": "Hard",
+  "topic": "Rain/Wind",
+  "question": "Rain is falling vertically downward at constant speed. A cyclist travelling eastward at 12 km/h observes the rain to make an angle of 45° with the vertical. Another cyclist travelling northward at 16 km/h observes the rain to make an angle θ with the vertical. If a third cyclist moving northeast at 12√2 km/h finds the rain to appear perfectly vertical, find θ.",
+  "options": [
+    "30°",
+    "45°",
+    "60°",
+    "75°"
+  ],
+  "answer": 2
+},
+{
+  "difficulty": "Hard",
+  "topic": "Airplane",
+  "question": "An aircraft whose speed in still air is 300 km/h wishes to fly due north. A wind blowing from west to east at 100 km/h is present. The pilot adjusts the heading so that the aircraft reaches its destination exactly due north. Another aircraft starts simultaneously from the same point and flies due east at 400 km/h. Find the distance between the two aircraft after 2 hours.",
+  "options": [
+    "1000 km",
+    "800 km",
+    "600 km",
+    "1200 km"
+  ],
+  "answer": 0
+},
+{
+  "difficulty": "Hard",
+  "topic": "Rain/Wind",
+  "question": "Two trains A and B start from station X to Y and Y to X respectively. After passing each other, they take 12 hours and 3 hours to reach Y and X respectively. If train A is moving at 48 km/h, find the speed of train B.",
+  "options": [
+    "24 km/h",
+    "96 km/h",
+    "21 km/h",
+    "20 km/h"
+  ],
+  "answer": 1
+},
+{
+  "difficulty": "Hard",
+  "topic": "Rain/Wind",
+  "question": "Two trains running in opposite direction cross a man standing on the platform in 26 seconds and 21 seconds respectively, and they cross each other in 24 seconds. The ratio of their speeds is:",
+  "options": [
+    "1 : 3",
+    "3 : 2",
+    "3 : 4",
+    "4 : 1"
+  ],
+  "answer": 1
+},
+{
+  "difficulty": "Hard",
+  "topic": "Rain/Wind",
+  "question": "There are two parallel tracks on which trains are moving in the same direction at speeds of 80 kmph and 40 kmph respectively. The faster train crosses a passenger in the slower train in 72 seconds. Find the length of the faster train.",
+  "options": [
+    "720 m",
+    "800 m",
+    "400 m",
+    "880 m"
+  ],
+  "answer": 2
+},
+{
+  "difficulty": "Hard",
+  "topic": "Rain/Wind",
+  "question": "A train approaches a tunnel X-Y. Inside the tunnel a cow is located at a point 2/7 of the distance X-Y measured from entrance X. When the train whistles the cow runs. If the cow moves to exit Y, the train catches the cow exactly at exit Y and if the cow moves to entrance X, the train catches the cow exactly at entrance X. Find the ratio of the speeds of the train and the cow.",
+  "options": [
+    "7 : 3",
+    "14 : 3",
+    "13 : 7",
+    "None of these"
+  ],
+  "answer": 0
+},
+{
+  "difficulty": "Hard",
+  "topic": "Escalator",
+  "question": "An escalator moves upward at a constant speed. Ram walks upward and counts 60 steps while reaching the top. Shyam walks upward twice as fast as Ram and counts only 40 steps. On another day the escalator speed increases by 50%, while Ram and Shyam maintain their original walking speeds and start simultaneously from the bottom. After reaching the top, Shyam immediately turns back and walks downward on the moving escalator. How many steps from the top do Ram and Shyam meet?",
+  "options": [
+    "20",
+    "24",
+    "30",
+    "36"
+  ],
+  "answer": 1
+},
+{
+  "difficulty": "Hard",
+  "topic": "Acceleration",
+  "question": "A motorcyclist moves with constant speed 20 m/s. At the instant he passes a stationary car, the car starts from rest with a constant acceleration of 2 m/s². The car catches the motorcyclist and continues accelerating. Find the distance between them exactly 10 seconds after the car first overtakes the motorcyclist.",
+  "options": [
+    "100 m",
+    "200 m",
+    "300 m",
+    "400 m"
+  ],
+  "answer": 0
+},
+{
+  "difficulty": "Hard",
+  "topic": "Acceleration",
+  "question": "A motorcycle moves with constant speed 20 m/s. At the instant it passes a stationary car, the car starts with constant acceleration a. The car overtakes the motorcycle for the first time after 20 seconds. After overtaking, the car immediately begins decelerating uniformly with the same magnitude a. Determine the time elapsed between the first and second meetings of the car and motorcycle.",
+  "options": [
+    "20 s",
+    "40 s",
+    "60 s",
+    "80 s"
+  ],
+  "answer": 1
+},
+{
+  "difficulty": "Easy",
+  "topic": "Shadow Motion",
+  "question": "A man 2 m tall walks away from a lamp post 8 m high at a speed of 3 m/s. Find the speed with which the tip of his shadow moves.",
+  "options": [
+    "4 m/s",
+    "5 m/s",
+    "6 m/s",
+    "9 m/s"
+  ],
+  "answer": 0
+},
+{
+  "difficulty": "Easy",
+  "topic": "Relative Motion",
+  "question": "Two places A and B are 120 metres apart. Ramesh starts travelling from A to B and at the same time Sachin starts travelling from B to A. Ramesh travels one-third of the total journey at 8 m/min, half of the remaining distance at 10 m/min and the rest at 12 m/min. Sachin completes the whole journey by travelling at 8 m/min, 10 m/min and 12 m/min respectively for equal intervals of time. After how much time (in seconds) from the start of the journey will they cross each other?",
+  "options": [
+    "428 seconds",
+    "414 seconds",
+    "435 seconds",
+    "432 seconds"
+  ],
+  "answer": 3
+},
+{
+  "difficulty": "Hard",
+  "topic": "River Crossing",
+  "question": "Hemant and Ajay start a two-length swimming race at the same moment but from opposite ends of the pool. They swim at uniform speeds, but Hemant is faster than Ajay. They first pass at a point 18.5 m from the deep end and, after completing one length, each rests for exactly 45 seconds. After setting off on the return length, the swimmers pass for the second time just 10.5 m from the shallow end. How long is the pool?",
+  "options": [
+    "55.5 m",
+    "45 m",
+    "66 m",
+    "49 m"
+  ],
+  "answer": 0
+}
+]
