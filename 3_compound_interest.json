@@ -202,5 +202,53 @@
       "2018"
     ],
     "answer": 2
-  }
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Variable Interest Rates",
+    "question": "A certain sum of money was lent under the following simple interest scheme: 8% per annum for the initial 2 years, 9.5% per annum for the next 4 years, 11% per annum for the next 2 years and 12% per annum thereafter. Find the amount to which a sum of ₹9000 taken for 12 years will grow.",
+    "options": [
+      "₹20,200",
+      "₹19,800",
+      "₹20,000",
+      "₹20,160"
+    ],
+    "answer": 4
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Relation between SI and CI",
+    "question": "The simple interest on a certain sum of money for three years at 8% per annum is half the compound interest on ₹4000 for two years at 10% per annum. Find the sum placed at simple interest.",
+    "options": [
+      "₹1550",
+      "₹1650",
+      "₹1750",
+      "₹2000"
+    ],
+    "answer": 3
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Compound Interest",
+    "question": "Ranjeet makes a deposit of ₹50,000 in a bank for a period of 2.5 years. If the rate of interest is 12% per annum compounded half-yearly, find the maturity value of the deposit.",
+    "options": [
+      "₹66,911.27",
+      "₹66,123.34",
+      "₹67,925.95",
+      "₹65,550.80"
+    ],
+    "answer": 1
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Effective Rate and Monthly Compounding",
+    "question": "A certain amount grows at an annual interest rate of 12%, compounded monthly. Which of the following equations can be used to find the number of years y required for the investment to increase by a factor of 64?",
+    "options": [
+      "64 = (1.01)^(12y)",
+      "1/64 = (1.04)^(12y)",
+      "64 = 1.04(12y)",
+      "8 = (1.01)^(6y)"
+    ],
+    "answer": 1
+  },
 ]
