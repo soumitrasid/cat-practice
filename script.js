@@ -1,5 +1,6 @@
 // ======================================
-// CAT Practice Script V3 (Fixed)
+// CAT Practice Script V4
+// With optional Timer ON/OFF switch
 // ======================================
 
 // Global Variables
@@ -8,31 +9,220 @@ let currentQuestion = 0;
 let userAnswers = [];
 let questionTimes = [];
 let questionStartTime = Date.now();
+
 let masterTimeLeft = 0;
 let questionTimeLeft = 300;
-let masterTimerInterval;
-let questionTimerInterval;
+
+let masterTimerInterval = null;
+let questionTimerInterval = null;
+
+let timerEnabled = false; // Timer is OFF by default
+let testFinished = false;
+let reviewMode = false;
 
 // ======================================
 // Shuffle Array
 // ======================================
 function shuffleArray(arr) {
     let a = [...arr];
+
     for (let i = a.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         [a[i], a[j]] = [a[j], a[i]];
     }
+
     return a;
 }
 
 // ======================================
-// Save Time Spent
+// Format Time
+// ======================================
+function formatTime(seconds) {
+    seconds = Math.max(0, seconds);
+
+    let hrs = String(Math.floor(seconds / 3600)).padStart(2, "0");
+    let mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
+    let secs = String(seconds % 60).padStart(2, "0");
+
+    return `${hrs}:${mins}:${secs}`;
+}
+
+// ======================================
+// Create Timer Switch
+// ======================================
+function createTimerSwitch() {
+    // Avoid creating the switch more than once
+    if (document.getElementById("timerSwitchContainer")) return;
+
+    const container = document.createElement("div");
+    container.id = "timerSwitchContainer";
+    container.style.cssText = `
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding: 12px 15px;
+        margin: 12px 0;
+        background: #f2f6fc;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        font-family: Arial, sans-serif;
+    `;
+
+    container.innerHTML = `
+        <label for="timerSwitch" style="font-weight: bold; cursor: pointer;">
+            Enable Timer
+        </label>
+
+        <label style="
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 25px;
+            cursor: pointer;
+        ">
+            <input
+                type="checkbox"
+                id="timerSwitch"
+                style="opacity: 0; width: 0; height: 0;"
+            >
+            <span id="timerSwitchSlider" style="
+                position: absolute;
+                inset: 0;
+                background: #9ca3af;
+                border-radius: 25px;
+                transition: 0.25s;
+            "></span>
+            <span id="timerSwitchKnob" style="
+                position: absolute;
+                height: 19px;
+                width: 19px;
+                left: 3px;
+                top: 3px;
+                background: white;
+                border-radius: 50%;
+                transition: 0.25s;
+                pointer-events: none;
+            "></span>
+        </label>
+
+        <strong id="timerStatus" style="color: #b45309;">
+            OFF – Untimed Test
+        </strong>
+
+        <span style="font-size: 13px; color: #555;">
+            Turn ON to activate the 5-minute question timer and master timer.
+        </span>
+    `;
+
+    // Place the switch before the question number, if available
+    const questionNumber = document.getElementById("questionNumber");
+
+    if (questionNumber && questionNumber.parentNode) {
+        questionNumber.parentNode.insertBefore(container, questionNumber);
+    } else {
+        document.body.insertBefore(container, document.body.firstChild);
+    }
+
+    document.getElementById("timerSwitch").addEventListener("change", function () {
+        setTimerEnabled(this.checked);
+    });
+
+    updateTimerSwitchDisplay();
+}
+
+// ======================================
+// Update Timer Switch Appearance
+// ======================================
+function updateTimerSwitchDisplay() {
+    const slider = document.getElementById("timerSwitchSlider");
+    const knob = document.getElementById("timerSwitchKnob");
+    const status = document.getElementById("timerStatus");
+
+    if (!slider || !knob || !status) return;
+
+    if (timerEnabled) {
+        slider.style.background = "#16a34a";
+        knob.style.transform = "translateX(23px)";
+        status.textContent = "ON – Timed Test";
+        status.style.color = "#15803d";
+    } else {
+        slider.style.background = "#9ca3af";
+        knob.style.transform = "translateX(0)";
+        status.textContent = "OFF – Untimed Test";
+        status.style.color = "#b45309";
+    }
+}
+
+// ======================================
+// Save Time Spent on Current Question
 // ======================================
 function saveTimeSpent() {
+    if (testFinished || reviewMode || !questions.length) return;
+
     let now = Date.now();
     let spent = Math.floor((now - questionStartTime) / 1000);
-    questionTimes[currentQuestion] += spent;
+
+    if (spent > 0 && questionTimes[currentQuestion] !== undefined) {
+        questionTimes[currentQuestion] += spent;
+    }
+
     questionStartTime = now;
+}
+
+// ======================================
+// Start / Stop Timers
+// ======================================
+function stopTimers() {
+    if (masterTimerInterval) {
+        clearInterval(masterTimerInterval);
+        masterTimerInterval = null;
+    }
+
+    if (questionTimerInterval) {
+        clearInterval(questionTimerInterval);
+        questionTimerInterval = null;
+    }
+}
+
+function setTimerEnabled(enabled) {
+    if (testFinished || reviewMode) return;
+
+    // Save elapsed time before changing timer mode
+    saveTimeSpent();
+
+    timerEnabled = enabled;
+    updateTimerSwitchDisplay();
+    updateTimerDisplays();
+
+    if (timerEnabled) {
+        startMasterTimer();
+        startQuestionTimer();
+    } else {
+        stopTimers();
+    }
+
+    questionStartTime = Date.now();
+}
+
+// ======================================
+// Update Timer Displays
+// ======================================
+function updateTimerDisplays() {
+    const masterDisplay = document.getElementById("masterTimer");
+    const questionDisplay = document.getElementById("questionTimer");
+
+    if (masterDisplay) {
+        masterDisplay.innerHTML = timerEnabled
+            ? "Master Timer : " + formatTime(masterTimeLeft)
+            : "Master Timer : OFF";
+    }
+
+    if (questionDisplay) {
+        questionDisplay.innerHTML = timerEnabled
+            ? "Question Timer : " + formatTime(questionTimeLeft)
+            : "Question Timer : OFF";
+    }
 }
 
 // ======================================
@@ -46,7 +236,6 @@ fetch("questions.json")
         return response.json();
     })
     .then(data => {
-        // Separate by difficulty
         let easyQuestions = shuffleArray(
             data.filter(q => q.difficulty === "Easy")
         ).slice(0, 10);
@@ -78,28 +267,41 @@ fetch("questions.json")
             ];
         }
 
-        // Combine and shuffle again
         questions = shuffleArray(questions);
 
         userAnswers = Array(questions.length).fill(null);
         questionTimes = Array(questions.length).fill(0);
-        masterTimeLeft = questions.length * 300;
 
+        masterTimeLeft = questions.length * 300;
+        questionTimeLeft = 300;
+
+        createTimerSwitch();
         createPalette();
         loadQuestion();
-        startMasterTimer();
-        startQuestionTimer();
+
+        // Timer remains OFF until the student activates the switch
+        timerEnabled = false;
+        stopTimers();
+        updateTimerSwitchDisplay();
+        updateTimerDisplays();
+
+        questionStartTime = Date.now();
     })
     .catch(error => {
         console.error(error);
-        document.getElementById("question").innerHTML =
-            "Error loading questions.json";
+
+        const questionElement = document.getElementById("question");
+        if (questionElement) {
+            questionElement.innerHTML = "Error loading questions.json";
+        }
     });
 
 // ======================================
 // Load Question
 // ======================================
 function loadQuestion() {
+    if (!questions.length) return;
+
     let q = questions[currentQuestion];
 
     document.getElementById("questionNumber").innerHTML =
@@ -110,19 +312,15 @@ function loadQuestion() {
     let html = "";
 
     for (let i = 0; i < q.options.length; i++) {
-        let checked = "";
-
-        if (userAnswers[currentQuestion] === i) {
-            checked = "checked";
-        }
+        let checked = userAnswers[currentQuestion] === i ? "checked" : "";
 
         html += `
-        <p>
-            <label>
-                <input type="radio" name="option" value="${i}" ${checked}>
-                ${q.options[i]}
-            </label>
-        </p>
+            <p>
+                <label>
+                    <input type="radio" name="option" value="${i}" ${checked}>
+                    ${q.options[i]}
+                </label>
+            </p>
         `;
     }
 
@@ -130,19 +328,23 @@ function loadQuestion() {
 
     updatePalette();
     updateButtons();
+    updateTimerDisplays();
 }
 
 // ======================================
-// Create Palette
+// Create Question Palette
 // ======================================
 function createPalette() {
     let html = "";
 
     for (let i = 0; i < questions.length; i++) {
         html += `
-        <button class="paletteButton unansweredQuestion" id="palette${i}" onclick="jumpToQuestion(${i})">
-            ${i + 1}
-        </button>
+            <button
+                class="paletteButton unansweredQuestion"
+                id="palette${i}"
+                onclick="jumpToQuestion(${i})">
+                ${i + 1}
+            </button>
         `;
     }
 
@@ -150,11 +352,12 @@ function createPalette() {
 }
 
 // ======================================
-// Update Palette
+// Update Question Palette
 // ======================================
 function updatePalette() {
     for (let i = 0; i < questions.length; i++) {
         let box = document.getElementById(`palette${i}`);
+        if (!box) continue;
 
         box.className = "paletteButton";
 
@@ -171,36 +374,40 @@ function updatePalette() {
 }
 
 // ======================================
-// Jump To Question
+// Move to a Question
 // ======================================
-function jumpToQuestion(index) {
-    saveTimeSpent();
+function moveToQuestion(index) {
+    if (index < 0 || index >= questions.length || testFinished) return;
+
+    if (!reviewMode) {
+        saveTimeSpent();
+    }
+
     currentQuestion = index;
-    questionStartTime = Date.now();
+
+    // Every question has its own five-minute countdown.
+    // If the timer is OFF, this value is simply held until timer activation.
     questionTimeLeft = 300;
+
+    questionStartTime = Date.now();
     loadQuestion();
 }
 
-// ======================================
-// Format Time
-// ======================================
-function formatTime(seconds) {
-    let hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
-    let mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
-    let secs = String(seconds % 60).padStart(2, '0');
-
-    return `${hrs}:${mins}:${secs}`;
+function jumpToQuestion(index) {
+    moveToQuestion(index);
 }
 
 // ======================================
 // Master Timer
 // ======================================
 function startMasterTimer() {
-    masterTimerInterval = setInterval(function() {
-        masterTimeLeft--;
+    if (!timerEnabled || testFinished || reviewMode || masterTimerInterval) return;
 
-        document.getElementById("masterTimer").innerHTML =
-            "Master Timer : " + formatTime(masterTimeLeft);
+    masterTimerInterval = setInterval(function () {
+        if (!timerEnabled || testFinished) return;
+
+        masterTimeLeft--;
+        updateTimerDisplays();
 
         if (masterTimeLeft <= 0) {
             finishTest();
@@ -212,13 +419,16 @@ function startMasterTimer() {
 // Question Timer
 // ======================================
 function startQuestionTimer() {
-    questionTimerInterval = setInterval(function() {
-        questionTimeLeft--;
+    if (!timerEnabled || testFinished || reviewMode || questionTimerInterval) return;
 
-        document.getElementById("questionTimer").innerHTML =
-            "Question Timer : " + formatTime(questionTimeLeft);
+    questionTimerInterval = setInterval(function () {
+        if (!timerEnabled || testFinished) return;
+
+        questionTimeLeft--;
+        updateTimerDisplays();
 
         if (questionTimeLeft <= 0) {
+            // Record the time up to the end of this question
             saveTimeSpent();
 
             if (currentQuestion < questions.length - 1) {
@@ -251,6 +461,8 @@ function updateButtons() {
 // Submit Answer
 // ======================================
 function submitAnswer() {
+    if (testFinished) return;
+
     let selected = document.querySelector('input[name="option"]:checked');
 
     if (!selected) {
@@ -258,18 +470,19 @@ function submitAnswer() {
         return;
     }
 
-    saveTimeSpent();
+    if (!reviewMode) {
+        saveTimeSpent();
+    }
 
-    userAnswers[currentQuestion] = parseInt(selected.value);
+    userAnswers[currentQuestion] = parseInt(selected.value, 10);
 
     updatePalette();
     updateButtons();
 
-    // Move to next question
     if (currentQuestion < questions.length - 1) {
         currentQuestion++;
-        questionStartTime = Date.now();
         questionTimeLeft = 300;
+        questionStartTime = Date.now();
         loadQuestion();
     } else {
         finishTest();
@@ -280,13 +493,10 @@ function submitAnswer() {
 // Skip Question
 // ======================================
 function skipQuestion() {
-    saveTimeSpent();
+    if (testFinished) return;
 
     if (currentQuestion < questions.length - 1) {
-        currentQuestion++;
-        questionStartTime = Date.now();
-        questionTimeLeft = 300;
-        loadQuestion();
+        moveToQuestion(currentQuestion + 1);
     } else {
         finishTest();
     }
@@ -296,12 +506,8 @@ function skipQuestion() {
 // Previous Question
 // ======================================
 function previousQuestion() {
-    if (currentQuestion > 0) {
-        saveTimeSpent();
-        currentQuestion--;
-        questionStartTime = Date.now();
-        questionTimeLeft = 300;
-        loadQuestion();
+    if (currentQuestion > 0 && !testFinished) {
+        moveToQuestion(currentQuestion - 1);
     }
 }
 
@@ -309,12 +515,8 @@ function previousQuestion() {
 // Next Question
 // ======================================
 function nextQuestion() {
-    if (currentQuestion < questions.length - 1) {
-        saveTimeSpent();
-        currentQuestion++;
-        questionStartTime = Date.now();
-        questionTimeLeft = 300;
-        loadQuestion();
+    if (currentQuestion < questions.length - 1 && !testFinished) {
+        moveToQuestion(currentQuestion + 1);
     }
 }
 
@@ -322,16 +524,28 @@ function nextQuestion() {
 // Finish Test
 // ======================================
 function finishTest() {
+    if (testFinished) return;
+
     saveTimeSpent();
-    clearInterval(masterTimerInterval);
-    clearInterval(questionTimerInterval);
+
+    testFinished = true;
+    stopTimers();
+
+    const timerSwitch = document.getElementById("timerSwitch");
+    if (timerSwitch) timerSwitch.disabled = true;
+
     generateReport();
 }
 
 // ======================================
-// Review Question
+// Review a Question
 // ======================================
 function reviewQuestion(index) {
+    if (index < 0 || index >= questions.length) return;
+
+    reviewMode = true;
+    stopTimers();
+
     currentQuestion = index;
     loadQuestion();
 }
@@ -340,19 +554,30 @@ function reviewQuestion(index) {
 // Review Entire Test
 // ======================================
 function reviewAll() {
+    reviewMode = true;
+    stopTimers();
+
     currentQuestion = 0;
     loadQuestion();
 }
 
 // ======================================
-// Show Review Mode (re-reveal the test UI after the report,
-// so reviewAll()/reviewQuestion() have something to act on)
+// Show Review Mode
 // ======================================
 function showReviewMode() {
     document.getElementById("question").style.display = "block";
     document.getElementById("options").style.display = "block";
     document.getElementById("palette").style.display = "block";
     document.getElementById("report").style.display = "none";
+
+    reviewMode = true;
+    stopTimers();
+
+    const timerContainer = document.getElementById("timerSwitchContainer");
+    if (timerContainer) {
+        timerContainer.style.display = "none";
+    }
+
     reviewAll();
 }
 
@@ -365,34 +590,41 @@ function addReportButtons() {
         <button onclick="showReviewMode()">Review Answers</button>
         <br><br>
     `;
+
     document.getElementById("report").innerHTML += html;
 }
 
 // ======================================
 // Keyboard Shortcuts
 // ======================================
-document.addEventListener("keydown", function(event) {
-    // Next Question
+document.addEventListener("keydown", function (event) {
+    // Do not trigger shortcuts while typing in an input
+    if (
+        event.target &&
+        (event.target.tagName === "INPUT" ||
+         event.target.tagName === "TEXTAREA")
+    ) {
+        return;
+    }
+
     if (event.key === "ArrowRight") {
         nextQuestion();
     }
 
-    // Previous Question
     if (event.key === "ArrowLeft") {
         previousQuestion();
     }
 
-    // Finish Test
-    if (event.key === "f") {
+    if (event.key.toLowerCase() === "f") {
         finishTest();
     }
 });
 
 // ======================================
-// Enable Finish Button
+// Enable Finish Button When an Option Is Selected
 // ======================================
-document.addEventListener("change", function(event) {
-    if (event.target.name === "option") {
+document.addEventListener("change", function (event) {
+    if (event.target && event.target.name === "option") {
         document.getElementById("finishBtn").disabled = false;
     }
 });
@@ -406,6 +638,7 @@ function generateReport() {
     let wrongCount = 0;
     let skippedCount = 0;
     let totalTime = 0;
+
     let topicStats = {};
     let difficultyStats = {};
     let reportHTML = "";
@@ -449,13 +682,15 @@ function generateReport() {
     // ======================================
     // Accuracy
     // ======================================
-    let accuracy = (correctCount / (correctCount + wrongCount || 1)) * 100;
+    let accuracy =
+        (correctCount / (correctCount + wrongCount || 1)) * 100;
 
     // ======================================
     // Summary
     // ======================================
     reportHTML += `
         <h1>TEST REPORT</h1>
+
         <table border="1">
             <tr>
                 <th>Total Questions</th>
@@ -472,10 +707,20 @@ function generateReport() {
                 <td>${totalMarks}</td>
             </tr>
         </table>
+
         <br>
+
         <b>Accuracy :</b> ${accuracy.toFixed(2)} %
+
         <br><br>
-        <b>Average Time per Question :</b> ${(totalTime / questions.length / 60).toFixed(2)} min
+
+        <b>Average Time per Question :</b>
+        ${(totalTime / questions.length / 60).toFixed(2)} min
+
+        <br><br>
+
+        <b>Timer Mode :</b> ${timerEnabled ? "Timed Test" : "Untimed Test"}
+
         <br><br>
     `;
 
@@ -484,17 +729,25 @@ function generateReport() {
     // ======================================
     reportHTML += "<h2>Topic Analysis</h2>";
     reportHTML += "<table border='1'>";
-    reportHTML += "<tr><th>Topic</th><th>Correct</th><th>Average Time</th></tr>";
+    reportHTML +=
+        "<tr><th>Topic</th><th>Correct</th><th>Average Time</th></tr>";
 
     for (let topic in topicStats) {
         reportHTML += `
-        <tr>
-            <td>${topic}</td>
-            <td>${topicStats[topic].correct} / ${topicStats[topic].total}</td>
-            <td>${(topicStats[topic].time / topicStats[topic].total / 60).toFixed(2)} min</td>
-        </tr>
+            <tr>
+                <td>${topic}</td>
+                <td>
+                    ${topicStats[topic].correct} /
+                    ${topicStats[topic].total}
+                </td>
+                <td>
+                    ${(topicStats[topic].time /
+                       topicStats[topic].total / 60).toFixed(2)} min
+                </td>
+            </tr>
         `;
     }
+
     reportHTML += "</table><br>";
 
     // ======================================
@@ -504,14 +757,18 @@ function generateReport() {
     reportHTML += "<table border='1'>";
     reportHTML += "<tr><th>Difficulty</th><th>Correct</th></tr>";
 
-    for (let d in difficultyStats) {
+    for (let difficulty in difficultyStats) {
         reportHTML += `
-        <tr>
-            <td>${d}</td>
-            <td>${difficultyStats[d].correct} / ${difficultyStats[d].total}</td>
-        </tr>
+            <tr>
+                <td>${difficulty}</td>
+                <td>
+                    ${difficultyStats[difficulty].correct} /
+                    ${difficultyStats[difficulty].total}
+                </td>
+            </tr>
         `;
     }
+
     reportHTML += "</table><br>";
 
     // ======================================
@@ -546,24 +803,38 @@ function generateReport() {
         let correctAnswer = q.options[q.answer];
 
         reportHTML += `
-        <div style="background:${colour}; padding:15px; margin:15px; border-radius:10px;">
-            <h3>Question ${i + 1}</h3>
-            <b>Topic :</b> ${q.topic}
-            <br>
-            <b>Difficulty :</b> ${q.difficulty}
-            <br><br>
-            ${q.question}
-            <br><br>
-            <b>Your Answer :</b> ${candidateAnswer}
-            <br><br>
-            <b>Correct Answer :</b> ${correctAnswer}
-            <br><br>
-            <b>Result :</b> ${status}
-            <br><br>
-            <b>Marks :</b> ${marks}
-            <br><br>
-            <b>Time Spent :</b> ${(questionTimes[i] / 60).toFixed(2)} min
-        </div>
+            <div style="
+                background: ${colour};
+                padding: 15px;
+                margin: 15px;
+                border-radius: 10px;
+            ">
+                <h3>Question ${i + 1}</h3>
+
+                <b>Topic :</b> ${q.topic || "General"}
+                <br>
+
+                <b>Difficulty :</b> ${q.difficulty || "Unknown"}
+                <br><br>
+
+                ${q.question}
+                <br><br>
+
+                <b>Your Answer :</b> ${candidateAnswer}
+                <br><br>
+
+                <b>Correct Answer :</b> ${correctAnswer}
+                <br><br>
+
+                <b>Result :</b> ${status}
+                <br><br>
+
+                <b>Marks :</b> ${marks}
+                <br><br>
+
+                <b>Time Spent :</b>
+                ${(questionTimes[i] / 60).toFixed(2)} min
+            </div>
         `;
     }
 
@@ -576,4 +847,9 @@ function generateReport() {
     document.getElementById("question").style.display = "none";
     document.getElementById("options").style.display = "none";
     document.getElementById("palette").style.display = "none";
+
+    const timerContainer = document.getElementById("timerSwitchContainer");
+    if (timerContainer) {
+        timerContainer.style.display = "none";
+    }
 }
