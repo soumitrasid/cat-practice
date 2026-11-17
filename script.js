@@ -1,6 +1,6 @@
 // ======================================
-// CAT Practice Script V4
-// With optional Timer ON/OFF switch
+// CAT Practice Script V5
+// Uses all questions in JSON order; optional Timer ON/OFF switch
 // ======================================
 
 // Global Variables
@@ -19,20 +19,6 @@ let questionTimerInterval = null;
 let timerEnabled = false; // Timer is OFF by default
 let testFinished = false;
 let reviewMode = false;
-
-// ======================================
-// Shuffle Array
-// ======================================
-function shuffleArray(arr) {
-    let a = [...arr];
-
-    for (let i = a.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-    }
-
-    return a;
-}
 
 // ======================================
 // Format Time
@@ -236,38 +222,44 @@ fetch("questions.json")
         return response.json();
     })
     .then(data => {
-        let easyQuestions = shuffleArray(
-            data.filter(q => q.difficulty === "Easy")
-        ).slice(0, 10);
-
-        let mediumQuestions = shuffleArray(
-            data.filter(q => q.difficulty === "Medium")
-        );
-
-        let hardQuestions = shuffleArray(
-            data.filter(q => q.difficulty === "Hard")
-        ).slice(0, 10);
-
-        questions = [
-            ...easyQuestions,
-            ...mediumQuestions,
-            ...hardQuestions
-        ];
-
-        let remaining = 30 - questions.length;
-
-        if (remaining > 0) {
-            let extraQuestions = shuffleArray(
-                data.filter(q => q.difficulty !== "Medium")
-            ).slice(0, remaining);
-
-            questions = [
-                ...questions,
-                ...extraQuestions
-            ];
+        // Use every question exactly once, preserving the order in questions.json.
+        // The JSON answer field is 1-based (1 to number of options), while
+        // this script stores radio-button selections as 0-based indices.
+        if (!Array.isArray(data)) {
+            throw new Error("questions.json must contain a JSON array.");
         }
 
-        questions = shuffleArray(questions);
+        if (data.length === 0) {
+            throw new Error("questions.json does not contain any questions.");
+        }
+
+        questions = data.map((q, index) => {
+            if (
+                !q ||
+                typeof q.question !== "string" ||
+                !Array.isArray(q.options) ||
+                q.options.length < 2
+            ) {
+                throw new Error(`Question ${index + 1} has an invalid question/options format.`);
+            }
+
+            const oneBasedAnswer = Number(q.answer);
+
+            if (
+                !Number.isInteger(oneBasedAnswer) ||
+                oneBasedAnswer < 1 ||
+                oneBasedAnswer > q.options.length
+            ) {
+                throw new Error(
+                    `Question ${index + 1} has an invalid answer. Use a 1-based answer number from 1 to ${q.options.length}.`
+                );
+            }
+
+            return {
+                ...q,
+                answer: oneBasedAnswer - 1
+            };
+        });
 
         userAnswers = Array(questions.length).fill(null);
         questionTimes = Array(questions.length).fill(0);
@@ -715,7 +707,7 @@ function generateReport() {
         <br><br>
 
         <b>Average Time per Question :</b>
-        ${(totalTime / questions.length / 60).toFixed(2)} min
+        ${(totalTime / (questions.length || 1) / 60).toFixed(2)} min
 
         <br><br>
 
