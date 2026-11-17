@@ -1,4 +1,164 @@
-"question": "The rate at which tap X fills a tank is 50% more than that of tap Y. If both the taps are opened simultaneously, they take 40 hours to fill the tank. The time taken by Y alone to fill the tank is",
+[
+  {
+    "difficulty": "Easy",
+    "topic": "Combined Work",
+    "question": "A can complete a piece of work in 20 days and B can do it in 15 days. In how many days will they complete the work together?",
+    "options": [
+      "8 4/7 days",
+      "8 6/7 days",
+      "9 3/7 days",
+      "9 4/7 days"
+    ],
+    "answer": 1
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Finding Individual Efficiency",
+    "question": "A can do a piece of work in 10 days and B can do the same work in 20 days. With the help of C, they finish the work in 5 days. In how many days can C alone complete the work?",
+    "options": [
+      "10 days",
+      "15 days",
+      "20 days",
+      "35 days"
+    ],
+    "answer": 3
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Relative Efficiency",
+    "question": "Anmol is three times as efficient as Vinay and therefore can finish a job 60 days earlier than Vinay. In how many days will they finish the job working together?",
+    "options": [
+      "11.5 days",
+      "15 days",
+      "20 days",
+      "22.5 days"
+    ],
+    "answer": 4
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Relative Efficiency from Combined Time Differences",
+    "question": "Two women, Renu and Ushi, are working on an embroidery design. If Ushi worked alone, she would need eight hours more than the time required by both together. If Renu worked alone, she would need 4.5 hours more than the time required by both together. How much time would Renu alone take to complete the design?",
+    "options": [
+      "10.5 hours",
+      "12.5 hours",
+      "14.5 hours",
+      "18.5 hours"
+    ],
+    "answer": 1
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Sequential Work",
+    "question": "A can do a work in 18 days, B in 9 days and C in 6 days. A and B start working together and C joins them after 2 days. In how many days will the work be completed?",
+    "options": [
+      "4 days",
+      "4.33 days",
+      "4.66 days",
+      "5 days"
+    ],
+    "answer": 1
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Worker Leaving Before Completion",
+    "question": "Dev and Tukku can do a piece of work in 45 days and 40 days respectively. They begin working together, but Dev leaves after some days and Tukku finishes the remaining work in 23 days. After how many days did Dev leave?",
+    "options": [
+      "7 days",
+      "8 days",
+      "9 days",
+      "11 days"
+    ],
+    "answer": 3
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Alternate Working",
+    "question": "Abbot, Bill and Clinton can complete a work in 10 days, 20 days and 40 days respectively. They work in turns with Abbot on day 1, Bill on day 2 and Clinton on day 3. In how many days will the work be completed?",
+    "options": [
+      "15 days",
+      "16 days",
+      "16.5 days",
+      "17 days"
+    ],
+    "answer": 3
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Men, Hours and Days",
+    "question": "Thirty men working 5 hours a day can complete a work in 16 days. In how many days can 20 men working 6 hours a day complete the same work?",
+    "options": [
+      "20 days",
+      "21 days",
+      "22.5 days",
+      "25 days"
+    ],
+    "answer": 1
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Men Required for a Deadline",
+    "question": "Twenty-four men working 8 hours a day complete a work in 10 days. If they work 10 hours a day, how many men are required to finish the same work in 6 days?",
+    "options": [
+      "30",
+      "32",
+      "34",
+      "36"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Workforce Adjustment and Deadline",
+    "question": "A project is to be completed in 60 days and 90 men are set to work, each working 6 hours a day. After 20 days, only one-fifth of the work is finished. How many additional men need to be employed so that the work may be completed on time if each man now works 8 hours a day?",
+    "options": [
+      "30",
+      "45",
+      "60",
+      "90"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Workforce Shortfall",
+    "question": "A group of men was assigned a job to be completed in 20 days. Twelve men did not turn up, and the work was completed in 32 days. What was the original number of men?",
+    "options": [
+      "32",
+      "34",
+      "36",
+      "40"
+    ],
+    "answer": 1
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Wage Distribution",
+    "question": "Baba can complete a work in 10 days and Anshu in 15 days. If the total wages for the work are ₹50 and they work together throughout, how much should Baba receive?",
+    "options": [
+      "₹20",
+      "₹25",
+      "₹30",
+      "₹35"
+    ],
+    "answer": 3
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Wage Sharing with a Third Worker",
+    "question": "Ajay and Vijay undertake a job for ₹200. Ajay alone can do it in 24 days and Vijay alone in 30 days. With the help of Pradeep, they finish the work in 12 days. How much should Pradeep receive?",
+    "options": [
+      "₹20",
+      "₹50",
+      "₹100",
+      "₹180"
+    ],
+    "answer": 1
+  },
+  {
+    "difficulty": "Easy",
+    "topic": "Relative Filling Rates",
+    "question": "The rate at which tap X fills a tank is 50% more than that of tap Y. If both the taps are opened simultaneously, they take 40 hours to fill the tank. The time taken by Y alone to fill the tank is",
     "options": [
       "60 hours",
       "80 hours",
