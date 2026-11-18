@@ -262,8 +262,8 @@
       "40 minutes"
     ],
     "answer": 3
-  }
-    {
+  },
+  {
   "difficulty": "Hard",
   "topic": "Sequential Work",
   "question": "A, B and C can complete a work in 24, 30 and 40 days respectively. They start together. A leaves after 6 days and B leaves 4 days before the completion of the work. In how many days is the work completed?",
@@ -272,7 +272,7 @@
     "16 days",
     "18 days",
     "20 days"
-  ],
+   ],
   "answer": 2
   },
   {
@@ -296,7 +296,7 @@
     "10 days",
     "12 days",
     "16 days"
-  ],
+   ],
   "answer": 3
   },
   {
@@ -308,7 +308,7 @@
     "3.3 days",
     "3.8 days",
     "4.4 days"
-  ],
+   ],
   "answer": 1
   },
   {
@@ -320,7 +320,7 @@
     "4 days",
     "5 days",
     "6 days"
-  ],
+   ],
   "answer": 2
   },
   {
@@ -332,7 +332,7 @@
     "11 hours",
     "12 hours",
     "13 hours"
-  ],
+   ],
   "answer": 3
   },
   {
@@ -344,7 +344,7 @@
     "Third day",
     "Fourth day",
     "Fifth day"
-  ],
+   ],
   "answer": 2
   },
   {
@@ -356,7 +356,7 @@
     "10.4 hours",
     "11.2 hours",
     "12 hours"
-  ],
+   ],
   "answer": 2
   }  
 ]
