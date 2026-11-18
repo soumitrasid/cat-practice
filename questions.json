@@ -358,5 +358,174 @@
       "12 hours"
     ],
     "answer": 2
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "SI vs Half-Yearly CI",
+    "question": "The difference between the simple interest on a certain amount at 20% per annum for 1.5 years and compound interest at the same rate compounded every six months is ₹155. Find the principal amount.",
+    "options": [
+      "₹4000",
+      "₹5000",
+      "₹6000",
+      "None of these"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Half-Yearly Compounding",
+    "question": "In how many years will a sum of ₹18000 at 20% per annum compounded half-yearly become ₹23958?",
+    "options": [
+      "1 year",
+      "1.5 years",
+      "2 years",
+      "2.5 years"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Doubling under Compound Interest",
+    "question": "A sum of money doubles itself in 5 years. In how many years will it become four times itself if interest is compounded?",
+    "options": [
+      "15 years",
+      "10 years",
+      "20 years",
+      "12 years"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Unequal Instalments",
+    "question": "An amount of ₹12820 due 3 years hence is fully repaid in three annual instalments starting after 1 year. The first instalment is half the second and the second is two-thirds of the third. If the interest rate is 10% per annum, find the first instalment.",
+    "options": [
+      "₹1800",
+      "₹2000",
+      "₹2400",
+      "₹2500"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Loan Repayment",
+    "question": "Mohit Anand borrows a sum from a bank at 10% compound interest. The debt is discharged by two equal annual payments of ₹1000 each at the end of the first and second years. Approximately what amount was borrowed?",
+    "options": [
+      "₹1852",
+      "₹1736",
+      "₹1694",
+      "₹1792"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Mixed Investment and Depreciation",
+    "question": "A sum is divided between A and B in the ratio 1 : 2. A purchases a car that depreciates at 14 2/7% per annum while B deposits his amount in a bank paying 20% per annum compounded annually. Approximately by what percentage will the total wealth increase after two years?",
+    "options": [
+      "20%",
+      "26.66%",
+      "30%",
+      "25%"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Multiple Compounding Schemes",
+    "question": "Kaalia borrowed money at 15% simple interest for 2 years. He then lent half of it to Mallya at 16% compounded half-yearly and the other half to Jaalia at 15% compounded annually, both for 2 years. Approximately what percentage profit on the original amount did Kaalia earn?",
+    "options": [
+      "5.2%",
+      "4.1%",
+      "6.6%",
+      "3.5%"
+    ],
+    "answer": 1
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Early Repayment",
+    "question": "You borrow the same amount at 12% simple interest and at 10% simple interest for the same period. The first loan is repaid six months early while the second is repaid on schedule. In both cases the amount repaid is ₹92625. Determine the principal and the time period.",
+    "options": [
+      "₹75000, 2 years",
+      "₹75000, 3 years",
+      "₹82500, 2 years",
+      "₹82500, 3 years"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Population Growth and Migration",
+    "question": "The population growth rate of a city follows an increasing AP with first-year rate 5% and common difference 5%, while migration follows an increasing GP with first term 1% and common ratio 2. If the population on 31 December 2010 is one million, in which year will the city witness its first fall in population?",
+    "options": [
+      "2015",
+      "2016",
+      "2017",
+      "2018"
+    ],
+    "answer": 2
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Variable Interest Rates",
+    "question": "A certain sum of money was lent under the following simple interest scheme: 8% per annum for the initial 2 years, 9.5% per annum for the next 4 years, 11% per annum for the next 2 years and 12% per annum thereafter. Find the amount to which a sum of ₹9000 taken for 12 years will grow.",
+    "options": [
+      "₹20,200",
+      "₹19,800",
+      "₹20,000",
+      "₹20,160"
+    ],
+    "answer": 4
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Effective Rate and Monthly Compounding",
+    "question": "A certain amount grows at an annual interest rate of 12%, compounded monthly. Which of the following equations can be used to find the number of years y required for the investment to increase by a factor of 64?",
+    "options": [
+      "64 = (1.01)^(12y)",
+      "1/64 = (1.04)^(12y)",
+      "64 = 1.04(12y)",
+      "8 = (1.01)^(6y)"
+    ],
+    "answer": 1
+  },
+  {
+    "difficulty": "Medium",
+    "topic": "Weighted Average Interest",
+    "question": "A man invests a total of ₹17 lakh. Part of it is invested at 6%, and the remainder is invested in two banks in the ratio 3:1 at 5% and 4% respectively. If the total annual interest earned is ₹92000, find the amount invested at 6%.",
+    "options": [
+      "₹4 lakh",
+      "₹6 lakh",
+      "₹8 lakh",
+      "₹10 lakh"
+    ],
+    "answer": 3
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Simple Interest with Different Starting Times",
+    "question": "Abhijit invested ₹20000 at 6% simple interest, while Amartya invested ₹18000 at 10% simple interest five years later. After how many years from Abhijit's investment will Amartya's accumulated amount exceed Abhijit's accumulated amount?",
+    "options": [
+      "10 years",
+      "12 years",
+      "15 years",
+      "20 years"
+    ],
+    "answer": 3
+  },
+  {
+    "difficulty": "Hard",
+    "topic": "Education Planning - Compound Interest",
+    "question": "Mr. Suratkal divides ₹20 lakh between his two sons aged 15 and 12 years so that both receive the same amount at age 21. If the investments earn 12% compounded annually, approximately how much should be invested for the younger son?",
+    "options": [
+      "₹801125",
+      "₹831625",
+      "₹901125",
+      "₹931615"
+    ],
+    "answer": 3
   }
 ]
+
